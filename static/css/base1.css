@@ -1,0 +1,157 @@
+
+html{
+    color:#ADC178;
+    background-color:#FCFBF2;
+    font-size: 48px;
+
+}
+
+body{
+  margin-left: 200px;
+  margin-right: 200px;
+ font-size: 48px;
+}
+
+.ctc_tests_question{
+font-size: 50px;
+}
+
+
+input {
+    writing-mode: horizontal-tb !important;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    margin: 0em;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+
+input,label{
+       vertical-align: top;
+}
+
+label {
+  margin-right: 15px;
+  line-height: 45px;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  outline: none;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
+
+  margin-top: 5px;
+  margin-bottom: 65px;
+
+}
+
+input:checked {
+  border: 10px solid #a26b44;
+  width: 35px;
+  height: 35px;
+  top: 3px;
+  background:#ADC178;
+
+}
+#ctc_tests_message_before{
+    font-size: 40px;
+}
+
+
+.ctc_radio_answers ctcRequiredRadio {
+  margin-left: 50px;
+}
+
+.ctc_horizontal_choice {
+  margin-left: 50px;
+}
+
+#test-form
+.ctc_contact_div input[type=text] {
+    width: 100%;
+    height: 48px;
+    font-size: 20px;
+    padding: 0 15px;
+    color: #999;
+    margin-bottom: 0;
+    outline: 0;
+    border-radius: 0;
+    border-color: unset;
+    text-overflow: ellipsis;
+}
+
+button #sub {
+  width: 200px;
+  font-size: 20px;
+  color: white;
+
+  height: 55px;
+  padding: 10px;
+  border: 2px solid #F5C4AB;
+}
+#sex{
+margin-bottom: 15px;
+
+}
+
+
+#progress-container{
+    position:fixed;
+    left:0;top:0;
+    width:100%;
+
+    background:#f59605
+    z-index:1;
+
+    }
+
+#ProgressBar{
+    height:9px;
+    background-color:#f59605;
+    width:0%;
+    margin-top:3px
+
+    }
+
+#sub{
+    color:#ADC178;
+    background-color:#FCFBF2;
+    border: 1px solid #ff8c00;
+    background:#DDE5B6;
+}

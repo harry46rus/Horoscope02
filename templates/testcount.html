@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/base.css' %} ">
+    <meta charset="UTF-8">
+    <title>TEST RESULT</title>
+    <link href="{% static 'css/harry.ico' %} " rel="shortout icon" type="image/x-icon"/>
+    <!--Подключаем библиотеку-->
+<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<h1 align="center">TEST RESULT</h1>
+<!--    <p> welcome</p>-->
+    <a href="/contacts"> How call me </a><br>
+    <a href="/search_"> Search </a><br>
+    <a href="/test"> Test </a><br><hr>
+<!--    <p> ============================================</p><br>-->
+<!--    <a href="../../dictionary/aries"> aries </a><br>-->
+<!--    <a href="/dictionary/aries"> aries </a><br>-->
+<!--    <p> SUMM= {{ temp }}</p>-->
+
+    <button class="scroll_top active">
+<!--        ::after-->
+    </button>
+    <h2 align="center">Name: {{cc1}} / mail: {{cc2}} /  * {{cc3}}  </h2>
+    <h2 align="center">Graph = {{zz}}</h2>
+<!--    <p id="text_block" ><a class="nn" href="{% static nmf %}"target="_blank">{{nmf }}</a></p>-->
+
+<!--    <p id="text_block"-->
+<!--    ><a class="nn" href="../static/css/Igor_mix_on@bk.ru_0106022_01-06-2022_20-04.pdf "-->
+<!--        target="_blank">{{nmf }}</a></p>-->
+
+    <p id="text_block" align="center"
+    ><a class="nn" href="{% static  nmf %} "
+        target="_blank">Open graph</a></p>
+
+<!--    <h2 align="center">mail: {{cc2}}</h2>-->
+<!--    <h2 align="center">* {{cc3}}</h2>-->
+
+
+
+    <script>
+        $('.scroll_top').click(function(){
+        $('html, body').animate({scrollTop: 0}, 1000);
+        });
+        $(window).scroll(function(){
+             if($(window).scrollTop() > 300){
+                 $('.scroll_top').addClass('active');
+                }
+             else{
+                 $('.scroll_top').removeClass('active');
+                }
+        });
+    </script>
+<!--    <button class="scroll_top"></button>-->
+
+
+</body>
+</html>
