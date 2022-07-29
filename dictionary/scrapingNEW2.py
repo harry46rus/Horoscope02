@@ -305,8 +305,7 @@ def json_date(sorted_dict):
 
     # path = f"bd_json\\news_bd8.json"
 
-    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\horoscope01\dictionary\\bd_json\
-    \{sec}.json"
+    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\{sec}.json"
 
     # sorted_dict={'01':1, '02':6, '03':sec}
 
@@ -320,7 +319,7 @@ def scrap():
     fild_bd = []
     #Перебор всех имен файлов в папке и запись в список имен
     for root, directory, file in os.walk(
-            'C:\\Users\\79081\\PycharmProjects\\pyWEB_0\horoscope01\dictionary\\bd_json'):
+            'C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json'):
         # print(root)
         # print(directory)
         for file_bd in file:
@@ -328,8 +327,7 @@ def scrap():
     # Выборка позднего json-файла для показа на сайте
     print(max(fild_bd))
     #конвертация в обычный словарь
-    path2=f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\horoscope01\dictionary\\bd_json\
-    \{max(fild_bd)}"
+    path2=f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\{max(fild_bd)}"
 
     with open(path2, 'r', encoding='utf-8') as f_five:
         json_data_news = json.load(f_five)
