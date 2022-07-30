@@ -225,7 +225,7 @@ form {
   margin-left: auto;
   text-align: center;
     }
-
+/*
 #progress-container{
     position:fixed;
     left:0;top:0;
@@ -243,9 +243,9 @@ form {
     margin-top:3px
 
     }
+*/
 
 
-/*
 #progress-container{
     position:fixed;
     left:0;
@@ -255,9 +255,9 @@ form {
     border-radius: 2px;
 
     }
-*/
 
-/*
+
+
 #ProgressBar{
     height:6px;
     border-top: 2px solid #DDE1B2;
@@ -267,7 +267,7 @@ form {
     margin-top:6px;
     z-index:10;
     box-shadow: 0 0 25px #82736C;
-    }*/
+    }
 
 
 
