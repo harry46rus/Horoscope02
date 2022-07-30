@@ -30,3 +30,4 @@ for key, value in dd.items():
         print(key, value[0],value[1],value[2],value[3])
 # print(dd, dd.get(x))
 x = 10
+w =500
