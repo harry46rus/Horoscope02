@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from dictionary.loggics import search_words
 from dictionary.testcount import tcounter
 from dictionary.scrapingNEW2 import scrap
+from dictionary.scrap_USD import get_USD
 from datetime import datetime
 
 # def leo(request):
@@ -98,8 +99,16 @@ def get_test(request):
     hour_= datetime.strftime(datetime.now(), "%H")
     days_= datetime.strftime(datetime.now(), "%d")
     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-    fff=scrap()
+    fff = scrap()
+    usd_ = get_USD()
+
+    for date_, value in usd_.items():
+        dddate, usd, eur = date_, value[1], value[3]
+
     data = {
+        'date_': dddate,
+        'usd': usd,
+        'eur': eur,
         'news_dict': fff,
         "time": hour_,
         "day_": days_,}

@@ -228,6 +228,26 @@ form {
 
 #progress-container{
     position:fixed;
+    left:0;top:0;
+    width:100%;
+
+    background:#f59605
+    z-index:1;
+
+    }
+
+#ProgressBar{
+    height:9px;
+    background-color:#f59605;
+    width:0%;
+    margin-top:3px
+
+    }
+
+
+/*
+#progress-container{
+    position:fixed;
     left:0;
     top:0px;
     width:100%;
@@ -235,26 +255,28 @@ form {
     border-radius: 2px;
 
     }
-/*background:#BEC769;
-box-shadow: 0 0 25px #82736C;
-
- display:grid, display:flex, display:inline-grid или display:inline-flex
 */
 
-
+/*
 #ProgressBar{
     height:6px;
     border-top: 2px solid #DDE1B2;
 	border-bottom: 2px solid #9AA345;
     background-color:#BEC769;
-    width:0%;s
+    width:0%;
     margin-top:6px;
     z-index:10;
     box-shadow: 0 0 25px #82736C;
+    }*/
 
-    }
 
 
+
+/*background:#BEC769;
+box-shadow: 0 0 25px #82736C;
+
+ display:grid, display:flex, display:inline-grid или display:inline-flex
+*/
 
 
 
