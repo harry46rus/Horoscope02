@@ -43,11 +43,11 @@ def scrap_USD():
         News40 =soup.find_all('div', class_="table-wrapper")[0].find('tbody').find_all('tr')\
            [11].find_all('td')[3].text
         News41 = soup.find_all('div', class_="table-wrapper")[0].find('tbody').find_all('tr') \
-            [11].find_all('td')[4].text
+            [11].find_all('td')[4].text[:5]
         News42 = soup.find_all('div', class_="table-wrapper")[0].find('tbody').find_all('tr') \
             [12].find_all('td')[3].text
         News43 = soup.find_all('div', class_="table-wrapper")[0].find('tbody').find_all('tr') \
-            [12].find_all('td')[4].text
+            [12].find_all('td')[4].text[:5]
         # class_="card-body")[y]  # .find('a')
         # time_ =soup.find_all('div', class_="container content-container")[0].find_all('div',
         # class_="card-body")[y].find('span').text

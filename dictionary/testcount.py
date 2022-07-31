@@ -1462,12 +1462,12 @@ def tcounter(dictq,name1,mail1,cod1,sex):
     plt.savefig(name_filePDF, format="pdf", bbox_inches="tight")
 
     # name_filePDF1 = f'c:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope\\static\\css{description_}.pdf'
-    name_filePDF1 = f'static\\{description_}.pdf'
+    name_filePDF1 = f'static\\graph_fold\\{description_}.pdf'
 
 
     plt.savefig(name_filePDF1, format="pdf", bbox_inches="tight")
 
-    name_filePDF2 = f'{description_}.pdf'
+    name_filePDF2 = f'graph_fold\\{description_}.pdf'
 
     # показать график в отдельном окне pdf-просмотрщика
     # plt.show()
