@@ -29,7 +29,7 @@ def scrap_USD():
     """USD"""
     # try:
     resp = requests.get(link, headers=header)
-    print(resp.status_code,'info.ru')
+    print(resp.status_code,'cbr.ru')
     # except:
     #     print(resp.status_code, 'info.ru')
     news_list = []
@@ -118,7 +118,8 @@ def loop_serv1():
                       '17:00',
                       '19:00',
                       '21:00',
-                      '23:00', ]
+                      '23:00',
+                      '23:59']
         delta_list=[]
 
         for hour_mins in time_scrap:
@@ -150,6 +151,6 @@ def loop_serv1():
 # loop_serv()
 # json_date(scrap_news())
 # подключение функции скрапинга вторым потоком, иначе не запускается сервер
-t = threading.Thread(target=loop_serv1)
-t.start()
+# t = threading.Thread(target=loop_serv1)
+# t.start()
 # get_USD()
