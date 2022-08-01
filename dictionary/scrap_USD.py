@@ -75,7 +75,7 @@ def json_date(dict_USD):
     ddday = str(datetime.datetime.now())[:16]
     print(ddday)
     sec = int(time.mktime(time.strptime(ddday, '%Y-%m-%d %H:%M')))
-    print('sec', sec)
+    # print('sec', sec)
     print(time.ctime(sec))#Обратный преревод секунд в дату для контроля
 
     # path = f"bd_json\\news_bd8.json"
@@ -109,48 +109,103 @@ def get_USD():
     print(json_data_news)
     return json_data_news
 
-def loop_serv1():
+# def loop_serv1():
+#     """запуск скрипта (парсера) по расписанию указанному в листе  'time_scrap' """
+#     while True:
+#         time_scrap = ['07:00',
+#                       '11:00',
+#                       '16:25',
+#                       '17:00',
+#                       '19:00',
+#                       '21:00',
+#                       '23:00',
+#                       '23:59']
+#         delta_list=[]
+#
+#         for hour_mins in time_scrap:
+#             print()
+#             full_date=f'{str(datetime.datetime.now())[:10]} {hour_mins}'
+#             secs = int(time.mktime(time.strptime(full_date, '%Y-%m-%d %H:%M')))
+#
+#             ddday = str(datetime.datetime.now())[:16]
+#             # print(ddday)
+#             sec0 = int(time.mktime(time.strptime(ddday, '%Y-%m-%d %H:%M')))
+#             # print('sec0', sec0)
+#
+#             delta=secs-sec0
+#             delta_list.append(delta)
+#             # print('delta', delta)
+#             #Если дата еще не наступила, то ждет ближайщую дату и запускает скрипт, потом дальще
+#             # повторяется все
+#             print('not start  of the parser')
+#             if delta > 0:
+#                 sleep(delta)
+#
+#                 print('start  of the parser')
+#                 json_date(scrap_USD())
+#                 # get_USD()
+#                 # scrap_USD()
+time_list = ['02:00',
+             '02:57',
+             '16:25',
+             '17:00',
+             '19:00',
+             '21:00',
+             '23:00',
+             '23:59']
+
+
+def loop_serv1(time_scrap):
     """запуск скрипта (парсера) по расписанию указанному в листе  'time_scrap' """
     while True:
-        time_scrap = ['07:00',
-                      '11:00',
-                      '16:25',
-                      '17:00',
-                      '19:00',
-                      '21:00',
-                      '23:00',
-                      '23:59']
-        delta_list=[]
+
+        def sec_count(hour_min_):
+            """вычисляет количесто секунд  от начала эпохи до сегодняшнего любого
+             момента в формате  21:25 часы:минуты """
+            full_date = f'{str(datetime.datetime.now())[:10]} {hour_min_}'
+            secs_ = int(time.mktime(time.strptime(full_date, '%Y-%m-%d %H:%M')))
+            return secs_
 
         for hour_mins in time_scrap:
             print()
-            full_date=f'{str(datetime.datetime.now())[:10]} {hour_mins}'
-            secs = int(time.mktime(time.strptime(full_date, '%Y-%m-%d %H:%M')))
+            print(f'Запуск в {hour_mins}')
+
+            # print('secs',sec_count(hour_mins))
 
             ddday = str(datetime.datetime.now())[:16]
-            # print(ddday)
+            print(ddday)
             sec0 = int(time.mktime(time.strptime(ddday, '%Y-%m-%d %H:%M')))
             # print('sec0', sec0)
 
-            delta=secs-sec0
-            delta_list.append(delta)
-            # print('delta', delta)
+            delta=sec_count(hour_mins)-sec0
+
+            print(f'Ожидание {delta} секунд')
             #Если дата еще не наступила, то ждет ближайщую дату и запускает скрипт, потом дальще
             # повторяется все
-            print('not start  of the parser')
+            # print('not start==============')
             if delta > 0:
                 sleep(delta)
-
-                print('start  of the parser')
+#
+                print('start  of the PARSER-script')
                 json_date(scrap_USD())
                 # get_USD()
                 # scrap_USD()
+            elif time_scrap[-1] == hour_mins:
+                delta1=86400-5-(sec_count(time_scrap[-1])-sec_count(time_scrap[0]))
+                print(f'ожидание {delta1} секунд до {time_scrap[0]}')
+                print(time_scrap[-1],time_scrap[0])
+                print(sec_count(time_scrap[-1]),sec_count(time_scrap[0]))
+                sleep(delta1)
+
+
+# loop_serv1(time_list)
+
 
 # print(scrap())
 
 # loop_serv()
 # json_date(scrap_news())
 # подключение функции скрапинга вторым потоком, иначе не запускается сервер
-# t = threading.Thread(target=loop_serv1)
-# t.start()
+t = threading.Thread(target=loop_serv1, args=(time_list,))
+t.start()
 # get_USD()
