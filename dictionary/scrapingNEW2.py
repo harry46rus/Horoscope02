@@ -260,8 +260,8 @@ def scrap_news():
 
         for w in sorted_keys:
             sorted_dict[w] = news_dict[w]
-
-        print('количество новостей = ',len(sorted_dict))
+        count_news =len(sorted_dict)
+        print('количество новостей = ',count_news)
         return sorted_dict
 
     return sorted_dicts(news_dict) #news_dict
@@ -353,7 +353,7 @@ def loop_serv():
         delta_list=[]
 
         for hour_mins in time_scrap:
-            print()
+            # print()
             full_date=f'{str(datetime.datetime.now())[:10]} {hour_mins}'
             secs = int(time.mktime(time.strptime(full_date, '%Y-%m-%d %H:%M')))
 

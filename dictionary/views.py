@@ -101,11 +101,12 @@ def get_test(request):
     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
     fff = scrap()
     usd_ = get_USD()
-
+    number_news = len(fff)
     for date_, value in usd_.items():
         dddate, usd, eur = date_, value[1], value[3]
 
     data = {
+        'number_news': number_news,
         'date_': dddate,
         'usd': usd,
         'eur': eur,

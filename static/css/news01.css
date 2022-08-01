@@ -48,6 +48,12 @@ body{
 
 }
 
+.numb_news{
+    color: red;
+    font-size: 0.8em;
+}
+
+
 .currency{
     width:540px;
     right:0;
