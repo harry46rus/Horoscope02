@@ -156,7 +156,7 @@ time_list = ['02:00',
 
 
 def loop_serv1(time_scrap):
-    """запуск скрипта (парсера) по расписанию указанному в листе  'time_scrap' """
+    """запуск скрипта (парсера) по расписанию указанному в листе  'time_list' """
     while True:
 
         def sec_count(hour_min_):
