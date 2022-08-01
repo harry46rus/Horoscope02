@@ -50,13 +50,13 @@
         <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
                 <h1 align="center">СВЕЖАЯ ЛЕНТА НОВОСТЕЙ{{sign_}}</h1>
                 <h1 align="center">ПО ВСЕМ МЕСТНЫМ СМИ *{{sign_}}</h1>
-                <p align="center">Курск &nbsp&nbsp&nbsp{{day_}} {% now "F" %} {% now "Y" %} &nbsp&nbsp&nbsp
-                       {{time}}:{% now "i" %}:{% now "s" %}</p>
+                <p align="center">Курск &nbsp&nbsp&nbsp{{day_}} {% now "F" %} {% now "Y" %}</p>
+<!--                &nbsp&nbsp&nbsp {{time}}:{% now "i" %}:{% now "s" %}-->
 
                 <marquee behavior="alternate" direction="left" bgcolor="#82736C">
                     <p>{% for key, tm in news_dict.items %}
                     <a class="nn" href="{{tm.2}}" target="_blank" style="text-decoration: none">
-                        {{key}}</a>/{{tm.3}}====
+                        {{key}}</a> | {{tm.3}} | &nbsp&nbsp&nbsp
                     {% endfor %}</p>
                 </marquee>
             </div>

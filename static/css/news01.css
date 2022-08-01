@@ -615,7 +615,23 @@ margin: 20px 0; */
     height: 100%;
 
         }
+    .exper {
+    position: absolute;
+    background-color: #54453E;
 
+    position:fixed;
+    left:0;top:0px;
+    width : 100%;
+    padding : 0px;
+    border: 1px solid #92837C;
+    height: 14px;
+    z-index:5;
+    display: flex;
+    justify-content: space-around;
+        }
+    .menu{
+    display: none;
+    }
 }
 
 @media(max-width: 575px){
