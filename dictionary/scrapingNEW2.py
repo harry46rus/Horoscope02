@@ -18,13 +18,14 @@ header = {'Accept': '*/*',
 
 list_item = []
 # def parss(key_):
-
+iterat_ = 0
 now = datetime.datetime.now()
 def scrap_news():
-
+    global iterat_
     def convert(timer):
         """конвертация даты  сайта-источника и приведение (конвертация) к стандртному виду"""
         day_ = None
+        global iterat_
 
         if 'Вчера' in timer:
             day_ = datetime.datetime.now() - datetime.timedelta(days=1)
@@ -161,7 +162,11 @@ def scrap_news():
             # print('46tv.ru')
             break
     # ======================================================
-    pages_site = ['', '/page/2', '/page/3', '/page/4', '/page/5', '/page/6', '/page/7', '/page/8']
+
+    if iterat_ == 0:
+        pages_site = ['', '/page/2', '/page/3', '/page/4', '/page/5', '/page/6', '/page/7', '/page/8']
+    else:
+        pages_site = ['',]
     for x in pages_site:
         sleep(20)
         link = "https://seyminfo.ru/news" + x
@@ -176,6 +181,7 @@ def scrap_news():
         soup = BeautifulSoup(resp.text, 'lxml')
         # News_4 = soup.find_all('td', class_="right")
         # News_4 = soup.find_all('ul', class_="lenta")[0]
+
         for y in range(20):
             try:
                 News40 =soup.find_all('div', class_="container content-container")[0].find_all('div',
@@ -190,7 +196,10 @@ def scrap_news():
             except:
                 break
 # ===============================================
-    pages_site = ['', '?page=2', '?page=3']  # ,'?page=4','?page=5','?page=6','?page=7','?page=8']
+    if iterat_ == 0:
+        pages_site = ['', '?page=2', '?page=3']  # ,'?page=4','?page=5','?page=6','?page=7','?page=8']
+    else:
+        pages_site = ['',]
     for x in pages_site:
         sleep(20)
         link = "https://kursk-izvestia.ru/news" + x
@@ -250,7 +259,8 @@ def scrap_news():
 
         except:
             break
-
+    iterat_+= 1
+    print("iterat_",iterat_)
     # =============================================
 
     def sorted_dicts(news_dict):
@@ -347,8 +357,8 @@ def loop_serv():
                       '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45',
                       '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45',
                       '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45',
-                      '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45',
-                      '23:00', '23:20', '23:40',
+                      '21:00', '21:15', '21:30', '21:45', '22:00', '22:25', '22:30', '22:45',
+                      '23:00', '23:20', '23:30','23:45',
                       ]
         delta_list=[]
 
