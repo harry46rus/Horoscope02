@@ -54,7 +54,8 @@
 
                 <marquee behavior="alternate" direction="left" bgcolor="#82736C">
                     <p>{% for key, tm in news_dict.items %}
-                    {{key}} ====
+                    <a class="nn" href="{{tm.2}}" target="_blank" style="text-decoration: none">
+                        {{key}}</a>/{{tm.3}}====
                     {% endfor %}</p>
                 </marquee>
             </div>
@@ -132,6 +133,7 @@
                         <input type="date">
                         <hr class="hr-line">
                         <br>
+                        <!--                         календарь-->
                         <script>
                             console.log( document.querySelector('input').value );
                         </script>
