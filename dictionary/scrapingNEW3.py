@@ -331,7 +331,7 @@ def scrap_news():
         start3d_ago = today_start_ - 86400*3
         print("start3d_ago", start3d_ago)
         # print('yesterday_start_', today_start_ - 86400)
-
+        #исключение данных ранее даты start3d_ago
         for j, i in gen.items():
             # print(j,"___",i)
             if start3d_ago <= i[0]:

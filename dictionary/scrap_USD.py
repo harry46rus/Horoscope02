@@ -145,14 +145,14 @@ def get_USD():
 #                 json_date(scrap_USD())
 #                 # get_USD()
 #                 # scrap_USD()
-time_list = ['02:00',
-             '02:57',
+time_list = [
+             '10:00',
              '13:10',
              '15:00',
              '17:00',
              '19:00',
-             '20:00',
-             '22:00']
+             '20:00'
+             ]
 
 
 def loop_serv1(time_scrap):
@@ -168,33 +168,33 @@ def loop_serv1(time_scrap):
 
         for hour_mins in time_scrap:
             print()
-            print(f'Запуск в {hour_mins}')
+            print(f'USD Запуск в {hour_mins}')
 
             # print('secs',sec_count(hour_mins))
 
             ddday = str(datetime.datetime.now())[:16]
-            print(ddday)
+            print("USD",ddday)
             sec0 = int(time.mktime(time.strptime(ddday, '%Y-%m-%d %H:%M')))
             # print('sec0', sec0)
 
             delta=sec_count(hour_mins)-sec0
 
-            print(f'Ожидание {delta} секунд')
+            print(f'USD Ожидание {delta} секунд')
             #Если дата еще не наступила, то ждет ближайщую дату и запускает скрипт, потом дальще
             # повторяется все
             # print('not start==============')
             if delta > 0:
                 sleep(delta)
 #
-                print('start  of the PARSER-script')
+                print('start  of the USD_PARSER-script')
                 json_date(scrap_USD())
                 # get_USD()
                 # scrap_USD()
             elif time_scrap[-1] == hour_mins:
                 delta1=86400-5-(sec_count(time_scrap[-1])-sec_count(time_scrap[0]))
-                print(f'ожидание {delta1} секунд до {time_scrap[0]}')
-                print(time_scrap[-1],time_scrap[0])
-                print(sec_count(time_scrap[-1]),sec_count(time_scrap[0]))
+                print(f'USD ожидание {delta1} секунд до {time_scrap[0]}')
+                print("USD",time_scrap[-1],time_scrap[0])
+                print("USD",sec_count(time_scrap[-1]),sec_count(time_scrap[0]))
                 sleep(delta1)
 
 
