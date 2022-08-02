@@ -40,7 +40,9 @@
             </nav>
         </div>
         <div class="currency">
-            <p>ЦБ РФ на {{ date_ }}:&nbsp USD {{ usd }}&nbsp EUR {{ eur }}</p>
+            <p><a class="currency" href="https://www.cbr.ru/currency_base/daily/"target="_blank"
+                  style="text-decoration: none; color: #F9FCFF;">
+                ЦБ РФ на {{ date_ }}:&nbsp USD {{ usd }}&nbsp EUR {{ eur }}</a></p>
         </div>
     </div>
 
@@ -55,8 +57,8 @@
 
                 <marquee behavior="alternate" direction="left" bgcolor="#82736C">
                     <p>{% for key, tm in news_dict.items %}
-                    <a class="nn" href="{{tm.2}}" target="_blank" style="text-decoration: none">
-                        {{key}}</a> | {{tm.3}} | &nbsp&nbsp&nbsp
+                    <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">
+                        {{key}}</a> | {{tm.4}} | &nbsp&nbsp&nbsp
                     {% endfor %}</p>
                 </marquee>
             </div>
@@ -94,14 +96,14 @@
                 <div id="news_box">
             <!--        <p id="text_block"><a class="nn" href="{% static tm %}"target="_blank">{{key}}</a></p>-->
                     <h3 id="text_block" style="font-family: 'Roboto', sans-serif;">
-                        <a class="nn" href="{{tm.2}}" target="_blank" style="text-decoration: none">
+                        <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">
                         {{key}}</a>
                     </h3>
                     <hr class="hr-line">
             <!--        <p>{{tm.0.1}} {{tm.1}} {{tm.2}}</p>-->
                     <div id="source_">
-                        <p class="time_source">{{tm.1}}</p>
-                        <p class="time_source">{{tm.3}}</p>
+                        <p class="time_source">{{tm.2}}</p>
+                        <p class="time_source">{{tm.4}}</p>
                     </div>
                 </div>
                 {% if True %}
