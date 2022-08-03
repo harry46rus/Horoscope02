@@ -95,7 +95,7 @@ def get_home(request):
     return render(request, "index.html")
 
 
-def get_test(request):
+def get_news0(request):
     hour_= datetime.strftime(datetime.now(), "%H")
     days_= datetime.strftime(datetime.now(), "%d")
     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
@@ -113,7 +113,48 @@ def get_test(request):
         'news_dict': fff,
         "time": hour_,
         "day_": days_,}
-    return render(request, "test1.html", context=data)
+    return render(request, "news0.html", context=data)
+
+
+def get_news1(request):
+    hour_= datetime.strftime(datetime.now(), "%H")
+    days_= datetime.strftime(datetime.now(), "%d")
+    # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+    fff = scrap()
+    usd_ = get_USD()
+    number_news = len(fff)
+    for date_, value in usd_.items():
+        dddate, usd, eur = date_, value[1], value[3]
+
+    data = {
+        'number_news': number_news,
+        'date_': dddate,
+        'usd': usd,
+        'eur': eur,
+        'news_dict': fff,
+        "time": hour_,
+        "day_": days_,}
+    return render(request, "news1.html", context=data)
+
+def get_news2(request):
+    hour_= datetime.strftime(datetime.now(), "%H")
+    days_= datetime.strftime(datetime.now(), "%d")
+    # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+    fff = scrap()
+    usd_ = get_USD()
+    number_news = len(fff)
+    for date_, value in usd_.items():
+        dddate, usd, eur = date_, value[1], value[3]
+
+    data = {
+        'number_news': number_news,
+        'date_': dddate,
+        'usd': usd,
+        'eur': eur,
+        'news_dict': fff,
+        "time": hour_,
+        "day_": days_,}
+    return render(request, "news2.html", context=data)
 
 # list_s=[i*6 for i in range(1,10)]
 

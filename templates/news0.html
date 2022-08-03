@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/news01.css' %} ">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% for key, tm in news_dict.items %}
+    <meta name="description" content="{{key}}">
+    {% endfor %}
+    <title>ЛЕНТА НОВОСТЕЙ</title>
+    <link href="{% static 'css/favicon.ico' %} " rel="shortout icon" type="image/x-icon"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,900;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+
+
+
+    <div class="exper">
+        <div id="progress-container">
+            <div id="ProgressBar" class="blog-progress-bar">
+            </div>
+        </div>
+
+        <div class="menu">
+            <nav class="one">
+    <!--            <h2>1. li {display: inline;}</h2>-->
+                    <ul class="navi">
+<!--                        <li><a class="head-button" href="/index"><i class="fa fa-home fa-fw"></i>Home</a></li>-->
+                        <li><a class="head-button" href="#">НОВОСТИ ЗА СУТКИ
+                            <span class="numb_news" >{{number_news}}</span></a></li>
+                        <li><a class="head-button" href="/news1">СЕГОДНЯ</a></li>
+                        <li><a class="head-button" href="/news2">ВЧЕРА</a></li>
+                        <li><a class="head-button" href="#">КОНТАКТЫ</a></li>
+                    </ul>
+            </nav>
+        </div>
+        <div class="currency">
+            <p><a class="currency" href="https://www.cbr.ru/currency_base/daily/"target="_blank"
+                  style="text-decoration: none; color: #F9FCFF;">
+                ЦБ РФ на {{ date_ }}:&nbsp USD {{ usd }}&nbsp EUR {{ eur }}</a></p>
+        </div>
+    </div>
+
+    <div class="global">
+        <div id="head1">
+            <div class="head_01">
+        <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">СВЕЖАЯ ЛЕНТА НОВОСТЕЙ{{sign_}}</h1>
+                <h1 align="center">ПО ВСЕМ МЕСТНЫМ СМИ *{{sign_}}</h1>
+                <p align="center">Курск &nbsp&nbsp&nbsp{{day_}} {% now "F" %} {% now "Y" %}</p>
+<!--                &nbsp&nbsp&nbsp {{time}}:{% now "i" %}:{% now "s" %}-->
+
+                <marquee behavior="alternate" direction="left" bgcolor="#82736C">
+                    <p>{% for key, tm in news_dict.items %}
+                    <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">
+                        {{key}}</a> | {{tm.4}} | &nbsp&nbsp&nbsp
+                    {% endfor %}</p>
+                </marquee>
+            </div>
+
+
+        </div>
+
+
+        <div id="content">
+
+            <div class="adv">
+                <div class="sticky">
+                    <div class="adv1">
+                        <img src="{% static 'images/img1.jpg' %}" alt="">
+                    </div>
+                    <div class="adv1">
+                        <img src="{% static 'images/img3.jpg' %}" alt="">
+                    </div>
+                    <div class="adv2">
+                        <h1>Lorem ipsum </h1>
+
+                        LoreM ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque
+                        consequuntur delectus ducimus est expedita id ipsam iure labore, officiis placeat
+                        recusandae rem reprehenderit. A ad amet cumque provident ullam?
+                        <hr class="hr-line">
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="news_text">
+                {% for key, tm in news_dict.items %}
+                <div id="news_box">
+            <!--        <p id="text_block"><a class="nn" href="{% static tm %}"target="_blank">{{key}}</a></p>-->
+                    <h3 id="text_block" style="font-family: 'Roboto', sans-serif;">
+                        <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">
+                        {{key}}</a>
+                    </h3>
+                    <hr class="hr-line">
+            <!--        <p>{{tm.0.1}} {{tm.1}} {{tm.2}}</p>-->
+                    <div id="source_">
+                        <p class="time_source">{{tm.2}}</p>
+                        <p class="time_source">{{tm.4}}</p>
+                    </div>
+                </div>
+                {% if True %}
+                <div id="news_box-midlle">
+                    <div class="adv-midlle">
+                        <div class="visual1">
+                            <img src="{% static 'images/img3.jpg' %}" alt="">
+                        </div>
+                        <div class="visual1">
+                            <img src="{% static 'images/img4.jpg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% endfor %}
+            </div>
+
+            <div class="adv">
+                <div class="sticky">
+                    <div class="adv1">
+                        <img src="{% static 'images/img2.jpg' %}" alt="">
+                    </div>
+                    <div class="adv1">
+                        <img src="{% static 'images/img4.jpg' %}" alt="">
+                    </div>
+                    <div class="adv2">
+                        <h1>КАЛЕНДАРЬ </h1>
+
+                        <input type="date">
+                        <hr class="hr-line">
+                        <br>
+                        <!--                         календарь-->
+                        <script>
+                            console.log( document.querySelector('input').value );
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('scroll', function(){
+
+        var h = document.documentElement,
+            b = document.body,
+            st = 'scrollTop',
+            sh = 'scrollHeight';
+
+        var score = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+
+        document.querySelector('#ProgressBar').style.width = score + '%';
+
+
+        });
+   </script>
+
+
+
+</body>
+</html>
