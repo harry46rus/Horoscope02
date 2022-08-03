@@ -412,6 +412,18 @@ def scrap_news():
         print("3", dict_3day_ago)
         return dict_3day_ago
 
+    nal_dict = {}
+    final_dict = {}
+    def filter(json_data_news):
+        for i, j in json_data_news.items():
+            # print(i,"_____",j)
+            nal_dict[j[3]] = [i, j[0], j[1], j[2], j[4]]
+        for i, j in nal_dict.items():
+            # print(i,"_____",j)
+            final_dict[j[0]] = [j[1], j[2], j[3], i, j[4]]
+
+        return final_dict
+
 
 
     def sorted_dicts(news_dict):
@@ -426,7 +438,7 @@ def scrap_news():
         print(sorted_dict)
         return sorted_dict
 
-    ddd=merge_dict(read_json(), news_dict)
+    ddd=filter(merge_dict(read_json(), news_dict))
     print(ddd)
     dddd=sorted_dicts(ddd)
     print(dddd)
