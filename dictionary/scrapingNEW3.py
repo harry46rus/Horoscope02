@@ -32,6 +32,77 @@ def scrap():
     return json_data_news
 
 
+def scrap1():
+    """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
+
+    # #чтение и конвертация в обычный словарь
+    path2=f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        json_data_news = json.load(f_five)
+
+    dict_1day_ago = {}
+
+    # сделать словарь от начала дня 1дeн назад (вчера,) до Настоящего
+    # времени
+
+    # Определение  секунды сначала эпохи для начала текущего дня
+    ddday = str(datetime.datetime.now())[:10]
+    print(ddday)
+    today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
+    # Определение  секунды сначала эпохи для начала  дня 3дня назад (вчера, позавчера, поза-позавчера)
+    start1d_ago = today_start_ #- 86400 * 1
+    print("start1d_ago", start1d_ago)
+    # print('yesterday_start_', today_start_ - 86400)
+    # исключение данных ранее даты start3d_ago
+    for j, i in json_data_news.items():
+        # print(j,"___",i)
+        if start1d_ago <= i[0]:
+            # print(j, "___", i)
+            dict_1day_ago[j] = i
+
+    # print("3", dict_1day_ago)
+    return dict_1day_ago
+
+
+def scrap2():
+    """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
+
+    # #чтение и конвертация в обычный словарь
+    path2=f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        json_data_news = json.load(f_five)
+
+    dict_1day_ago = {}
+
+    # сделать словарь от начала дня 1дeн назад (вчера,) до Настоящего
+    # времени
+
+    # Определение  секунды сначала эпохи для начала текущего дня
+    ddday = str(datetime.datetime.now())[:10]
+    print(ddday)
+    today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
+    # Определение  секунды сначала эпохи для начала  дня 3дня назад (вчера, позавчера, поза-позавчера)
+    start1d_ago = today_start_ - 86400 * 1
+    print("start1d_ago", start1d_ago)
+    # print('yesterday_start_', today_start_ - 86400)
+    # исключение данных ранее даты start3d_ago
+    for j, i in json_data_news.items():
+        # print(j,"___",i)
+        if start1d_ago <= i[0]<=today_start_:
+            # print(j, "___", i)
+            dict_1day_ago[j] = i
+
+    # print("3", dict_1day_ago)
+    return dict_1day_ago
+
+
+
+
+
+
+
 
 header = {'Accept': '*/*',
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\
@@ -328,7 +399,7 @@ def scrap_news():
         print(ddday)
         today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
         # Определение  секунды сначала эпохи для начала  дня 3дня назад (вчера, позавчера, поза-позавчера)
-        start3d_ago = today_start_ - 86400*3
+        start3d_ago = today_start_ - 86400*4
         print("start3d_ago", start3d_ago)
         # print('yesterday_start_', today_start_ - 86400)
         #исключение данных ранее даты start3d_ago

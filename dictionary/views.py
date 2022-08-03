@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from dataclasses import dataclass
 from dictionary.loggics import search_words
 from dictionary.testcount import tcounter
-from dictionary.scrapingNEW3 import scrap
+from dictionary.scrapingNEW3 import scrap,scrap1,scrap2
 from dictionary.scrap_USD import get_USD
 from datetime import datetime
 
@@ -120,7 +120,7 @@ def get_news1(request):
     hour_= datetime.strftime(datetime.now(), "%H")
     days_= datetime.strftime(datetime.now(), "%d")
     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-    fff = scrap()
+    fff = scrap1()
     usd_ = get_USD()
     number_news = len(fff)
     for date_, value in usd_.items():
@@ -140,7 +140,7 @@ def get_news2(request):
     hour_= datetime.strftime(datetime.now(), "%H")
     days_= datetime.strftime(datetime.now(), "%d")
     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-    fff = scrap()
+    fff = scrap2()
     usd_ = get_USD()
     number_news = len(fff)
     for date_, value in usd_.items():
