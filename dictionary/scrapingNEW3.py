@@ -412,6 +412,11 @@ def scrap_news():
         print("3", dict_3day_ago)
         return dict_3day_ago
 
+    month_liter = {
+        'Jan': 'января', 'Feb': 'февраля', 'Mar': 'марта', 'Apr': 'апреля', 'May': 'мая',
+        'Jun': 'июня', 'Jul': 'июля', 'Aug': 'августа', 'Sep': 'сентября', 'Oct': 'октября',
+        'Nov': 'ноября', 'Dec': 'декабря'}
+
     nal_dict = {}
     final_dict = {}
     def filter(json_data_news):
@@ -419,13 +424,31 @@ def scrap_news():
             # print(i,"_____",j)
             nal_dict[j[3]] = [i, j[0], j[1], j[2], j[4]]
         for i, j in nal_dict.items():
+            dtime = time.ctime(int(j[1])).split()
+            day_time = f'{dtime[2]} {month_liter[dtime[1]]}'
             # print(i,"_____",j)
-            final_dict[j[0]] = [j[1], j[2], j[3], i, j[4]]
+            final_dict[j[0]] = [j[1], j[2], day_time, i, j[4]]
+            # final_dict[j[0]] = [j[1], j[2], j[3], i, j[4]]
 
         return final_dict
+# ===================================================
+#     for i,j in json_data_news.items():
+#         # print(i,"_____",j)
+#         nal_dict[j[3]]= [i,j[0],j[1],j[2],j[4]]
+#
+#     for i,j in nal_dict.items():
+#         dtime = time.ctime(int(j[1])).split()
+#         day_time = f'{dtime[2]} {month_liter[dtime[1]]}'
+#
+#         # print(i,"_____",j)
+#         final_dict[j[0]]=[j[1],j[2],day_time,i,j[4]]
+#         # final_dict[j[0]]=[j[1],j[2],j[3],i,j[4]]
+#     # for i,j in final_dict.items():
+#     #     print(i,"__",day_time,"__",j)
+#     # return final_dict
+#     return final_dict
 
-
-
+# ==================================================
     def sorted_dicts(news_dict):
         """Сортировка словаря по дате элементов(новостей) """
         sorted_dict = {}
@@ -493,8 +516,8 @@ time_list0=['00:00', '00:20', '00:40', '01:00','01:33',
           '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45',
           '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45',
           '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45',
-          '21:00', '21:15', '21:30', '21:45', '22:00', '22:25', '22:30', '22:45',
-          '23:00', '23:20', '23:40',
+          '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45',
+          '23:00', '23:20', '23:40'
           ]
 
 
