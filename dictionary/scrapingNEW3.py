@@ -383,12 +383,12 @@ def scrap_news():
 
         with open(path2, 'r', encoding='utf-8') as f_five:
             json_data_news = json.load(f_five)
-        print("1", json_data_news)
+        # print("1", json_data_news)
         return json_data_news
 
     def merge_dict(gen,add_):
         gen.update(add_)
-        print("2", gen)
+        # print("2", gen)
         dict_3day_ago = {}
 
         # сделать словарь от начала дня 3дня назад (вчера, позавчера, поза-позавчера) до Настоящего
@@ -409,7 +409,7 @@ def scrap_news():
                 # print(j, "___", i)
                 dict_3day_ago[j] = i
 
-        print("3", dict_3day_ago)
+        # print("3", dict_3day_ago)
         return dict_3day_ago
 
     month_liter = {
@@ -523,14 +523,16 @@ time_list0=['00:00', '00:20', '00:40', '01:00','01:33',
 
 def loop_serv(time_scrap):
     """запуск скрипта (парсера) по расписанию указанному в листе  'time_list0' """
-    while True:
 
-        def sec_count(hour_min_):
-            """вычисляет количесто секунд  от начала эпохи до сегодняшнего любого
-             момента в формате  21:25 часы:минуты """
-            full_date = f'{str(datetime.datetime.now())[:10]} {hour_min_}'
-            secs_ = int(time.mktime(time.strptime(full_date, '%Y-%m-%d %H:%M')))
-            return secs_
+    def sec_count(hour_min_):
+        """вычисляет количесто секунд  от начала эпохи до сегодняшнего любого
+         момента в формате  21:25 часы:минуты """
+        full_date = f'{str(datetime.datetime.now())[:10]} {hour_min_}'
+        secs_ = int(time.mktime(time.strptime(full_date, '%Y-%m-%d %H:%M')))
+        return secs_
+
+
+    while True:
 
         for hour_mins in time_scrap:
             print()
@@ -557,11 +559,12 @@ def loop_serv(time_scrap):
                 totaldate(scrap_news())
 
             elif time_scrap[-1] == hour_mins:
-                delta1=86400-5-(sec_count(time_scrap[-1])-sec_count(time_scrap[0]))
+                delta1=86400-(sec_count(time_scrap[-1])-sec_count(time_scrap[0]))
                 print(f'ожидание {delta1} секунд до {time_scrap[0]}')
                 print(time_scrap[-1],time_scrap[0])
                 print(sec_count(time_scrap[-1]),sec_count(time_scrap[0]))
                 sleep(delta1)
+                totaldate(scrap_news())
 
 # print(scrap())
 
