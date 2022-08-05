@@ -398,8 +398,9 @@ def scrap_news():
         ddday = str(datetime.datetime.now())[:10]
         print(ddday)
         today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
-        # Определение  секунды сначала эпохи для начала  дня 3дня назад (вчера, позавчера, поза-позавчера)
-        start3d_ago = today_start_ - 86400*4
+        # Определение  секунды сначала эпохи для начала  дня n-дня назад (вчера, позавчера,
+        # поза-позавчера)
+        start3d_ago = today_start_ - 86400*7
         print("start3d_ago", start3d_ago)
         # print('yesterday_start_', today_start_ - 86400)
         #исключение данных ранее даты start3d_ago
@@ -458,13 +459,13 @@ def scrap_news():
             sorted_dict[w] = news_dict[w]
         count_news =len(sorted_dict)
         print('количество новостей = ', count_news)
-        print(sorted_dict)
+        # print(sorted_dict)
         return sorted_dict
 
     ddd=filter(merge_dict(read_json(), news_dict))
-    print(ddd)
+    # print(ddd)
     dddd=sorted_dicts(ddd)
-    print(dddd)
+    # print(dddd)
     return dddd
 
 # =============================================================
