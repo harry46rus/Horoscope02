@@ -176,206 +176,248 @@ def scrap_news():
 
 # ==================================================================
 
-    link = "https://kurskcity.ru/news/main"
-    """дата в формате ( 16 июля 2022 года, 22:03)"""
-    try:
-        resp = requests.get(link, headers=header)
-        print(resp.status_code,'kurskcity.ru')
-    except:
-        print(resp.status_code, 'kurskcity.ru')
-        # resp.raise_for_status()
-    #     for i in range(58):
-    #         try:
-    news_dict={}
-    news_list=[]
+    def kurskcity():
 
-    soup = BeautifulSoup(resp.text, 'lxml')
-    for i in range(16):
-        News4 = soup.find_all('div', class_="container-fluid")#[i].find('h3').text
-        News5 = soup.find_all('div', id="list_news_bl")#.find_all('a').text
-        News6 = soup.find_all('div', class_="col-md-3 thumbnail row-flex")[i].find('a',
-                        class_="black_link").text
-        News7 = soup.find_all('div', class_="post-inner")[i].find('a').get('href')
-        reff = 'https://kurskcity.ru' + News7
-        time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
-        news_dict[News6] = [convert(time_iss)[0],convert(time_iss)[1],time_iss, reff,
-                            'www.kurskcity.ru']
-        # print(News6," ",reff)
-    #     news_list = list(news_dict)
+        link = "https://kurskcity.ru/news/main"
+        """дата в формате ( 16 июля 2022 года, 22:03)"""
+        try:
+            resp = requests.get(link, headers=header)
+            print(resp.status_code, 'kurskcity.ru')
+        except:
+            print(resp.status_code, 'kurskcity.ru')
+            # resp.raise_for_status()
+        #     for i in range(58):
+        #         try:
+        news_dict = {}
+        news_list = []
+
+        soup = BeautifulSoup(resp.text, 'lxml')
+        for i in range(16):
+            News4 = soup.find_all('div', class_="container-fluid")  # [i].find('h3').text
+            News5 = soup.find_all('div', id="list_news_bl")  # .find_all('a').text
+            News6 = soup.find_all('div', class_="col-md-3 thumbnail row-flex")[i].find('a',
+                                                                                       class_="black_link").text
+            News7 = soup.find_all('div', class_="post-inner")[i].find('a').get('href')
+            reff = 'https://kurskcity.ru' + News7
+            time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
+            news_dict[News6] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
+                                'www.kurskcity.ru']
+            # print(News6," ",reff)
+        #     news_list = list(news_dict)
+        return news_dict
+
+    # print(kurskcity())
+    # print(len(kurskcity()))
+
     # print(news_dict)
     # print()
     # for j in range (16):
     #     print(news_list[j],news_dict[news_list[j]])
-#      # ===============================================
-#
-#     # =====================================================================/
-    link = "https://www.46tv.ru/odnoj-strokoj/v-kurske/"
-    """дата в формате  (Сегодня, 18: 51) """
-    try:
-        resp = requests.get(link, headers=header)
-        print(resp.status_code,'46tv.ru')
-    except:
-        print(resp.status_code, '46tv.ru')
-    news_list = []
 
-    soup = BeautifulSoup(resp.text, 'lxml')
-    # News_4 = soup.find_all('td', class_="right")
-    # News_4 = soup.find_all('ul', class_="lenta")[0]
-    for y in range(40):
-        try:
-            News40 = soup.find_all('div', id="dle-content")[0].find_all('div',
-            class_="shortstory__content")[y].find('a')
-            time_ = soup.find_all('div', id="dle-content")[0].find_all('div',
-            class_="article-info__date")[y].text
-            News41 = News40.text
-            News42 = News40.get('href')
-            #         print(News41,News42)
-            #         # print(News40)
-            news_dict[News41] = [convert(time_)[0],convert(time_)[1],time_, News42,'www.46tv.ru']
-        except:
-            # print('46tv.ru')
-            break
-#     # ======================================================
+    # =======================================
+    def gtrkkursk():
+        news_dict = {}
+        page_site = ['', '?page=1']
+        for x in page_site:
+            link = "https://gtrkkursk.ru/news-list" + x
 
-    if iterat_ == 0:
-        pages_site = ['', '/page/2', '/page/3', '/page/4', '/page/5', '/page/6', '/page/7', '/page/8']
-    else:
-        pages_site = ['',]
-    for x in pages_site:
-        # sleep(20)
-        link = "https://seyminfo.ru/news" + x
-        """дата в формате   (23:28 16.07.2022)"""
+            """дата в формате ( чт, 4 августа 2022 - 17:22)"""
+            try:
+                resp = requests.get(link, headers=header)
+                print(resp.status_code, 'gtrkkursk.ru')
+            except:
+                print(resp.status_code, 'gtrkkursk.ru')
+                # resp.raise_for_status()
+            #     for i in range(58):
+            #         try:
+
+            news_list = []
+
+            soup = BeautifulSoup(resp.text, 'lxml')
+            for i in range(12):
+                # News4 = soup.find_all('div', class_="сontent-wrap сontent-wrap-post")#[i].find('h3').text
+                # News5 = soup.find_all('div', id="list_news_bl")#.find_all('a').text
+                # News6 = soup.find_all('div', class_="col-md-3 thumbnail row-flex")[i].find('a',
+                #                 class_="black_link").text
+                News7 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('a',
+                                                                                           'item_pic-wrapper')[
+                    i].get('href')
+                reff = 'https://gtrkkursk.ru/' + News7
+
+                News8 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('h2',
+                                                                                           'title')[
+                    i].text
+
+                News9 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('span',
+                                                                                           'item_time')[
+                    i].text
+                time_iss = f'{News9[-23:-8]} {News9[-5:]}'
+                # time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
+                news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
+                                    'www.gtrkkursk.ru']
+                # print('News7'," ",News7)
+                # print('News8'," ",News8)
+                # print('News9'," ",News9)
+                # print('time_iss'," ",time_iss)
+                # print('reff'," ",reff)
+            #     news_list = list(news_dict)
+        return news_dict
+
+
+
+
+
+    def s46tv():
+
+        news_dict={}
+        link = "https://www.46tv.ru/odnoj-strokoj/v-kurske/"
+        """дата в формате  (Сегодня, 18: 51) """
         try:
             resp = requests.get(link, headers=header)
-            print(resp.status_code,'seyminfo.ru')
+            print(resp.status_code,'46tv.ru')
         except:
-            print(resp.status_code, 'seyminfo.ru')
+            print(resp.status_code, '46tv.ru')
         news_list = []
 
         soup = BeautifulSoup(resp.text, 'lxml')
         # News_4 = soup.find_all('td', class_="right")
         # News_4 = soup.find_all('ul', class_="lenta")[0]
-
-        for y in range(20):
+        for y in range(40):
             try:
-                News40 =soup.find_all('div', class_="container content-container")[0].find_all('div',
-                class_="card-body")[y]  # .find('a')
-                time_ =soup.find_all('div', class_="container content-container")[0].find_all('div',
-                class_="card-body")[y].find('span').text
-                News42 = News40.find('a').get('href')
-                News41 = News40.find('a').text
-                # print(News41, News42)
-                # print(News40)
-                news_dict[News41] = [convert(time_)[0],convert(time_)[1],time_, News42,
-                                     'www.seyminfo.ru']
+                News40 = soup.find_all('div', id="dle-content")[0].find_all('div',
+                class_="shortstory__content")[y].find('a')
+                time_ = soup.find_all('div', id="dle-content")[0].find_all('div',
+                class_="article-info__date")[y].text
+                News41 = News40.text
+                News42 = News40.get('href')
+                #         print(News41,News42)
+                #         # print(News40)
+                news_dict[News41] = [convert(time_)[0],convert(time_)[1],time_, News42,'www.46tv.ru']
             except:
+                # print('46tv.ru')
                 break
+        return news_dict
+#     # ======================================================
+    def seyminfo():
+        news_dict = {}
+        global iterat_
+        if iterat_ == 0:
+            pages_site = ['', '/page/2', '/page/3', '/page/4', '/page/5', '/page/6', '/page/7', '/page/8']
+        else:
+            pages_site = ['',]
+        for x in pages_site:
+            # sleep(20)
+            link = "https://seyminfo.ru/news" + x
+            """дата в формате   (23:28 16.07.2022)"""
+            try:
+                resp = requests.get(link, headers=header)
+                print(resp.status_code,'seyminfo.ru')
+            except:
+                print(resp.status_code, 'seyminfo.ru')
+            news_list = []
+
+            soup = BeautifulSoup(resp.text, 'lxml')
+            # News_4 = soup.find_all('td', class_="right")
+            # News_4 = soup.find_all('ul', class_="lenta")[0]
+
+            for y in range(20):
+                try:
+                    News40 =soup.find_all('div', class_="container content-container")[0].find_all('div',
+                    class_="card-body")[y]  # .find('a')
+                    time_ =soup.find_all('div', class_="container content-container")[0].find_all('div',
+                    class_="card-body")[y].find('span').text
+                    News42 = News40.find('a').get('href')
+                    News41 = News40.find('a').text
+                    # print(News41, News42)
+                    # print(News40)
+                    news_dict[News41] = [convert(time_)[0],convert(time_)[1],time_, News42,
+                                         'www.seyminfo.ru']
+                except:
+                    break
+        return news_dict
 # # ===============================================
-    if iterat_ == 0:
-        pages_site = ['', '?page=2', '?page=3']  # ,'?page=4','?page=5','?page=6','?page=7','?page=8']
-    else:
-        pages_site = ['',]
-    for x in pages_site:
-        # sleep(20)
-        link = "https://kursk-izvestia.ru/news" + x
-        # https://kursk-izvestia.ru/news?page=2
-        """дата в формате   (16 июля 2022 в 20:01)"""
+    def k_izvestia():
+        global iterat_
+        news_dict = {}
+        if iterat_ == 0:
+            pages_site = ['', '?page=2', '?page=3']  # ,'?page=4','?page=5','?page=6','?page=7','?page=8']
+        else:
+            pages_site = ['',]
+        for x in pages_site:
+            # sleep(20)
+            link = "https://kursk-izvestia.ru/news" + x
+            # https://kursk-izvestia.ru/news?page=2
+            """дата в формате   (16 июля 2022 в 20:01)"""
+            try:
+                resp = requests.get(link, headers=header)
+                print(resp.status_code,'kursk-izvestia.ru')
+            except:
+                print(resp.status_code, 'kursk-izvestia.ru')
+            news_list = []
+
+            soup = BeautifulSoup(resp.text, 'lxml')
+            for i in range(32):
+                try:
+                    News2 = soup.find_all('div', class_="blleft")[0].find_all('div', class_="created")[
+                        i].text
+                    News3 = soup.find_all('div', class_="blleft")[0].find_all('div', class_="title")[
+                        i].text
+                    News4 = soup.find_all('div', class_="blleft")[0].find_all('div', class_="title")[
+                        i].find(
+                        'a').get('href')
+                    reff = "https://kursk-izvestia.ru" + News4
+                    # print(News2,News3,reff)
+                    time_ = f'{News2[:12]}{News2[-6:]}'
+
+                    news_dict[News3] = [convert(time_)[0],convert(time_)[1], time_, reff,
+                                        'www.kursk-izvestia.ru']
+
+                except:
+                    print('kursk-izvestia.ru')
+                    break
+        return news_dict
+# # ==============================================
+    def dddkursk():
+        news_dict = {}
+        link = "http://www.dddkursk.ru/lenta/"
+        """дата в формате   (16 июля 2022, 17:12)"""
         try:
             resp = requests.get(link, headers=header)
-            print(resp.status_code,'kursk-izvestia.ru')
+            print(resp.status_code,'dddkursk.ru')
         except:
-            print(resp.status_code, 'kursk-izvestia.ru')
+            print(resp.status_code, 'dddkursk.ru')
         news_list = []
 
         soup = BeautifulSoup(resp.text, 'lxml')
-        for i in range(32):
-            try:
-                News2 = soup.find_all('div', class_="blleft")[0].find_all('div', class_="created")[
-                    i].text
-                News3 = soup.find_all('div', class_="blleft")[0].find_all('div', class_="title")[
-                    i].text
-                News4 = soup.find_all('div', class_="blleft")[0].find_all('div', class_="title")[
-                    i].find(
-                    'a').get('href')
-                reff = "https://kursk-izvestia.ru" + News4
-                # print(News2,News3,reff)
-                time_ = f'{News2[:12]}{News2[-6:]}'
 
-                news_dict[News3] = [convert(time_)[0],convert(time_)[1], time_, reff,
-                                    'www.kursk-izvestia.ru']
+        for y in range(40):
+            try:
+                time_ = soup.find_all('td', class_="center")[1].find_all('nobr')[y].text
+                News_4 = soup.find_all('td', class_="center")[1].find_all('h3')[y]
+                News_5 = News_4.find('a').text
+                News_6 = News_4.find('a').get('href')
+                reff = "http://www.dddkursk.ru" + News_6
+                # print(time_)
+                # print(News_5)
+                # print(reff)
+                # print()
+                # print()
+                news_dict[News_5] = [convert(time_)[0],convert(time_)[1], time_, reff,'www.dddkursk.ru']
 
             except:
-                print('kursk-izvestia.ru')
                 break
-# # ==============================================
-    link = "http://www.dddkursk.ru/lenta/"
-    """дата в формате   (16 июля 2022, 17:12)"""
-    try:
-        resp = requests.get(link, headers=header)
-        print(resp.status_code,'dddkursk.ru')
-    except:
-        print(resp.status_code, 'dddkursk.ru')
-    news_list = []
+        return news_dict
 
-    soup = BeautifulSoup(resp.text, 'lxml')
-
-    for y in range(40):
-        try:
-            time_ = soup.find_all('td', class_="center")[1].find_all('nobr')[y].text
-            News_4 = soup.find_all('td', class_="center")[1].find_all('h3')[y]
-            News_5 = News_4.find('a').text
-            News_6 = News_4.find('a').get('href')
-            reff = "http://www.dddkursk.ru" + News_6
-            # print(time_)
-            # print(News_5)
-            # print(reff)
-            # print()
-            # print()
-            news_dict[News_5] = [convert(time_)[0],convert(time_)[1], time_, reff,'www.dddkursk.ru']
-
-        except:
-            break
-    iterat_+= 1
-#     print("iterat_",iterat_)
-    # =============================================
-
-#     news_dict={
-# "«Металлоинвест» построил в Железногорске две новые спортплощадки": [[
-# 1659347940,
-# "12:59"
-# ],
-# "12:59 01.08.2022",
-# "https://seyminfo.ru/metalloinvest-postroil-v-zheleznogorske-dve-novye-sportploshhadki.html",
-# "www.seyminfo.ru"
-# ],
-# "В Курской области за неделю произошло 47 пожаров": [
-# [
-# 1659347520,
-# "12:52"
-# ],
-# "01 августа 2 12:52",
-# "https://kursk-izvestia.ru/news/187745/",
-# "www.kursk-izvestia.ru"
-# ],
-# "В Курске за неделю составили 22 протокола из-за незаконной торговли": [
-# [
-# 1659347460,
-# "12:51"
-# ],
-# "12:51 01.08.2022",
-# "https://seyminfo.ru/v-kurske-za-nedelju-sostavili-22-protokola-iz-za-nezakonnoj-torgovli.html",
-# "www.seyminfo.ru"
-# ],
-# "В Коренево Курской области женщину зажало между двумя автомобилями": [
-# [
-# 1659347220,
-# "12:47"
-# ],
-# "Сегодня, 12:47",
-# "https://46tv.ru/odnoj-strokoj/v-kurske/171726-v-korenevo-kurskoj-oblasti-zhenschinu-zazhalo-mezhdu-dvumja-avtomobiljami.html",
-# "www.46tv.ru"
-# ]}
-
+    #     print("iterat_",iterat_)
+        # =============================================
+    dict_total = {}
+    list_scr = [dict_total, kurskcity(), gtrkkursk(), s46tv(), seyminfo(), k_izvestia(), dddkursk()]
+    for i in range(len(list_scr) - 1):
+        # merge_dict(list_scr[0], list_scr[i+1])
+        list_scr[0].update(list_scr[i + 1])
+    print(list_scr[0])
+    print(len(list_scr[0]))
+    iterat_ += 1
     # =================================================
 
     def read_json():
@@ -462,7 +504,7 @@ def scrap_news():
         # print(sorted_dict)
         return sorted_dict
 
-    ddd=filter(merge_dict(read_json(), news_dict))
+    ddd=filter(merge_dict(read_json(), dict_total))
     # print(ddd)
     dddd=sorted_dicts(ddd)
     # print(dddd)
