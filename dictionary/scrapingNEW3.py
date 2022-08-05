@@ -11,20 +11,12 @@ import pickle
 import datetime
 import threading
 
+
 def scrap():
     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
-    # fild_bd = []
-    # #Перебор всех имен файлов в папке и запись в список имен
-    # for root, directory, file in os.walk(
-    #         'C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json'):
-    #     # print(root)
-    #     # print(directory)
-    #     for file_bd in file:
-    #         fild_bd.append(file_bd)
-    # # Выборка позднего json-файла для показа на сайте
-    # print(max(fild_bd))
+
     # #чтение и конвертация в обычный словарь
-    path2=f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
 
     with open(path2, 'r', encoding='utf-8') as f_five:
         json_data_news = json.load(f_five)
@@ -36,89 +28,39 @@ def scrap1():
     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
 
     # #чтение и конвертация в обычный словарь
-    path2=f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate1.json"
 
     with open(path2, 'r', encoding='utf-8') as f_five:
         json_data_news = json.load(f_five)
 
-    dict_1day_ago = {}
-
-    # сделать словарь от начала дня 1дeн назад (вчера,) до Настоящего
-    # времени
-
-    # Определение  секунды сначала эпохи для начала текущего дня
-    ddday = str(datetime.datetime.now())[:10]
-    print(ddday)
-    today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
-    # Определение  секунды сначала эпохи для начала  дня 3дня назад (вчера, позавчера, поза-позавчера)
-    start1d_ago = today_start_ #- 86400 * 1
-    print("start1d_ago", start1d_ago)
-    # print('yesterday_start_', today_start_ - 86400)
-    # исключение данных ранее даты start3d_ago
-    for j, i in json_data_news.items():
-        # print(j,"___",i)
-        if start1d_ago <= i[0]:
-            # print(j, "___", i)
-            dict_1day_ago[j] = i
-
-    # print("3", dict_1day_ago)
-    return dict_1day_ago
+    return json_data_news
 
 
 def scrap2():
     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
 
     # #чтение и конвертация в обычный словарь
-    path2=f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate2.json"
 
     with open(path2, 'r', encoding='utf-8') as f_five:
         json_data_news = json.load(f_five)
 
-    dict_1day_ago = {}
-
-    # сделать словарь от начала дня 1дeн назад (вчера,) до Настоящего
-    # времени
-
-    # Определение  секунды сначала эпохи для начала текущего дня
-    ddday = str(datetime.datetime.now())[:10]
-    print(ddday)
-    today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
-    # Определение  секунды сначала эпохи для начала  дня 3дня назад (вчера, позавчера, поза-позавчера)
-    start1d_ago = today_start_ - 86400 * 1
-    print("start1d_ago", start1d_ago)
-    # print('yesterday_start_', today_start_ - 86400)
-    # исключение данных ранее даты start3d_ago
-    for j, i in json_data_news.items():
-        # print(j,"___",i)
-        if start1d_ago <= i[0]<=today_start_:
-            # print(j, "___", i)
-            dict_1day_ago[j] = i
-
-    # print("3", dict_1day_ago)
-    return dict_1day_ago
-
-
-
-
-
-
+    return json_data_news
 
 
 header = {'Accept': '*/*',
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\
     (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36'}
 
-
 list_item = []
 # def parss(key_):
 iterat_ = 1
 now = datetime.datetime.now()
+
+
 def scrap_news():
-
-
-
-
     global iterat_
+
     def convert(timer):
         """конвертация даты  сайта-источника и приведение (конвертация) к стандртному виду"""
         day_ = None
@@ -172,9 +114,9 @@ def scrap_news():
         except:
             pass
 
-        return  sec, hours_
+        return sec, hours_
 
-# ==================================================================
+    # ==================================================================
 
     def kurskcity():
 
@@ -263,18 +205,14 @@ def scrap_news():
             #     news_list = list(news_dict)
         return news_dict
 
-
-
-
-
     def s46tv():
 
-        news_dict={}
+        news_dict = {}
         link = "https://www.46tv.ru/odnoj-strokoj/v-kurske/"
         """дата в формате  (Сегодня, 18: 51) """
         try:
             resp = requests.get(link, headers=header)
-            print(resp.status_code,'46tv.ru')
+            print(resp.status_code, '46tv.ru')
         except:
             print(resp.status_code, '46tv.ru')
         news_list = []
@@ -285,33 +223,38 @@ def scrap_news():
         for y in range(40):
             try:
                 News40 = soup.find_all('div', id="dle-content")[0].find_all('div',
-                class_="shortstory__content")[y].find('a')
+                                                                            class_="shortstory__content")[
+                    y].find('a')
                 time_ = soup.find_all('div', id="dle-content")[0].find_all('div',
-                class_="article-info__date")[y].text
+                                                                           class_="article-info__date")[
+                    y].text
                 News41 = News40.text
                 News42 = News40.get('href')
                 #         print(News41,News42)
                 #         # print(News40)
-                news_dict[News41] = [convert(time_)[0],convert(time_)[1],time_, News42,'www.46tv.ru']
+                news_dict[News41] = [convert(time_)[0], convert(time_)[1], time_, News42,
+                                     'www.46tv.ru']
             except:
                 # print('46tv.ru')
                 break
         return news_dict
-#     # ======================================================
+
+    #     # ======================================================
     def seyminfo():
         news_dict = {}
         global iterat_
         if iterat_ == 0:
-            pages_site = ['', '/page/2', '/page/3', '/page/4', '/page/5', '/page/6', '/page/7', '/page/8']
+            pages_site = ['', '/page/2', '/page/3', '/page/4', '/page/5', '/page/6', '/page/7',
+                          '/page/8']
         else:
-            pages_site = ['',]
+            pages_site = ['', ]
         for x in pages_site:
             # sleep(20)
             link = "https://seyminfo.ru/news" + x
             """дата в формате   (23:28 16.07.2022)"""
             try:
                 resp = requests.get(link, headers=header)
-                print(resp.status_code,'seyminfo.ru')
+                print(resp.status_code, 'seyminfo.ru')
             except:
                 print(resp.status_code, 'seyminfo.ru')
             news_list = []
@@ -322,27 +265,33 @@ def scrap_news():
 
             for y in range(20):
                 try:
-                    News40 =soup.find_all('div', class_="container content-container")[0].find_all('div',
-                    class_="card-body")[y]  # .find('a')
-                    time_ =soup.find_all('div', class_="container content-container")[0].find_all('div',
-                    class_="card-body")[y].find('span').text
+                    News40 = \
+                    soup.find_all('div', class_="container content-container")[0].find_all('div',
+                                                                                           class_="card-body")[
+                        y]  # .find('a')
+                    time_ = \
+                    soup.find_all('div', class_="container content-container")[0].find_all('div',
+                                                                                           class_="card-body")[
+                        y].find('span').text
                     News42 = News40.find('a').get('href')
                     News41 = News40.find('a').text
                     # print(News41, News42)
                     # print(News40)
-                    news_dict[News41] = [convert(time_)[0],convert(time_)[1],time_, News42,
+                    news_dict[News41] = [convert(time_)[0], convert(time_)[1], time_, News42,
                                          'www.seyminfo.ru']
                 except:
                     break
         return news_dict
-# # ===============================================
+
+    # # ===============================================
     def k_izvestia():
         global iterat_
         news_dict = {}
         if iterat_ == 0:
-            pages_site = ['', '?page=2', '?page=3']  # ,'?page=4','?page=5','?page=6','?page=7','?page=8']
+            pages_site = ['', '?page=2',
+                          '?page=3']  # ,'?page=4','?page=5','?page=6','?page=7','?page=8']
         else:
-            pages_site = ['',]
+            pages_site = ['', ]
         for x in pages_site:
             # sleep(20)
             link = "https://kursk-izvestia.ru/news" + x
@@ -350,7 +299,7 @@ def scrap_news():
             """дата в формате   (16 июля 2022 в 20:01)"""
             try:
                 resp = requests.get(link, headers=header)
-                print(resp.status_code,'kursk-izvestia.ru')
+                print(resp.status_code, 'kursk-izvestia.ru')
             except:
                 print(resp.status_code, 'kursk-izvestia.ru')
             news_list = []
@@ -358,32 +307,36 @@ def scrap_news():
             soup = BeautifulSoup(resp.text, 'lxml')
             for i in range(32):
                 try:
-                    News2 = soup.find_all('div', class_="blleft")[0].find_all('div', class_="created")[
+                    News2 = \
+                    soup.find_all('div', class_="blleft")[0].find_all('div', class_="created")[
                         i].text
-                    News3 = soup.find_all('div', class_="blleft")[0].find_all('div', class_="title")[
+                    News3 = \
+                    soup.find_all('div', class_="blleft")[0].find_all('div', class_="title")[
                         i].text
-                    News4 = soup.find_all('div', class_="blleft")[0].find_all('div', class_="title")[
+                    News4 = \
+                    soup.find_all('div', class_="blleft")[0].find_all('div', class_="title")[
                         i].find(
                         'a').get('href')
                     reff = "https://kursk-izvestia.ru" + News4
                     # print(News2,News3,reff)
                     time_ = f'{News2[:12]}{News2[-6:]}'
 
-                    news_dict[News3] = [convert(time_)[0],convert(time_)[1], time_, reff,
+                    news_dict[News3] = [convert(time_)[0], convert(time_)[1], time_, reff,
                                         'www.kursk-izvestia.ru']
 
                 except:
                     print('kursk-izvestia.ru')
                     break
         return news_dict
-# # ==============================================
+
+    # # ==============================================
     def dddkursk():
         news_dict = {}
         link = "http://www.dddkursk.ru/lenta/"
         """дата в формате   (16 июля 2022, 17:12)"""
         try:
             resp = requests.get(link, headers=header)
-            print(resp.status_code,'dddkursk.ru')
+            print(resp.status_code, 'dddkursk.ru')
         except:
             print(resp.status_code, 'dddkursk.ru')
         news_list = []
@@ -402,14 +355,15 @@ def scrap_news():
                 # print(reff)
                 # print()
                 # print()
-                news_dict[News_5] = [convert(time_)[0],convert(time_)[1], time_, reff,'www.dddkursk.ru']
+                news_dict[News_5] = [convert(time_)[0], convert(time_)[1], time_, reff,
+                                     'www.dddkursk.ru']
 
             except:
                 break
         return news_dict
 
     #     print("iterat_",iterat_)
-        # =============================================
+    # =============================================
     dict_total = {}
     list_scr = [dict_total, kurskcity(), gtrkkursk(), s46tv(), seyminfo(), k_izvestia(), dddkursk()]
     for i in range(len(list_scr) - 1):
@@ -418,6 +372,7 @@ def scrap_news():
     print(list_scr[0])
     print(len(list_scr[0]))
     iterat_ += 1
+
     # =================================================
 
     def read_json():
@@ -428,7 +383,7 @@ def scrap_news():
         # print("1", json_data_news)
         return json_data_news
 
-    def merge_dict(gen,add_):
+    def merge_dict(gen, add_):
         gen.update(add_)
         # print("2", gen)
         dict_3day_ago = {}
@@ -442,10 +397,10 @@ def scrap_news():
         today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
         # Определение  секунды сначала эпохи для начала  дня n-дня назад (вчера, позавчера,
         # поза-позавчера)
-        start3d_ago = today_start_ - 86400*7
+        start3d_ago = today_start_ - 86400 * 7
         print("start3d_ago", start3d_ago)
         # print('yesterday_start_', today_start_ - 86400)
-        #исключение данных ранее даты start3d_ago
+        # исключение данных ранее даты start3d_ago
         for j, i in gen.items():
             # print(j,"___",i)
             if start3d_ago <= i[0]:
@@ -462,6 +417,7 @@ def scrap_news():
 
     nal_dict = {}
     final_dict = {}
+
     def filter(json_data_news):
         for i, j in json_data_news.items():
             # print(i,"_____",j)
@@ -474,24 +430,25 @@ def scrap_news():
             # final_dict[j[0]] = [j[1], j[2], j[3], i, j[4]]
 
         return final_dict
-# ===================================================
-#     for i,j in json_data_news.items():
-#         # print(i,"_____",j)
-#         nal_dict[j[3]]= [i,j[0],j[1],j[2],j[4]]
-#
-#     for i,j in nal_dict.items():
-#         dtime = time.ctime(int(j[1])).split()
-#         day_time = f'{dtime[2]} {month_liter[dtime[1]]}'
-#
-#         # print(i,"_____",j)
-#         final_dict[j[0]]=[j[1],j[2],day_time,i,j[4]]
-#         # final_dict[j[0]]=[j[1],j[2],j[3],i,j[4]]
-#     # for i,j in final_dict.items():
-#     #     print(i,"__",day_time,"__",j)
-#     # return final_dict
-#     return final_dict
 
-# ==================================================
+    # ===================================================
+    #     for i,j in json_data_news.items():
+    #         # print(i,"_____",j)
+    #         nal_dict[j[3]]= [i,j[0],j[1],j[2],j[4]]
+    #
+    #     for i,j in nal_dict.items():
+    #         dtime = time.ctime(int(j[1])).split()
+    #         day_time = f'{dtime[2]} {month_liter[dtime[1]]}'
+    #
+    #         # print(i,"_____",j)
+    #         final_dict[j[0]]=[j[1],j[2],day_time,i,j[4]]
+    #         # final_dict[j[0]]=[j[1],j[2],j[3],i,j[4]]
+    #     # for i,j in final_dict.items():
+    #     #     print(i,"__",day_time,"__",j)
+    #     # return final_dict
+    #     return final_dict
+
+    # ==================================================
     def sorted_dicts(news_dict):
         """Сортировка словаря по дате элементов(новостей) """
         sorted_dict = {}
@@ -499,16 +456,17 @@ def scrap_news():
 
         for w in sorted_keys:
             sorted_dict[w] = news_dict[w]
-        count_news =len(sorted_dict)
+        count_news = len(sorted_dict)
         print('количество новостей = ', count_news)
         # print(sorted_dict)
         return sorted_dict
 
-    ddd=filter(merge_dict(read_json(), dict_total))
+    ddd = filter(merge_dict(read_json(), dict_total))
     # print(ddd)
-    dddd=sorted_dicts(ddd)
+    dddd = sorted_dicts(ddd)
     # print(dddd)
     return dddd
+
 
 # =============================================================
 # def json_date(sorted_dict):
@@ -532,36 +490,72 @@ def scrap_news():
 # ========================================
 
 
-
-
-
 def totaldate(date_dict):
-
     """Запись словаря с данными после парсера в GLdate.json json-файл."""
 
-    path1=f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
 
-    with open(path1, 'w', encoding ='utf-8') as file:
+    with open(path1, 'w', encoding='utf-8') as file:
         json.dump(date_dict, file, ensure_ascii=False, indent=0)
+
 
 # print("x", scrap_news())
 # totaldate(scrap_news())
 
+def write_base(diapason):  # int
+
+    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        json_data_news = json.load(f_five)
+    dict_Nday_ago = {}
+
+    # сделать словарь от начала дня 1дeн назад (вчера,) до Настоящего
+    # времени
+
+    # Определение  секунды сначала эпохи для начала текущего дня
+
+    ddday = str(datetime.datetime.now())[:10]
+    print(ddday)
+    today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
+    # Определение  секунды сначала эпохи для начала  дня 3дня назад (вчера, позавчера, поза-позавчера)
+    startNd_ago = today_start_ - 86400 * diapason
+    startNd = today_start_ - 86400 * (diapason - 1)
+    print("start1d_ago", startNd_ago)
+    # print('yesterday_start_', today_start_ - 86400)
+    # исключение данных ранее даты start3d_ago
+    for j, i in json_data_news.items():
+        # print(j,"___",i)
+        if startNd_ago <= i[0] <= startNd:
+            # print(j, "___", i)
+            dict_Nday_ago[j] = i
+
+    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+            f"\\GLdate{diapason}.json"
+
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(dict_Nday_ago, file, ensure_ascii=False, indent=0)
+    # print("3", dict_1day_ago)
+
+
+def div_base():
+    for diapason in range(1, 7):
+        write_base(diapason)
 
 
 # =======================================================
 
-time_list0=['00:00', '00:20', '00:40', '01:00','01:33',
-          '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45',
-          '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45',
-          '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45',
-          '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45',
-          '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45',
-          '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45',
-          '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45',
-          '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45',
-          '23:00', '23:20', '23:40'
-          ]
+time_list0 = ['00:05', '00:20', '00:40', '01:00', '01:33',
+              '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45',
+              '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45',
+              '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45',
+              '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45',
+              '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45',
+              '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45',
+              '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45',
+              '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45',
+              '23:00', '23:20', '23:40'
+              ]
 
 
 def loop_serv(time_scrap):
@@ -573,7 +567,6 @@ def loop_serv(time_scrap):
         full_date = f'{str(datetime.datetime.now())[:10]} {hour_min_}'
         secs_ = int(time.mktime(time.strptime(full_date, '%Y-%m-%d %H:%M')))
         return secs_
-
 
     while True:
 
@@ -588,37 +581,37 @@ def loop_serv(time_scrap):
             sec0 = int(time.mktime(time.strptime(ddday, '%Y-%m-%d %H:%M')))
             # print('sec0', sec0)
 
-            delta=sec_count(hour_mins)-sec0
+            delta = sec_count(hour_mins) - sec0
 
             print(f'Ожидание {delta} секунд')
-            #Если дата еще не наступила, то ждет ближайщую дату и запускает скрипт, потом дальще
+            # Если дата еще не наступила, то ждет ближайщую дату и запускает скрипт, потом дальще
             # повторяется все
             # print('not start==============')
             if delta > 0:
                 sleep(delta)
-#
+                #
                 print('start  of the NEWS-PARSER-script')
 
                 totaldate(scrap_news())
-
+                div_base()
             elif time_scrap[-1] == hour_mins:
-                delta1=86400-(sec_count(time_scrap[-1])-sec_count(time_scrap[0]))
+                delta1 = 86400 - (sec_count(time_scrap[-1]) - sec_count(time_scrap[0]))
                 print(f'ожидание {delta1} секунд до {time_scrap[0]}')
-                print(time_scrap[-1],time_scrap[0])
-                print(sec_count(time_scrap[-1]),sec_count(time_scrap[0]))
+                print(time_scrap[-1], time_scrap[0])
+                print(sec_count(time_scrap[-1]), sec_count(time_scrap[0]))
                 sleep(delta1)
                 totaldate(scrap_news())
+                div_base()
+
 
 # print(scrap())
 
 # loop_serv()
 
 
-
 # подключение функции скрапинга вторым потоком, иначе не запускается сервер
 t = threading.Thread(target=loop_serv, args=(time_list0,))
 t.start()
-
 
 # ========================================
 

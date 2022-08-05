@@ -27,7 +27,6 @@ body{
 .exper {
     position: absolute;
     background-color: #54453E;
-
     position:fixed;
     left:0;top:0px;
     width : 100%;
@@ -37,6 +36,7 @@ body{
     z-index:5;
     display: flex;
     justify-content: space-around;
+    box-shadow: 0 0 35px #54453E;
 }
 .menu{
     width:800px;
@@ -86,8 +86,8 @@ ul {
 #head1{
     color:#F9FCFF;
     background-color:#82736C;
-    margin-top: 0px;
-    margin:0;
+    margin-top: 20px;
+
     padding-top: 45px;
     padding-bottom: 10px;
     width: 100%;
