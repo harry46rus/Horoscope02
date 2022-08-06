@@ -35,13 +35,14 @@
                         <li><a onclick="myFunction()" class="dropbtn">НОВОСТИ ПО ДНЯМ</a></li>
 <!--                            <span class="numb_news" >*{{number_news}}шт</span></a></li>-->
                             <div id="myDropdown" class="dropdown-content">
-                                <a href="/news0">BCE НОВОСТИ
+                                <a href="/news0">НОВОСТИ ЗА НЕДЕЛЮ
                                     <span class="numb_news" >={{number_news}}шт</span></a>
-                                <a href="/news1">ВЧЕРА</a>
-                                <a href="/news2">ПОЗАВЧЕРА</a>
-                                <a href="/news2">ПОЗАВЧЕРА</a>
-                                <a href="/news2">ПОЗАВЧЕРА</a>
-                                <a href="/news2">ПОЗАВЧЕРА</a>
+                                <a href="/news1">ЗА {{date_num.0}} (ВЧЕРА)</a>
+                                <a href="/news2">ЗА {{date_num.1}} (ПОЗАВЧЕРА)</a>
+                                <a href="/news2">ЗА {{date_num.2}}</a>
+                                <a href="/news2">ЗА {{date_num.3}}</a>
+                                <a href="/news2">ЗА {{date_num.4}}</a>
+                                <a href="/news2">ЗА {{date_num.5}}</a>
 
                             </div>
 
@@ -118,18 +119,18 @@
                         <p class="time_source">{{tm.4}}</p>
                     </div>
                 </div>
-                {% if True %}
-                <div id="news_box-midlle">
-                    <div class="adv-midlle">
-                        <div class="visual1">
-                            <img src="{% static 'images/img3.jpg' %}" alt="">
-                        </div>
-                        <div class="visual1">
-                            <img src="{% static 'images/img4.jpg' %}" alt="">
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
+<!--                {% if True %}-->
+<!--                <div id="news_box-midlle">-->
+<!--                    <div class="adv-midlle">-->
+<!--                        <div class="visual1">-->
+<!--                            <img src="{% static 'images/img3.jpg' %}" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="visual1">-->
+<!--                            <img src="{% static 'images/img4.jpg' %}" alt="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                {% endif %}-->
 
                 {% endfor %}
             </div>

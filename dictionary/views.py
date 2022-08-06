@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from dataclasses import dataclass
 from dictionary.loggics import search_words
 from dictionary.testcount import tcounter
-from dictionary.scrapingNEW3 import scrap,scrap1,scrap2
+from dictionary.scrapingNEW3 import scrap,scrap1,scrap2,get_dates
 from dictionary.scrap_USD import get_USD
 from datetime import datetime
 
@@ -104,6 +104,7 @@ def get_news0(request):
     number_news = len(fff)
     for date_, value in usd_.items():
         dddate, usd, eur = date_, value[1], value[3]
+    date_num=get_dates()
 
     data = {
         'number_news': number_news,
@@ -112,7 +113,8 @@ def get_news0(request):
         'eur': eur,
         'news_dict': fff,
         "time": hour_,
-        "day_": days_,}
+        "day_": days_,
+        "date_num": date_num}
     return render(request, "news0.html", context=data)
 
 

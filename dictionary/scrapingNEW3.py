@@ -138,7 +138,7 @@ def scrap_news():
             News4 = soup.find_all('div', class_="container-fluid")  # [i].find('h3').text
             News5 = soup.find_all('div', id="list_news_bl")  # .find_all('a').text
             News6 = soup.find_all('div', class_="col-md-3 thumbnail row-flex")[i].find('a',
-                                                                                       class_="black_link").text
+            class_="black_link").text
             News7 = soup.find_all('div', class_="post-inner")[i].find('a').get('href')
             reff = 'https://kurskcity.ru' + News7
             time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
@@ -182,21 +182,18 @@ def scrap_news():
                 # News6 = soup.find_all('div', class_="col-md-3 thumbnail row-flex")[i].find('a',
                 #                 class_="black_link").text
                 News7 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('a',
-                                                                                           'item_pic-wrapper')[
-                    i].get('href')
+                 'item_pic-wrapper')[i].get('href')
                 reff = 'https://gtrkkursk.ru/' + News7
 
                 News8 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('h2',
-                                                                                           'title')[
-                    i].text
+                'title')[i].text
 
                 News9 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('span',
-                                                                                           'item_time')[
-                    i].text
+                'item_time')[i].text
                 time_iss = f'{News9[-23:-8]} {News9[-5:]}'
                 # time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
                 news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
-                                    'www.gtrkkursk.ru']
+                  'www.gtrkkursk.ru']
                 # print('News7'," ",News7)
                 # print('News8'," ",News8)
                 # print('News9'," ",News9)
@@ -223,11 +220,9 @@ def scrap_news():
         for y in range(40):
             try:
                 News40 = soup.find_all('div', id="dle-content")[0].find_all('div',
-                                                                            class_="shortstory__content")[
-                    y].find('a')
+                 class_="shortstory__content")[y].find('a')
                 time_ = soup.find_all('div', id="dle-content")[0].find_all('div',
-                                                                           class_="article-info__date")[
-                    y].text
+                class_="article-info__date")[y].text
                 News41 = News40.text
                 News42 = News40.get('href')
                 #         print(News41,News42)
@@ -267,12 +262,10 @@ def scrap_news():
                 try:
                     News40 = \
                     soup.find_all('div', class_="container content-container")[0].find_all('div',
-                                                                                           class_="card-body")[
-                        y]  # .find('a')
+                     class_="card-body")[y]  # .find('a')
                     time_ = \
                     soup.find_all('div', class_="container content-container")[0].find_all('div',
-                                                                                           class_="card-body")[
-                        y].find('span').text
+                         class_="card-body")[y].find('span').text
                     News42 = News40.find('a').get('href')
                     News41 = News40.find('a').text
                     # print(News41, News42)
@@ -307,16 +300,12 @@ def scrap_news():
             soup = BeautifulSoup(resp.text, 'lxml')
             for i in range(32):
                 try:
-                    News2 = \
-                    soup.find_all('div', class_="blleft")[0].find_all('div', class_="created")[
-                        i].text
-                    News3 = \
-                    soup.find_all('div', class_="blleft")[0].find_all('div', class_="title")[
-                        i].text
-                    News4 = \
-                    soup.find_all('div', class_="blleft")[0].find_all('div', class_="title")[
-                        i].find(
-                        'a').get('href')
+                    News2 = soup.find_all('div', class_="blleft")[0].find_all('div',
+                     class_="created")[i].text
+                    News3 = soup.find_all('div', class_="blleft")[0].find_all('div',
+                       class_="title")[i].text
+                    News4 = soup.find_all('div', class_="blleft")[0].find_all('div',
+                      class_="title")[i].find('a').get('href')
                     reff = "https://kursk-izvestia.ru" + News4
                     # print(News2,News3,reff)
                     time_ = f'{News2[:12]}{News2[-6:]}'
@@ -613,7 +602,36 @@ def loop_serv(time_scrap):
 t = threading.Thread(target=loop_serv, args=(time_list0,))
 t.start()
 
+
+
+
 # ========================================
+
+def get_dates():
+    """даты дней вчера , позавчера ... 6 дней назад"""
+    date_format = '%d.%m.%Y'
+    day1 = datetime.datetime.now()
+    list_days= []
+    for i in range(1, 7):
+        fd=day1 - datetime.timedelta(days=i)
+        list_days.append(fd.strftime(date_format))
+
+    return list_days
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # def json_date(sorted_dict):
 #     """Запись словаря с данными после парсера в json-файл. Наименование файла - секунды с начала
