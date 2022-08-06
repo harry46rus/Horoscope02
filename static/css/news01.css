@@ -179,9 +179,9 @@ ul {
     padding-left: 50px;
     margin-left: 0px;
     padding-right: 50px;
-    border: 3px solid #FFFFFF;
     background-color:#F5F4F2;
     display: block;
+    border: 3px solid #FFFFFF;
     box-shadow: 0 0 25px #82736C;
     margin-bottom: 15px;
     border-radius: 25px;
@@ -270,7 +270,7 @@ form {
 	border-bottom: 2px solid #9AA345;
     background-color:#BEC769;
     width:0%;
-    margin-top:6px;
+    margin-top:0px;
     z-index:10;
     box-shadow: 0 0 25px #82736C;
     }
@@ -395,7 +395,10 @@ border:1px solid red;
 }
 
 .dropbtn:hover, .dropbtn:focus {
+    border-top-left-radius:25px;
+    border-top-right-radius:25px;
     background-color: #45362F;
+    border: 1px solid #695A53;
 }
 
 .dropdown {
@@ -406,16 +409,24 @@ border:1px solid red;
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
     min-width: 160px;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color:#F5F4F2;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 0 25px #82736C;
+
     z-index: 1;
 }
+
+/* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  background-color: #f1f1f1;*/
 #myDropdown{
     line-height: 1.1;
     font-weight: 500;
     top: 70px;
+    border-bottom-left-radius:25px;
+    border-bottom-right-radius:25px;
+
     }
 
 .dropdown-content a {

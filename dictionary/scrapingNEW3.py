@@ -177,23 +177,22 @@ def scrap_news():
 
             soup = BeautifulSoup(resp.text, 'lxml')
             for i in range(12):
-                # News4 = soup.find_all('div', class_="сontent-wrap сontent-wrap-post")#[i].find('h3').text
-                # News5 = soup.find_all('div', id="list_news_bl")#.find_all('a').text
-                # News6 = soup.find_all('div', class_="col-md-3 thumbnail row-flex")[i].find('a',
-                #                 class_="black_link").text
-                News7 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('a',
-                 'item_pic-wrapper')[i].get('href')
-                reff = 'https://gtrkkursk.ru/' + News7
+                try:
+                    News7 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('a',
+                     'item_pic-wrapper')[i].get('href')
+                    reff = 'https://gtrkkursk.ru/' + News7
 
-                News8 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('h2',
-                'title')[i].text
+                    News8 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('h2',
+                    'title')[i].text
 
-                News9 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('span',
-                'item_time')[i].text
-                time_iss = f'{News9[-23:-8]} {News9[-5:]}'
-                # time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
-                news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
-                  'www.gtrkkursk.ru']
+                    News9 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('span',
+                    'item_time')[i].text
+                    time_iss = f'{News9[-23:-8]} {News9[-5:]}'
+                    # time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
+                    news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
+                      'www.gtrkkursk.ru']
+                except:
+                    print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
                 # print('News7'," ",News7)
                 # print('News8'," ",News8)
                 # print('News9'," ",News9)
