@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from dataclasses import dataclass
 from dictionary.loggics import search_words
 from dictionary.testcount import tcounter
-from dictionary.scrapingNEW3 import scrap,scrap1,scrap2,get_dates
+from dictionary.scrapingNEW3 import scrap,get_dates#,scrap1,scrap2
 from dictionary.scrap_USD import get_USD
 from datetime import datetime
 
@@ -95,19 +95,20 @@ def get_home(request):
     return render(request, "index.html")
 
 
-def get_news0(request):
+def get_news0(request, sing_news: int):
     hour_= datetime.strftime(datetime.now(), "%H")
     days_= datetime.strftime(datetime.now(), "%d")
     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-    fff = scrap()
+    fff, numnews = scrap(sing_news)
     usd_ = get_USD()
-    number_news = len(fff)
+    # number_news = len(fff)
     for date_, value in usd_.items():
         dddate, usd, eur = date_, value[1], value[3]
     date_num=get_dates()
 
     data = {
-        'number_news': number_news,
+        'numnews': numnews,
+        # 'number_news': number_news,
         'date_': dddate,
         'usd': usd,
         'eur': eur,
@@ -118,45 +119,45 @@ def get_news0(request):
     return render(request, "news0.html", context=data)
 
 
-def get_news1(request):
-    hour_= datetime.strftime(datetime.now(), "%H")
-    days_= datetime.strftime(datetime.now(), "%d")
-    # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-    fff = scrap1()
-    usd_ = get_USD()
-    number_news = len(fff)
-    for date_, value in usd_.items():
-        dddate, usd, eur = date_, value[1], value[3]
-
-    data = {
-        'number_news': number_news,
-        'date_': dddate,
-        'usd': usd,
-        'eur': eur,
-        'news_dict': fff,
-        "time": hour_,
-        "day_": days_,}
-    return render(request, "news1.html", context=data)
-
-def get_news2(request):
-    hour_= datetime.strftime(datetime.now(), "%H")
-    days_= datetime.strftime(datetime.now(), "%d")
-    # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-    fff = scrap2()
-    usd_ = get_USD()
-    number_news = len(fff)
-    for date_, value in usd_.items():
-        dddate, usd, eur = date_, value[1], value[3]
-
-    data = {
-        'number_news': number_news,
-        'date_': dddate,
-        'usd': usd,
-        'eur': eur,
-        'news_dict': fff,
-        "time": hour_,
-        "day_": days_,}
-    return render(request, "news2.html", context=data)
+# def get_news1(request):
+#     hour_= datetime.strftime(datetime.now(), "%H")
+#     days_= datetime.strftime(datetime.now(), "%d")
+#     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+#     fff = scrap1()
+#     usd_ = get_USD()
+#     number_news = len(fff)
+#     for date_, value in usd_.items():
+#         dddate, usd, eur = date_, value[1], value[3]
+#
+#     data = {
+#         'number_news': number_news,
+#         'date_': dddate,
+#         'usd': usd,
+#         'eur': eur,
+#         'news_dict': fff,
+#         "time": hour_,
+#         "day_": days_,}
+#     return render(request, "news1.html", context=data)
+#
+# def get_news2(request):
+#     hour_= datetime.strftime(datetime.now(), "%H")
+#     days_= datetime.strftime(datetime.now(), "%d")
+#     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+#     fff = scrap2()
+#     usd_ = get_USD()
+#     number_news = len(fff)
+#     for date_, value in usd_.items():
+#         dddate, usd, eur = date_, value[1], value[3]
+#
+#     data = {
+#         'number_news': number_news,
+#         'date_': dddate,
+#         'usd': usd,
+#         'eur': eur,
+#         'news_dict': fff,
+#         "time": hour_,
+#         "day_": days_,}
+#     return render(request, "news2.html", context=data)
 
 # list_s=[i*6 for i in range(1,10)]
 

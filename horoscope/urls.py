@@ -24,17 +24,21 @@ urlpatterns = [
     path('admin/', admin.site.urls, name=""),
     path('contacts/', views.get_contacts),
     path('search_', views.get_search),
-    path('index/', views.get_home),
-    path('news0/', views.get_news0),
-    path('news1/', views.get_news1),
-    path('news2/', views.get_news2),
+    # path('index/', views.get_home),
+    path('', views.get_home),
+    # path('news0/', views.get_news0),
+    # path('news1/', views.get_news1),
+    # path('news2/', views.get_news2),
     path('testcount/', views.get_test_count),
     path('znak/', views.get_znak),
     path('', views.hello2),
+    path('news0/', include([
+        path('<int:sing_news>/', views.get_news0),
+
     # path('dictionary/', include('dictionary.urls')),
-    path('dictionary/', include([
-        path('<int:sing_name>/', views.get_sign_name_number),
-        path('<str:sing_name>/', views.get_sign_name),
+    # path('dictionary/', include([
+    #     path('<int:sing_name>/', views.get_sign_name_number),
+    #     path('<str:sing_name>/', views.get_sign_name),
         ])),
 ]
 

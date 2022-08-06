@@ -13,7 +13,7 @@ import threading
 
 # data_dict={'02':[2,'1'],'03':[3,'2'],'04':[4,'1'],'05':[7,'2'],'06':[7,'1']}
 # def read_json():
-#     path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+#     path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
 #
 #     with open(path2, 'r', encoding='utf-8') as f_five:
 #         json_data_news = json.load(f_five)
@@ -26,9 +26,9 @@ import threading
 
 # def totaldate(ddict):
 #
-#     """Запись словаря с данными после парсера в GLdate.json json-файл."""
+#     """Запись словаря с данными после парсера в GLdate0.json json-файл."""
 #
-#     path1 = f"C:\\Users\\79081\\Downloads\\py\\GLdate.json"
+#     path1 = f"C:\\Users\\79081\\Downloads\\py\\GLdate0.json"
 #
 #     with open(path1, 'w', encoding ='utf-8') as file:
 #         json.dump(ddict, file, ensure_ascii=False, indent=0)

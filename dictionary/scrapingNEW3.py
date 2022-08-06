@@ -12,40 +12,46 @@ import datetime
 import threading
 
 
-def scrap():
+def scrap(day_ago):
     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
 
     # #чтение и конвертация в обычный словарь
-    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+            f"\\GLdate{day_ago}.json"
 
     with open(path2, 'r', encoding='utf-8') as f_five:
         json_data_news = json.load(f_five)
 
-    return json_data_news
+    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
+
+    with open(path1, 'r', encoding='utf-8') as f_five:
+        numnews = json.load(f_five)
+
+    return json_data_news, numnews
 
 
-def scrap1():
-    """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
-
-    # #чтение и конвертация в обычный словарь
-    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate1.json"
-
-    with open(path2, 'r', encoding='utf-8') as f_five:
-        json_data_news = json.load(f_five)
-
-    return json_data_news
-
-
-def scrap2():
-    """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
-
-    # #чтение и конвертация в обычный словарь
-    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate2.json"
-
-    with open(path2, 'r', encoding='utf-8') as f_five:
-        json_data_news = json.load(f_five)
-
-    return json_data_news
+# def scrap1():
+#     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
+#
+#     # #чтение и конвертация в обычный словарь
+#     path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate1.json"
+#
+#     with open(path2, 'r', encoding='utf-8') as f_five:
+#         json_data_news = json.load(f_five)
+#
+#     return json_data_news
+#
+#
+# def scrap2():
+#     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
+#
+#     # #чтение и конвертация в обычный словарь
+#     path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate2.json"
+#
+#     with open(path2, 'r', encoding='utf-8') as f_five:
+#         json_data_news = json.load(f_five)
+#
+#     return json_data_news
 
 
 header = {'Accept': '*/*',
@@ -177,22 +183,20 @@ def scrap_news():
 
             soup = BeautifulSoup(resp.text, 'lxml')
             for i in range(12):
-                try:
-                    News7 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('a',
-                     'item_pic-wrapper')[i].get('href')
-                    reff = 'https://gtrkkursk.ru/' + News7
+                # try:
+                News6 = soup.find('div', class_="сontent-wrap сontent-wrap-post")
+                News7 = News6.find_all('a',class_='item_pic-wrapper')[i].get('href')
+                reff = 'https://gtrkkursk.ru/' + News7
 
-                    News8 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('h2',
-                    'title')[i].text
+                News8 = News6.find_all('h2',class_='title')[i].text
 
-                    News9 = soup.find('div', class_="сontent-wrap сontent-wrap-post").find_all('span',
-                    'item_time')[i].text
-                    time_iss = f'{News9[-23:-8]} {News9[-5:]}'
-                    # time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
-                    news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
-                      'www.gtrkkursk.ru']
-                except:
-                    print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
+                News9 = News6.find_all('span',class_='item_time')[i].text
+                time_iss = f'{News9[-23:-8]} {News9[-5:]}'
+                # time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
+                news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
+                  'www.gtrkkursk.ru']
+                # except:
+                #     print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
                 # print('News7'," ",News7)
                 # print('News8'," ",News8)
                 # print('News9'," ",News9)
@@ -364,7 +368,7 @@ def scrap_news():
     # =================================================
 
     def read_json():
-        path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+        path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
 
         with open(path2, 'r', encoding='utf-8') as f_five:
             json_data_news = json.load(f_five)
@@ -479,9 +483,9 @@ def scrap_news():
 
 
 def totaldate(date_dict):
-    """Запись словаря с данными после парсера в GLdate.json json-файл."""
+    """Запись словаря с данными после парсера в GLdate0.json json-файл."""
 
-    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
 
     with open(path1, 'w', encoding='utf-8') as file:
         json.dump(date_dict, file, ensure_ascii=False, indent=0)
@@ -492,7 +496,7 @@ def totaldate(date_dict):
 
 def write_base(diapason):  # int
 
-    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate.json"
+    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
 
     with open(path2, 'r', encoding='utf-8') as f_five:
         json_data_news = json.load(f_five)
@@ -529,6 +533,23 @@ def write_base(diapason):  # int
 def div_base():
     for diapason in range(1, 7):
         write_base(diapason)
+
+
+def get_count_news():
+    number_news =[]
+    for day_ago in range(7):
+        path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+                f"\\GLdate{day_ago}.json"
+
+        with open(path2, 'r', encoding='utf-8') as f_five:
+            json_data_news = json.load(f_five)
+
+        count=len(json_data_news)
+
+        number_news.append(count)
+    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(number_news, file, ensure_ascii=False, indent=0)
 
 
 # =======================================================
@@ -582,6 +603,7 @@ def loop_serv(time_scrap):
 
                 totaldate(scrap_news())
                 div_base()
+                get_count_news()
             elif time_scrap[-1] == hour_mins:
                 delta1 = 86400 - (sec_count(time_scrap[-1]) - sec_count(time_scrap[0]))
                 print(f'ожидание {delta1} секунд до {time_scrap[0]}')
@@ -590,7 +612,7 @@ def loop_serv(time_scrap):
                 sleep(delta1)
                 totaldate(scrap_news())
                 div_base()
-
+                get_count_news()
 
 # print(scrap())
 
@@ -616,6 +638,7 @@ def get_dates():
         list_days.append(fd.strftime(date_format))
 
     return list_days
+
 
 
 
