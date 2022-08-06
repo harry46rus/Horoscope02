@@ -31,11 +31,23 @@
     <!--            <h2>1. li {display: inline;}</h2>-->
                     <ul class="navi">
 <!--                        <li><a class="head-button" href="/index"><i class="fa fa-home fa-fw"></i>Home</a></li>-->
-                        <li><a class="head-button" href="#">НОВОСТИ ЗА НЕДЕЛЮ
-                            <span class="numb_news" >*{{number_news}}</span></a></li>
-                        <li><a class="head-button" href="/news1">ВЧЕРА</a></li>
-                        <li><a class="head-button" href="/news2">ПОЗАВЧЕРА</a></li>
-                        <li><a class="head-button" href="#">КОНТАКТЫ</a></li>
+<!--                        <li><a class="head-button" href="#">НОВОСТИ ЗА НЕДЕЛЮ-->
+                        <li><a onclick="myFunction()" class="dropbtn">НОВОСТИ ПО ДНЯМ</a></li>
+<!--                            <span class="numb_news" >*{{number_news}}шт</span></a></li>-->
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="/news0">BCE НОВОСТИ
+                                    <span class="numb_news" >={{number_news}}шт</span></a>
+                                <a href="/news1">ВЧЕРА</a>
+                                <a href="/news2">ПОЗАВЧЕРА</a>
+                                <a href="/news2">ПОЗАВЧЕРА</a>
+                                <a href="/news2">ПОЗАВЧЕРА</a>
+                                <a href="/news2">ПОЗАВЧЕРА</a>
+
+                            </div>
+
+<!--                        <li><a class="head-button" href="/news1">ВЧЕРА</a></li>-->
+<!--                        <li><a class="head-button" href="/news2">ПОЗАВЧЕРА</a></li>-->
+                        <li><a class="head-button" href="#">ЗАЧЕМ ЭТОТ САЙТ?</a></li>
                     </ul>
             </nav>
         </div>
@@ -147,6 +159,7 @@
     </div>
 
     <script>
+    /*прогресбар*/
     document.addEventListener('scroll', function(){
 
         var h = document.documentElement,
@@ -161,6 +174,28 @@
 
         });
    </script>
+    <script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+    </script>
 
 
 
