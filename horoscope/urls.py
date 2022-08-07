@@ -30,6 +30,7 @@ urlpatterns = [
     # path('news1/', views.get_news1),
     # path('news2/', views.get_news2),
     path('testcount/', views.get_test_count),
+    path('whyitsite/', views.get_why),
     path('znak/', views.get_znak),
     path('', views.hello2),
     path('news0/', include([

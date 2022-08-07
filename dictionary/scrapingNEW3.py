@@ -141,17 +141,21 @@ def scrap_news():
 
         soup = BeautifulSoup(resp.text, 'lxml')
         for i in range(16):
-            News4 = soup.find_all('div', class_="container-fluid")  # [i].find('h3').text
-            News5 = soup.find_all('div', id="list_news_bl")  # .find_all('a').text
-            News6 = soup.find_all('div', class_="col-md-3 thumbnail row-flex")[i].find('a',
-            class_="black_link").text
-            News7 = soup.find_all('div', class_="post-inner")[i].find('a').get('href')
-            reff = 'https://kurskcity.ru' + News7
-            time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
-            news_dict[News6] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
-                                'www.kurskcity.ru']
-            # print(News6," ",reff)
-        #     news_list = list(news_dict)
+            try:
+                News4 = soup.find_all('div', class_="container-fluid")  # [i].find('h3').text
+                News5 = soup.find_all('div', id="list_news_bl")  # .find_all('a').text
+                News6 = soup.find_all('div', class_="col-md-3 thumbnail row-flex")[i].find('a',
+                class_="black_link").text
+                News7 = soup.find_all('div', class_="post-inner")[i].find('a').get('href')
+                reff = 'https://kurskcity.ru' + News7
+                time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
+                news_dict[News6] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
+                                    'www.kurskcity.ru']
+                # print(News6," ",reff)
+            #     news_list = list(news_dict)
+            except:
+                print(f"=====ошибка скрапинга кода kurskcity.ru=====итераций_{y}=========")
+                break
         return news_dict
 
     # print(kurskcity())
@@ -183,20 +187,20 @@ def scrap_news():
 
             soup = BeautifulSoup(resp.text, 'lxml')
             for i in range(12):
-                # try:
-                News6 = soup.find('div', class_="сontent-wrap сontent-wrap-post")
-                News7 = News6.find_all('a',class_='item_pic-wrapper')[i].get('href')
-                reff = 'https://gtrkkursk.ru/' + News7
+                try:
+                    News6 = soup.find('div', class_="view-content")#"сontent-wrap сontent-wrap-post")
+                    News7 = News6.find_all('a',class_='item_pic-wrapper')[i].get('href')
+                    reff = 'https://gtrkkursk.ru/' + News7
 
-                News8 = News6.find_all('h2',class_='title')[i].text
+                    News8 = News6.find_all('h2',class_='title')[i].text#
 
-                News9 = News6.find_all('span',class_='item_time')[i].text
-                time_iss = f'{News9[-23:-8]} {News9[-5:]}'
-                # time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
-                news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
-                  'www.gtrkkursk.ru']
-                # except:
-                #     print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
+                    News9 = News6.find_all('span',class_='item_time')[i].text#
+                    time_iss = f'{News9[-23:-8]} {News9[-5:]}'
+                    # time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
+                    news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
+                      'www.gtrkkursk.ru']
+                except:
+                    print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
                 # print('News7'," ",News7)
                 # print('News8'," ",News8)
                 # print('News9'," ",News9)
@@ -233,7 +237,7 @@ def scrap_news():
                 news_dict[News41] = [convert(time_)[0], convert(time_)[1], time_, News42,
                                      'www.46tv.ru']
             except:
-                # print('46tv.ru')
+                print(f"=====ошибка скрапинга кода 46tv.ru=====итераций_{y}=========")
                 break
         return news_dict
 
@@ -276,6 +280,7 @@ def scrap_news():
                     news_dict[News41] = [convert(time_)[0], convert(time_)[1], time_, News42,
                                          'www.seyminfo.ru']
                 except:
+                    print(f"=====ошибка скрапинга кода seyminfo.ru=====итераций_{y}=========")
                     break
         return news_dict
 
@@ -317,7 +322,7 @@ def scrap_news():
                                         'www.kursk-izvestia.ru']
 
                 except:
-                    print('kursk-izvestia.ru')
+                    print(f"=====ошибка скрапинга кода kursk-izvestia.ru=====итераций_{i}=========")
                     break
         return news_dict
 
@@ -351,6 +356,7 @@ def scrap_news():
                                      'www.dddkursk.ru']
 
             except:
+                print(f"=====ошибка скрапинга кода dddkursk.ru=====итераций_{y}=========")
                 break
         return news_dict
 
@@ -411,6 +417,8 @@ def scrap_news():
     final_dict = {}
 
     def filter(json_data_news):
+        """Удаляет дубли новостей которые получаются, когда редакции корректируют заголовок после
+        выпуска"""
         for i, j in json_data_news.items():
             # print(i,"_____",j)
             nal_dict[j[3]] = [i, j[0], j[1], j[2], j[4]]
@@ -442,7 +450,7 @@ def scrap_news():
 
     # ==================================================
     def sorted_dicts(news_dict):
-        """Сортировка словаря по дате элементов(новостей) """
+        """Сортировка словаря по дате элементов(новостей). Вверху самые поздние """
         sorted_dict = {}
         sorted_keys = sorted(news_dict, key=news_dict.get, reverse=True)  # [1, 3, 2]
 
@@ -550,11 +558,77 @@ def get_count_news():
     path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
     with open(path1, 'w', encoding='utf-8') as file:
         json.dump(number_news, file, ensure_ascii=False, indent=0)
+# =====================================================
+def anons():
+    """Выборка  json-файла для показа на сайте и конвертация в обычный словарь"""
+    month_cirilic = {
+        1: 'январ',
+        2: 'феврал',
+        3: 'март',
+        4: 'апрел',
+        5: 'мая',
+        6: 'июн',
+        7: 'июл',
+        8: 'август',
+        9: 'сентябр',
+        10: 'октябр',
+        11: 'ноябр',
+        12: 'декабр'}
 
+    anons_dict = {}
 
+    def get_day_month(nn):
+
+        """дает сегодняшнюю дату числом и месяц+nn(август+1=сентябрь"""
+        сс = str(datetime.datetime.now())[:10]
+        day_ = int(сс[8:])
+        month0 = int(сс[5:7]) + nn
+        if (int(сс[5:7]) + nn) > 12:
+            month0 = month0 - 12
+        month_ = month_cirilic[month0]
+        return day_, month_
+
+    # #чтение и конвертация в обычный словарь
+    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+            f"\\GLdate0.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        json_data_news = json.load(f_five)
+
+    print(len(json_data_news))
+    for x, y in json_data_news.items():
+        #
+        key_list = [f'\d+ {get_day_month(1)[1]}', f'в {get_day_month(1)[1]}',
+                    f'\d+ {get_day_month(2)[1]}'
+            , f'в {get_day_month(2)[1]}', f'\d+ {get_day_month(3)[1]}',
+                    f'в {get_day_month(3)[1]}']  # '\d+
+        # август',
+        for key_ in key_list:
+            result = re.findall(key_, x.lower())
+            # today_=7,'aвгуст'
+            if result:
+                anons_dict[x] = y
+                # print(x, y)
+
+        key_list0 = [f'\d+ {get_day_month(0)[1]}', ]
+        # print(key_list0)
+        for key_0 in key_list0:
+            # print(key_0)#
+            result = re.findall(key_0, x.lower())
+            # today_=7,'aвгуст'
+            if result:
+                if int(result[0][:2]) >= get_day_month(0)[0]:
+                    # print(x, y)
+                    anons_dict[x] = y
+
+    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+            f"\\GLdate7.json"
+
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(anons_dict, file, ensure_ascii=False, indent=0)
 # =======================================================
 
-time_list0 = ['00:05', '00:20', '00:40', '01:00', '01:33',
+time_list0 = ['00:00', '00:20', '00:40', '01:00', '02:07',
               '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45',
               '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45',
               '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45',
@@ -568,9 +642,11 @@ time_list0 = ['00:05', '00:20', '00:40', '01:00', '01:33',
 
 
 def loop_serv(time_scrap):
+
     """запуск скрипта (парсера) по расписанию указанному в листе  'time_list0' """
 
     def sec_count(hour_min_):
+
         """вычисляет количесто секунд  от начала эпохи до сегодняшнего любого
          момента в формате  21:25 часы:минуты """
         full_date = f'{str(datetime.datetime.now())[:10]} {hour_min_}'
@@ -604,6 +680,7 @@ def loop_serv(time_scrap):
                 totaldate(scrap_news())
                 div_base()
                 get_count_news()
+                anons()
             elif time_scrap[-1] == hour_mins:
                 delta1 = 86400 - (sec_count(time_scrap[-1]) - sec_count(time_scrap[0]))
                 print(f'ожидание {delta1} секунд до {time_scrap[0]}')
@@ -613,6 +690,7 @@ def loop_serv(time_scrap):
                 totaldate(scrap_news())
                 div_base()
                 get_count_news()
+                anons()
 
 # print(scrap())
 
@@ -630,6 +708,7 @@ t.start()
 
 def get_dates():
     """даты дней вчера , позавчера ... 6 дней назад"""
+
     date_format = '%d.%m.%Y'
     day1 = datetime.datetime.now()
     list_days= []

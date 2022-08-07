@@ -7,7 +7,7 @@ html{
     width: 100%;
 }
 
-
+/*#D9CDC1*/
 
 *,
 *:before,
@@ -200,7 +200,7 @@ ul {
    }
 
 
-#text_block{
+.text_block{
     font-weight:400;
     }
 
@@ -318,7 +318,7 @@ button {
   border: 1px solid #F5C4AB;
 }
 
-#text_block{
+.text_block{
 padding: 0 30px 0 30px;
 font-size: 50px;
 }
@@ -415,7 +415,6 @@ border:1px solid red;
     background-color:#F5F4F2;
     border: 3px solid #FFFFFF;
     box-shadow: 0 0 25px #82736C;
-
     z-index: 1;
 }
 
@@ -427,6 +426,8 @@ border:1px solid red;
     top: 70px;
     border-bottom-left-radius:25px;
     border-bottom-right-radius:25px;
+    padding-left: 18px;
+    padding-right: 18px;
 
     }
 
@@ -438,7 +439,13 @@ border:1px solid red;
     min-width: 285px;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+   color:#DB4F51;
+    }
+
+.dropdown a:hover {
+    background-color: #ddd;
+    }
 
 .show {display: block;}
 
