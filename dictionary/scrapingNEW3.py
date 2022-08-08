@@ -596,31 +596,49 @@ def anons():
         json_data_news = json.load(f_five)
 
     print(len(json_data_news))
-    for x, y in json_data_news.items():
+
+    for title, y in json_data_news.items():
         #
         key_list = [f'\d+ {get_day_month(1)[1]}', f'в {get_day_month(1)[1]}',
-                    f'\d+ {get_day_month(2)[1]}', f'в {get_day_month(2)[1]}', f'\d+ {get_day_month(3)[1]}',
-                    f'в {get_day_month(3)[1]}']  # '\d+
+                    f'\d+ {get_day_month(2)[1]}'
+            , f'в {get_day_month(2)[1]}', f'\d+ {get_day_month(3)[1]}', f'в {get_day_month(3)[1]}',
+                    f'\d+ {get_day_month(0)[1]}', ]  # '\d+
         # август',
         for key_ in key_list:
-            result = re.findall(key_, x.lower())
+            result = re.findall(key_, title.lower())
             # today_=7,'aвгуст'
             if result:
-                anons_dict[x] = y
-                # print(x, y)
-        word_list=['погиб','произош','посадил','случил','выявил','сбил']
-        key_list0 = [f'\d+ {get_day_month(0)[1]}', ]
-        # print(key_list0)
-        for key_0 in key_list0:
-            # print(key_0)#
-            result = re.findall(key_0, x.lower())
-            # today_=7,'aвгуст'
+                if int(result[0][:2]) > get_day_month(0)[0]:
+                    anons_dict[title] = y
+
+    for title, y in json_data_news.items():
+        # 'ся' учитывается и добавляется
+        key_list1 = ['будет', 'произойдет', 'установят', 'начнет', 'создадут', 'представят',
+                     'наградят','построят', 'реконструируют', 'установят', 'завершат', 'увеличат',
+                     'обеспечат', 'ограничат', 'установят', 'обяжут', 'проведут', 'познакомят',
+                     'закончат', 'презентуют', 'выдадут', 'потребуют', 'уберут', 'отключат',
+                     'посадят', 'уменьшат','запланируют','выступят','отправят', 'пройдет',
+                     'разработают', 'заставят', 'отпразднуют', 'назначит', 'поставят',
+                     'утвердят', 'выделят', 'прекратят', 'призовут', 'мобилизуют', 'выступит',
+                     'перекроют', 'пригласят', 'отметят', 'встретят', 'встретит', 'распределят',
+                     'благоустроят', 'восстановят', 'появится', 'строится', 'построит', 'построят',
+                     'собираются', 'обеспечат', 'откроется', 'заменят', 'завершится', 'получат',
+                     'ожидают', 'объявят', 'объявит', 'оценит','открыли', 'откроют'
+                     ]
+        
+
+        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
+
+        for key_ in key_list1:
+            result = re.findall(key_, title.lower())
             if result:
-                if int(result[0][:2]) > get_day_month(0)[0]:#>=
-                    # print(x, y)
-                    for word in word_list:
-                        if word is not x.lower():
-                            anons_dict[x] = y
+                res = re.findall(f'\d+ {get_day_month(0)[1]}', title.lower())
+                if res:
+                    pass
+                else:
+
+                    anons_dict[title] = y
+
 
     path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
             f"\\GLdate7.json"
