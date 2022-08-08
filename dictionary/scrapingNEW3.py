@@ -599,8 +599,7 @@ def anons():
     for x, y in json_data_news.items():
         #
         key_list = [f'\d+ {get_day_month(1)[1]}', f'в {get_day_month(1)[1]}',
-                    f'\d+ {get_day_month(2)[1]}'
-            , f'в {get_day_month(2)[1]}', f'\d+ {get_day_month(3)[1]}',
+                    f'\d+ {get_day_month(2)[1]}', f'в {get_day_month(2)[1]}', f'\d+ {get_day_month(3)[1]}',
                     f'в {get_day_month(3)[1]}']  # '\d+
         # август',
         for key_ in key_list:
@@ -609,7 +608,7 @@ def anons():
             if result:
                 anons_dict[x] = y
                 # print(x, y)
-
+        word_list=['погиб','произош','посадил','случил','выявил','сбил']
         key_list0 = [f'\d+ {get_day_month(0)[1]}', ]
         # print(key_list0)
         for key_0 in key_list0:
@@ -617,9 +616,11 @@ def anons():
             result = re.findall(key_0, x.lower())
             # today_=7,'aвгуст'
             if result:
-                if int(result[0][:2]) >= get_day_month(0)[0]:
+                if int(result[0][:2]) > get_day_month(0)[0]:#>=
                     # print(x, y)
-                    anons_dict[x] = y
+                    for word in word_list:
+                        if word is not x.lower():
+                            anons_dict[x] = y
 
     path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
             f"\\GLdate7.json"
