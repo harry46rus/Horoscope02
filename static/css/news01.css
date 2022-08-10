@@ -40,11 +40,18 @@ body{
 }
 .menu{
     width:1200px;
+    display:flex;
 
 }
 
+.one{
+    display:flex;
+}
+
+
 .navi{
     display: flex;
+    text-align: center;
 
 }
 
@@ -65,7 +72,7 @@ body{
 ul {
     list-style: none; /*убираем маркеры списка*/
     /*margin: 0; убираем верхнее и нижнее поле, равное 1em*/
-    padding-left: 0; /*убираем левый отступ, равный 40px*/
+    /*padding-left: 0; убираем левый отступ, равный 40px*/
     margin-top: 25px;
     }
 
@@ -706,7 +713,7 @@ margin: 20px 0; */
         }
     .menu{
     display: none;
-    }
+        }
 }
 
 @media(max-width: 575px){
