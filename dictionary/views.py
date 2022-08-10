@@ -95,6 +95,7 @@ def get_home(request):
     return render(request, "index.html")
 
 def get_why(request):
+    days_ = datetime.strftime(datetime.now(), "%d")
     fff, numnews = scrap('0')
     usd_ = get_USD()
     # number_news = len(fff)
@@ -102,14 +103,16 @@ def get_why(request):
         dddate, usd, eur = date_, value[1], value[3]
 
     date_num = get_dates()
-
+    sing_news = 10
     data = {
+        'sing_news': sing_news,
         'numnews': numnews,
         # 'number_news': number_news,
         'date_': dddate,
         'usd': usd,
         'eur': eur,
         'news_dict': fff,
+        "day_": days_,
         "date_num": date_num}
 
     return render(request, "whyitsite.html", context=data)
@@ -130,6 +133,7 @@ def get_news0(request, sing_news: int):
     date_num=get_dates()
 
     data = {
+        'sing_news': sing_news,
         'numnews': numnews,
         # 'number_news': number_news,
         'date_': dddate,
