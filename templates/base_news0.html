@@ -32,8 +32,8 @@
                     <ul class="navi">
 <!--                        <li><a class="head-button" href="/index"><i class="fa fa-home fa-fw"></i>Home</a></li>-->
 <!--                        <li><a class="head-button" href="#">НОВОСТИ ЗА НЕДЕЛЮ-->
-                        <li><a onclick="myFunction()" class="dropbtn">НОВОСТИ НЕДЕЛИ ПО ДНЯМ</a></li>
-<!--                            <span class="numb_news" >*{{number_news}}шт</span></a></li>-->
+                        <li><a onclick="myFunction()" class="dropbtn">НОВОСТИ ЗА НЕДЕЛЮ
+                            <span class="numb_news" >[{{numnews.0}}]</span></a></li>
                             <div id="myDropdown" class="dropdown-content">
                                 <a href="/news0/0">НОВОСТИ ЗА НЕДЕЛЮ
                                     <span class="numb_news" >___{{numnews.0}}</span></a>
@@ -49,7 +49,7 @@
                                     <span class="numb_news" >______________{{numnews.5}}</span></a>
                                 <a href="/news0/6">ЗА {{date_num.5}}
                                     <span class="numb_news" >______________{{numnews.6}}</span></a>
-
+                                <hr class="hr-line"><br>
                             </div>
 
 <!--                        <li><a class="head-button" href="/news1">ВЧЕРА</a></li>-->
@@ -58,115 +58,25 @@
                         <span class="numb_news" >[{{numnews.7}}]</span></li>
                         <li><a class="head-button" class="dropbtn" href="/news0/8">ПРОИСШЕСТВИЯ</a>
                         <span class="numb_news" >[{{numnews.8}}]</span></li>
+                        <li><a class="head-button" class="dropbtn" href="/news0/9">ОБЩЕСТВО</a>
+                        <span class="numb_news" >[{{numnews.9}}]</span></li>
                         <li><a class="head-button" href="/whyitsite/">ЗАЧЕМ ЭТОТ САЙТ?</a></li>
+
                     </ul>
             </nav>
         </div>
-        <div class="currency">
-            <p><a class="currency" href="https://www.cbr.ru/currency_base/daily/"target="_blank"
-                  style="text-decoration: none; color: #F9FCFF;">
-                ЦБ РФ на {{ date_ }}:&nbsp USD {{ usd }}&nbsp EUR {{ eur }}</a></p>
-        </div>
+<!--        <div class="currency">-->
+<!--            <p><a class="currency" href="https://www.cbr.ru/currency_base/daily/"target="_blank"-->
+<!--                  style="text-decoration: none; color: #F9FCFF;">USD {{ usd }}&nbsp EUR {{ eur }}</a></p>-->
+<!--&lt;!&ndash;                ЦБ РФ на {{ date_ }}:&nbsp USD {{ usd }}&nbsp EUR {{ eur }}</a></p>&ndash;&gt;-->
+<!--        </div>-->
     </div>
 
     <div class="global">
-        <div id="head1">
-            <div class="head_01">
-        <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">СВЕЖАЯ ЛЕНТА НОВОСТЕЙ КУРСКА{{sign_}}</h1>
-                <h2 align="center">ПО ВСЕМ МЕСТНЫМ СМИ *{{sign_}}</h2>
-                <p align="center">Курск &nbsp&nbsp&nbsp{{day_}} {% now "F" %} {% now "Y" %}</p>
-<!--                &nbsp&nbsp&nbsp {{time}}:{% now "i" %}:{% now "s" %}-->
-
-<!--                <marquee behavior="alternate" direction="left" bgcolor="#82736C">-->
-<!--                    <p>{% for key, tm in news_dict.items %}-->
-<!--                    <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">-->
-<!--                        {{key}}</a> | {{tm.4}} | &nbsp&nbsp&nbsp-->
-<!--                    {% endfor %}</p>-->
-<!--                </marquee>-->
-            </div>
 
 
-        </div>
+        {% block content %} {% endblock %}
 
-
-        <div id="content">
-
-<!--            <div class="adv">-->
-<!--                <div class="sticky">-->
-<!--                    <div class="adv1">-->
-<!--                        <img src="{% static 'images/img1.jpg' %}" alt="">-->
-<!--                    </div>-->
-<!--                    <div class="adv1">-->
-<!--                        <img src="{% static 'images/img3.jpg' %}" alt="">-->
-<!--                    </div>-->
-<!--                    <div class="adv2">-->
-<!--                        <h1>Lorem ipsum </h1>-->
-
-<!--                        LoreM ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque-->
-<!--                        consequuntur delectus ducimus est expedita id ipsam iure labore, officiis placeat-->
-<!--                        recusandae rem reprehenderit. A ad amet cumque provident ullam?-->
-<!--                        <hr class="hr-line">-->
-<!--                        <br>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-
-            {% block content %} {% endblock %}
-<!--            <div id="news_text">-->
-<!--                {% for key, tm in news_dict.items %}-->
-<!--                <div id="news_box">-->
-<!--            &lt;!&ndash;        <p id="text_block"><a class="nn" href="{% static tm %}"target="_blank">{{key}}</a></p>&ndash;&gt;-->
-<!--                    <h3 id="text_block" style="font-family: 'Roboto', sans-serif;">-->
-<!--                        <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">-->
-<!--                        {{key}}</a>-->
-<!--                    </h3>-->
-<!--                    <hr class="hr-line">-->
-<!--            &lt;!&ndash;        <p>{{tm.0.1}} {{tm.1}} {{tm.2}}</p>&ndash;&gt;-->
-<!--                    <div id="source_">-->
-<!--                        <p class="time_source">{{tm.2}}&nbsp&nbsp{{tm.1}}</p>-->
-<!--                        <p class="time_source">{{tm.4}}</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--&lt;!&ndash;                {% if True %}&ndash;&gt;-->
-<!--&lt;!&ndash;                <div id="news_box-midlle">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="adv-midlle">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="visual1">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <img src="{% static 'images/img3.jpg' %}" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="visual1">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <img src="{% static 'images/img4.jpg' %}" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                {% endif %}&ndash;&gt;-->
-
-<!--                {% endfor %}-->
-<!--            </div>-->
-
-<!--            <div class="adv">-->
-<!--                <div class="sticky">-->
-<!--                    <div class="adv1">-->
-<!--                        <img src="{% static 'images/img2.jpg' %}" alt="">-->
-<!--                    </div>-->
-<!--                    <div class="adv1">-->
-<!--                        <img src="{% static 'images/img4.jpg' %}" alt="">-->
-<!--                    </div>-->
-<!--                    <div class="adv2">-->
-<!--                        <h1>КАЛЕНДАРЬ </h1>-->
-
-<!--                        <input type="date">-->
-<!--                        <hr class="hr-line">-->
-<!--                        <br>-->
-<!--                        &lt;!&ndash;                         календарь&ndash;&gt;-->
-<!--                        <script>-->
-<!--                            console.log( document.querySelector('input').value );-->
-<!--                        </script>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-        </div>
     </div>
 
     <script>

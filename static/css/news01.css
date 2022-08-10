@@ -39,7 +39,7 @@ body{
     box-shadow: 0 0 35px #54453E;
 }
 .menu{
-    width:1100px;
+    width:1200px;
 
 }
 
@@ -71,7 +71,7 @@ ul {
 
 .head-button {
     text-decoration: none; /*убираем подчеркивание текста ссылок*/
-    padding-right: 25px;
+    padding-right: 5px;
     padding-left: 25px;
     color: #F9FCFF;
 
@@ -184,7 +184,7 @@ ul {
     border: 3px solid #FFFFFF;
     box-shadow: 0 0 25px #82736C;
     margin-bottom: 15px;
-    border-radius: 25px;
+    border-radius: 20px;
    }
 
 #news_box-midlle{
@@ -395,12 +395,18 @@ border:1px solid red;
 }
 
 .dropbtn:hover, .dropbtn:focus {
-    border-top-left-radius:25px;
-    border-top-right-radius:25px;
-    background-color: #45362F;
-    border: 1px solid #695A53;
+
     color: #D5DE80;
 }
+
+.head-button:hover, .head-button:focus {
+    color: #D5DE80;
+}
+
+/*border-top-left-radius:15px;
+    border-top-right-radius:15px;
+    background-color: #45362F;
+    border: 1px solid #695A53;*/
 
 .dropdown {
     position: relative;
@@ -424,8 +430,8 @@ border:1px solid red;
     line-height: 1.1;
     font-weight: 500;
     top: 70px;
-    border-bottom-left-radius:25px;
-    border-bottom-right-radius:25px;
+    border-bottom-left-radius:15px;
+    border-bottom-right-radius:15px;
     padding-left: 18px;
     padding-right: 18px;
 
