@@ -32,7 +32,8 @@ urlpatterns = [
     path('testcount/', views.get_test_count),
     path('whyitsite/', views.get_why),
     path('znak/', views.get_znak),
-    path('', views.hello2),
+    # path('', views.hello2),
+    path('', views.get_home),
     path('news0/', include([
         path('<int:sing_news>/', views.get_news0),
 

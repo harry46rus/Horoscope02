@@ -5,12 +5,75 @@
 
 {% block content %}
 <div id="head1">
+
+    <div class="qr-code" >
+        <a href="/whyitsite/"><img src="{% static 'images/qr-code.jpg' %}" alt=""></a>
+        <p class="qr-code-text" >www.sova46.ru</p>
+    </div>
+
     <div class="head_01">
-<!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-        <h1 align="center"style="color:#B7C062;">СВЕЖАЯ ЛЕНТА&nbsp-&nbsp<span style="color:#F9FCFF;">
-            {{numnews.0}}</span>&nbsp КУРСКИХ НОВОСТЕЙ</h1>
+        <div class="head_head">
+            {% if sing_news == 0 %}
+    <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">СВЕЖАЯ ЛЕНТА&nbsp-&nbsp<span style="color:#FFFFFF;">
+                {{numnews.0}}</span>&nbsp КУРСКИХ НОВОСТЕЙ</h1>
+            {% endif  %}
+            {% if sing_news == 1 %}
+    <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">ЗА {{date_num.0}}&nbsp-&nbsp<span style="color:#FFFFFF;">
+                {{numnews.1}}</span>&nbsp  НОВОСТЕЙ</h1>
+            {% endif  %}
+            {% if sing_news == 2 %}
+    <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">ЗА {{date_num.1}}&nbsp-&nbsp<span
+                        style="color:#FFFFFF;">
+                {{numnews.2}}</span>&nbsp  НОВОСТЕЙ</h1>
+            {% endif  %}
+            {% if sing_news == 3 %}
+    <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">ЗА {{date_num.2}}&nbsp-&nbsp<span
+                        style="color:#FFFFFF;">
+                {{numnews.3}}</span>&nbsp  НОВОСТЕЙ</h1>
+            {% endif  %}
+            {% if sing_news == 4 %}
+    <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">ЗА {{date_num.3}}&nbsp-&nbsp<span
+                        style="color:#FFFFFF;">
+                {{numnews.4}}</span>&nbsp  НОВОСТЕЙ</h1>
+            {% endif  %}
+            {% if sing_news == 5 %}
+    <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">ЗА {{date_num.4}}&nbsp-&nbsp<span
+                        style="color:#FFFFFF;">
+                {{numnews.5}}</span>&nbsp НОВОСТЕЙ</h1>
+            {% endif  %}
+            {% if sing_news == 6 %}
+    <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">ЗА {{date_num.5}} &nbsp-&nbsp<span
+                        style="color:#FFFFFF;">
+                {{numnews.6}}</span>&nbsp  НОВОСТЕЙ</h1>
+            {% endif  %}
+            {% if sing_news == 7 %}
+    <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">АНОНСЫ &nbsp-&nbsp<span
+                        style="color:#FFFFFF;">
+                {{numnews.7}}</span>&nbsp  НОВОСТЕЙ</h1>
+            {% endif  %}
+            {% if sing_news == 8 %}
+    <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">ПРОИСШЕСТВИЯ &nbsp-&nbsp<span
+                        style="color:#FFFFFF;">
+                {{numnews.8}}</span>&nbsp  НОВОСТЕЙ</h1>
+            {% endif  %}
+            {% if sing_news == 9 %}
+    <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
+                <h1 align="center">ОБЩЕСТВО &nbsp-&nbsp<span
+                        style="color:#FFFFFF;">
+                {{numnews.9}}</span>&nbsp  НОВОСТЕЙ</h1>
+            {% endif  %}
+        </div>
 <!--        <h3 align="center">ПО ВСЕМ МЕСТНЫМ СМИ *{{sign_}}</h3>-->
-        <p align="center">СЕГОДНЯ &nbsp&nbsp&nbsp{{day_}} {% now "F" %} {% now "Y" %}
+        <p align="center"> КУРСК СЕГОДНЯ &nbsp&nbsp&nbsp{{day_}} {% now "F" %} {% now "Y" %}
         &nbsp&nbsp&nbspЦБ РФ на {{ date_ }}:&nbsp USD {{ usd }} &#x20BD;&nbsp EUR {{ eur }}
             &#x20BD;</p>
 <!--                &nbsp&nbsp&nbsp {{time}}:{% now "i" %}:{% now "s" %}-->
@@ -22,8 +85,9 @@
 <!--                    {% endfor %}</p>-->
 <!--                </marquee>-->
     </div>
-    <div class="qr-code">
+    <div class="qr-code" >
         <img src="{% static 'images/qr-code.jpg' %}" alt="">
+        <p class="qr-code-text" >www.sova46.ru</p>
     </div>
 
 </div>

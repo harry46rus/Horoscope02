@@ -36,7 +36,7 @@ body{
     z-index:5;
     display: flex;
     justify-content: space-around;
-    box-shadow: 0 0 95px #54453E;
+    box-shadow: 0 0 45px #54453E;
 }
 .menu{
     width:1200px;
@@ -80,7 +80,7 @@ ul {
     text-decoration: none; /*убираем подчеркивание текста ссылок*/
     padding-right: 5px;
     padding-left: 25px;
-    color: #F9FCFF;
+    color: #D9CDC1;
 
     }
 
@@ -104,9 +104,13 @@ ul {
     align-items: center;
     justify-content: center;
     top:0;
-
-
     }
+
+.head_head{
+    color:#D9CDC1;
+    text-shadow: 1px 1px 15px #53463F;
+}
+
 
 #content{
     padding-left: 60px;
@@ -253,11 +257,20 @@ form {
 }
 
 .qr-code{
-    width:200px;
-    hight:200px;
+    width:110px;
+    hight:120px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+
     border-radius: 15px;
     margin-left:50px;
     margin-right: 50px;
+}
+.qr-code-text{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align:center;
+    font-size: 0.7em;
 }
 /*
 #progress-container{
@@ -415,13 +428,24 @@ border:1px solid red;
 
 .dropbtn {
 
-    color: #F9FCFF;
+    color: #D9CDC1;
     padding: 19px;
     padding-right: 2px;
     font-size: 20px;
     border: none;
     cursor: pointer;
+
 }
+.dropbtn_active {
+    padding: 19px;
+    padding-right: 2px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color:#FFFFFF;
+    }
+
 
 .dropbtn:hover, .dropbtn:focus {
 
@@ -736,6 +760,10 @@ margin: 20px 0; */
     .menu{
     display: none;
         }
+
+    .qr-code{
+        display:none;
+    }
 }
 
 @media(max-width: 575px){
@@ -817,6 +845,12 @@ margin: 20px 0; */
     margin-top: 0px;
     margin-bottom: 0px;
     }
+    .time_source{
+        margin-top:0px;
+        margin-top:10px;
+
+    }
+
 }
 
 

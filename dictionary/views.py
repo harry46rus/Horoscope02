@@ -91,7 +91,7 @@ def get_search(request):
     return render(request, "search_.html")
 
 
-def get_home(request):
+def get_home1(request):
     return render(request, "index.html")
 
 def get_why(request):
@@ -144,6 +144,33 @@ def get_news0(request, sing_news: int):
         "day_": days_,
         "date_num": date_num}
     return render(request, "news0.html", context=data)
+
+def get_home(request):
+    hour_ = datetime.strftime(datetime.now(), "%H")
+    days_ = datetime.strftime(datetime.now(), "%d")
+    # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+    sing_news = 0
+    fff, numnews = scrap(sing_news)
+    usd_ = get_USD()
+    # number_news = len(fff)
+    for date_, value in usd_.items():
+        dddate, usd, eur = date_, value[1], value[3]
+
+    date_num = get_dates()
+
+    data = {
+        'sing_news': sing_news,
+        'numnews': numnews,
+        # 'number_news': number_news,
+        'date_': dddate,
+        'usd': usd,
+        'eur': eur,
+        'news_dict': fff,
+        "time": hour_,
+        "day_": days_,
+        "date_num": date_num}
+    return render(request, "news0.html", context=data)
+
 
 
 # def get_news1(request):
