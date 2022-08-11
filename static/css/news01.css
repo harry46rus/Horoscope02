@@ -239,8 +239,9 @@ form {
   text-align: center;
     }
 .sline{
-    border-bottom: 5px solid #BEC769;
+    border-bottom: 5px solid #9AA345;
     padding-bottom: 10px;
+    box-shadow-bottom: 0 0 3px #9AA345;
 }
 .gline{
     background-color:#C7C7C7;
@@ -249,6 +250,14 @@ form {
 .box_hr_line{
     margin-left:18px;
     margin-right:18px;
+}
+
+.qr-code{
+    width:200px;
+    hight:200px;
+    border-radius: 15px;
+    margin-left:50px;
+    margin-right: 50px;
 }
 /*
 #progress-container{
