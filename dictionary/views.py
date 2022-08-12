@@ -59,19 +59,19 @@ zodiac_dict = {
 #         return f"This is {self.name}"
 
 
-def get_sign_name(request, sing_name: str):
-    description = zodiac_dict.get(sing_name, None)
-    data = {
-        "description_zodiac": description,
-        "sign_": sing_name.upper(),
-        # "my_int": 123,
-        # "my_float": 25.3,
-        # "my_list": [1, 2, 3],
-        # "my_dict": {"name": "Piter"},
-        # "my_class": Person("Jack", 50),
+def get_sign_name(request):#, sing_name: str):
+    # description = zodiac_dict.get(sing_name, None)
+    # data = {
+    #     "description_zodiac": description,
+    #     "sign_": sing_name.upper(),
+    #     # "my_int": 123,
+    #     # "my_float": 25.3,
+    #     # "my_list": [1, 2, 3],
+    #     # "my_dict": {"name": "Piter"},
+    #     # "my_class": Person("Jack", 50),
 
-    }
-    return render(request, 'horoscop.html', context=data)
+    # }
+    return render(request, 'horoscop.html')#, context=data)
 
 
 def get_sign_name_number(request, sing_name: int):

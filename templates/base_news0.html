@@ -8,8 +8,8 @@
     {% for key, tm in news_dict.items %}
     <meta name="description" content="{{key}}">
     {% endfor %}
-    <title>ЛЕНТА НОВОСТЕЙ</title>
-    <link href="{% static 'css/favicon.ico' %} " rel="shortout icon" type="image/x-icon"/>
+    <title>СОВА46 - НОВОСТИ</title>
+    <link href="{% static 'css/sova.ico' %} " rel="shortout icon" type="image/x-icon"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,900;1,300&display=swap" rel="stylesheet">
@@ -32,27 +32,33 @@
                     <ul class="navi">
 <!--                        <li><a class="head-button" href="/index"><i class="fa fa-home fa-fw"></i>Home</a></li>-->
 <!--                        <li><a class="head-button" href="#">НОВОСТИ ЗА НЕДЕЛЮ-->
-<!--                        <li>-->
-<!--                            <div >-->
-<!--                                        <a class="dropbtn"-->
-<!--                                           style="font-weight: 900;"-->
-<!--                                             href="/">SOVA46.ru</a>-->
-<!--                                        <span class="numb_news" ></span>-->
-<!--                            </div>-->
-<!--                        </li>-->
+                        <li>
+                            <div style="margin-top:-7px;margin-right: 20px;" >
+                                        <a class="dropbtn1"
+                                           href="/"><img
+                                    src="{% static 'images/sova3.svg' %}" alt=""></a>
+
+<!--                                style="max-width:70px;padding-right:38px;-->
+<!--                                        margin-top:20px;margin-bottom:20px;-->
+<!--                                        "-->
+<!--style="margin-top: -10px; margin-right: 12px;padding:32px;"-->
+                            </div>
+                        </li>
 
                         <li>
                             {% if sing_news < 7 %}
-                                <div class="sline">
+                                <div class="sline" >
                                     <a onclick="myFunction()"  class="dropbtn"
-                                       style="color:#FFFFFF" >
-                                          НОВОСТИ ЗА НЕДЕЛЮ&#9660;</a>
+                                       style="color:#FFFFFF;" >
+                                       <span style="color:#CDD86C">
+                                                  СОВА46&nbsp</span> ЗА НЕДЕЛЮ&#9660;</a>
                                     <span class="numb_news" >[{{numnews.0}}]</span>
                                 </div>
                             {% else %}
                                 <div>
-                                    <a onclick="myFunction()" class="dropbtn">
-                                    НОВОСТИ ЗА НЕДЕЛЮ&#9660;</a>
+                                    <a onclick="myFunction()" class="dropbtn"  >
+                                    <span style="color:#CDD86C">СОВА46&nbsp</span>
+                                        ЗА НЕДЕЛЮ&#9660;</a>
                                     <span class="numb_news" >[{{numnews.0}}]</span>
                                 </div>
                             {% endif  %}

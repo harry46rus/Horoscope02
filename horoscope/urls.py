@@ -29,6 +29,7 @@ urlpatterns = [
     # path('news0/', views.get_news0),
     # path('news1/', views.get_news1),
     # path('news2/', views.get_news2),
+    path('test/', views.get_sign_name),
     path('testcount/', views.get_test_count),
     path('whyitsite/', views.get_why),
     path('znak/', views.get_znak),

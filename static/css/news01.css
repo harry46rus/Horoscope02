@@ -427,6 +427,11 @@ border:1px solid red;
 
 	z-index:2;
     }
+.dropbtn1{
+
+    padding: 30px;
+    padding-right: 5px;
+}
 
 .dropbtn {
 
@@ -436,6 +441,7 @@ border:1px solid red;
     font-size: 20px;
     border: none;
     cursor: pointer;
+    text-decoration: none;
 
 }
 .dropbtn_active {
@@ -489,6 +495,7 @@ border:1px solid red;
     border-bottom-right-radius:15px;
     padding-left: 0px;
     padding-right: 0px;
+    margin-left: 41px;
 
     }
 
