@@ -39,7 +39,7 @@ body{
     box-shadow: 0 0 45px #54453E;
 }
 .menu{
-    width:1200px;
+    width:12s00px;
     display:flex;
 
 }
@@ -243,7 +243,7 @@ form {
   text-align: center;
     }
 .sline{
-    border-bottom: 5px solid #9AA345;
+    border-bottom: 4px solid #B4BD5F;
     padding-bottom: 10px;
     box-shadow-bottom: 0 0 3px #9AA345;
 }
@@ -257,20 +257,22 @@ form {
 }
 
 .qr-code{
-    width:110px;
+    width:120px;
     hight:120px;
     margin-top: 10px;
     margin-bottom: 0px;
-
     border-radius: 15px;
     margin-left:50px;
     margin-right: 50px;
+
 }
 .qr-code-text{
     margin-top: 0px;
     margin-bottom: 0px;
     text-align:center;
-    font-size: 0.7em;
+    font-size: 0.9em;
+    text-shadow: 2px 2px 5px #3A2D26;
+
 }
 /*
 #progress-container{
