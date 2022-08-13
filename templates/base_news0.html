@@ -47,19 +47,19 @@
 
                         <li>
                             {% if sing_news < 7 %}
-                                <div class="sline" >
+                                <diыv class="sline" >
                                     <a onclick="myFunction()"  class="dropbtn"
                                        style="color:#FFFFFF;" >
                                        <span style="color:#CDD86C">
                                                   СОВА46&nbsp</span> ЗА НЕДЕЛЮ&#9660;</a>
-                                    <span class="numb_news" >[{{numnews.0}}]</span>
-                                </div>
+<!--                                    <span class="numb_news" >[{{numnews.0}}]</span>-->
+                                </diыv>
                             {% else %}
                                 <div>
                                     <a onclick="myFunction()" class="dropbtn"  >
                                     <span style="color:#CDD86C">СОВА46&nbsp</span>
                                         ЗА НЕДЕЛЮ&#9660;</a>
-                                    <span class="numb_news" >[{{numnews.0}}]</span>
+<!--                                    <span class="numb_news" >[{{numnews.0}}]</span>-->
                                 </div>
                             {% endif  %}
 
@@ -70,14 +70,15 @@
                                 <div>
                                     {% if sing_news == 0 %}
                                         <div class="gline">
-                                            <a href="/news0/0">ВСЕ ЗА НЕДЕЛЮ
-                                                <span class="numb_news" >__________{{numnews.0}}</span></a>
+                                            <a href="/news0/0">ВСЕ ЗА НЕДЕЛЮ<span class="numb_news">
+                                                __________{{numnews.0}}
+                                                    </span></a>
                                         </div>
                                     {% else %}
                                          <div>
-                                            <a href="/news0/0">ВСЕ ЗА НЕДЕЛЮ
-                                                <span class="numb_news" >__________{{numnews.0}}</span></a>
-                                        </div>
+                                            <a href="/news0/0">ВСЕ ЗА НЕДЕЛЮ<span class="numb_news">
+                                                __________{{numnews.0}}</span></a>
+                                         </div>
                                     {% endif  %}
                                 </div>
                                 <div>
@@ -173,12 +174,12 @@
                                     <div class="sline">
                                         <a class="dropbtn_active" class="head-button"
                                          href="/news0/7">АНОНСЫ</a>
-                                        <span class="numb_news" >[{{numnews.7}}]</span>
+<!--                                        <span class="numb_news" >[{{numnews.7}}]</span>-->
                                     </div>
                                 {% else %}
                                     <div>
                                         <a class="head-button" class="dropbtn" href="/news0/7">АНОНСЫ</a>
-                                        <span class="numb_news" >[{{numnews.7}}]</span>
+<!--                                        <span class="numb_news" >[{{numnews.7}}]</span>-->
                                      </div>
                                 {% endif  %}
                             </div>
@@ -189,13 +190,13 @@
                                     <div class="sline">
                                         <a class="dropbtn_active" class="head-button"
                                              href="/news0/8">ПРОИСШЕСТВИЯ</a>
-                                        <span class="numb_news" >[{{numnews.8}}]</span>
+<!--                                        <span class="numb_news" >[{{numnews.8}}]</span>-->
                                     </div>
                                 {% else %}
                                     <div>
                                         <a class="head-button" class="dropbtn" href="/news0/8">
                                             ПРОИСШЕСТВИЯ</a>
-                                        <span class="numb_news" >[{{numnews.8}}]</span>
+<!--                                        <span class="numb_news" >[{{numnews.8}}]</span>-->
                                     </div>
                                 {% endif  %}
                             </div>
@@ -206,13 +207,13 @@
                                     <div class="sline">
                                         <a class="dropbtn_active" class="head-button"
                                              href="/news0/9">ОБЩЕСТВО</a>
-                                        <span class="numb_news" >[{{numnews.9}}]</span>
+<!--                                        <span class="numb_news" >[{{numnews.9}}]</span>-->
                                     </div>
                                 {% else %}
                                     <div>
                                         <a class="head-button" class="dropbtn" href="/news0/9">
                                             ОБЩЕСТВО</a>
-                                        <span class="numb_news" >[{{numnews.9}}]</span>
+<!--                                        <span class="numb_news" >[{{numnews.9}}]</span>-->
                                     </div>
                                 {% endif  %}
                             </div>
@@ -222,13 +223,15 @@
                                 {% if sing_news == 10 %}
                                     <div class="sline">
                                         <a class="dropbtn_active" class="head-button"
-                                             href="/whyitsite/">ЗАЧЕМ ЭТОТ САЙТ?</a>
+                                             href="/whyitsite/">ЧаВо</a>
+<!--                                             href="/whyitsite/">ЗАЧЕМ ЭТОТ САЙТ?</a>-->
 
                                     </div>
                                 {% else %}
                                     <div>
                                         <a class="head-button" class="dropbtn" href="/whyitsite/">
-                                            ЗАЧЕМ ЭТОТ САЙТ?</a>
+                                            ЧаВо</a>
+<!--                                            ЗАЧЕМ ЭТОТ САЙТ?</a>-->
 
                                     </div>
                                 {% endif  %}

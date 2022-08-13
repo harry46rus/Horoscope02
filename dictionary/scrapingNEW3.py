@@ -12,6 +12,8 @@ import datetime
 import threading
 
 
+
+
 def scrap(day_ago):
     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
 
@@ -653,12 +655,24 @@ def anons():
 
                 anons_dict[title] = y
 
+    def sorted_dicts1(news_dict):
+        """Сортировка словаря по дате элементов(новостей). Вверху самые поздние """
+        sorted_dict = {}
+        sorted_keys = sorted(news_dict, key=news_dict.get, reverse=True)  # [1, 3, 2]
 
+        for w in sorted_keys:
+            sorted_dict[w] = news_dict[w]
+        count_news = len(sorted_dict)
+        print('количество новостей = ', count_news)
+        # print(sorted_dict)
+        return sorted_dict
+
+    sorted_anons_dict = sorted_dicts1(anons_dict)
     path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
             f"\\GLdate7.json"
 
     with open(path1, 'w', encoding='utf-8') as file:
-        json.dump(anons_dict, file, ensure_ascii=False, indent=0)
+        json.dump(sorted_anons_dict, file, ensure_ascii=False, indent=0)
  # ==============================================
 
 
