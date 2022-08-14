@@ -4,15 +4,46 @@
 <head>
     <link rel="stylesheet" href="{% static 'css/news01.css' %} ">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     {% for key, tm in news_dict.items %}
     <meta name="description" content="{{key}}">
     {% endfor %}
-    <title>СОВА46 - НОВОСТИ</title>
+    <title>СОВАБОТ - НОВОСТИ</title>
     <link href="{% static 'css/sova.ico' %} " rel="shortout icon" type="image/x-icon"/>
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,900;1,300&display=swap" rel="stylesheet">-->
+
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">-->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,900;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+<!--    <style>-->
+<!--    @-webkit-keyframes pulsate {-->
+<!--    50% { color: #fff; text-shadow: 0 -1px rgba(0,0,0,.6), 0 0 5px #ffd, 0 0 8px #fff; }-->
+<!--    }-->
+<!--    @keyframes pulsate {-->
+<!--    50% { color: #fff; text-shadow: 0 -1px rgba(0,0,0,.6), 0 0 5px #ffd, 0 0 8px #fff; }-->
+<!--    }-->
+<!--    .blink7 {-->
+<!--    color: rgb(245,245,245);-->
+<!--    text-shadow: 0 -1px rgba(0,0,0,.1);-->
+<!--    background: #82736C;-->
+<!--    -webkit-animation: pulsate 1.2s linear infinite;-->
+<!--    animation: pulsate 2.2s linear infinite;-->
+<!--    }-->
+
+<!--    </style>-->
+
+
+
+
+
 </head>
 <body>
 
@@ -27,38 +58,55 @@
         </div>
 
         <div class="menu">
+            <div id="logo" >
+                <div>
+                    <a  href="/"><img class="logoimg"
+                       src="{% static 'images/sova3.svg' %}" alt=""></a>
+                </div>
+
+                <div style="margin-top: 5px;">
+                <a href="/" class="dropbtn1" style="color:#FFFFFF;text-decoration: none;
+                    padding:0;" >
+                    СОВАБOT </a>
+                </div>
+            </div>
+
             <nav class="one">
     <!--            <h2>1. li {display: inline;}</h2>-->
                     <ul class="navi">
 <!--                        <li><a class="head-button" href="/index"><i class="fa fa-home fa-fw"></i>Home</a></li>-->
 <!--                        <li><a class="head-button" href="#">НОВОСТИ ЗА НЕДЕЛЮ-->
-                        <li>
-                            <div style="margin-top:-7px;margin-right: 20px;" >
-                                        <a class="dropbtn1"
-                                           href="/"><img
-                                    src="{% static 'images/sova3.svg' %}" alt=""></a>
+<!--                        <li>-->
+<!--                            <div style="margin-top:-7px;margin-right: 20px; width:30px;" >-->
+<!--                                        <a class="dropbtn1"-->
+<!--                                           href="/"><img-->
+<!--                                    src="{% static 'images/sova3.svg' %}" alt=""></a>-->
 
-<!--                                style="max-width:70px;padding-right:38px;-->
-<!--                                        margin-top:20px;margin-bottom:20px;-->
-<!--                                        "-->
-<!--style="margin-top: -10px; margin-right: 12px;padding:32px;"-->
-                            </div>
-                        </li>
+<!--&lt;!&ndash;                                style="max-width:70px;padding-right:38px;&ndash;&gt;-->
+<!--&lt;!&ndash;                                        margin-top:20px;margin-bottom:20px;&ndash;&gt;-->
+<!--&lt;!&ndash;                                        "&ndash;&gt;-->
+<!--&lt;!&ndash;style="margin-top: -10px; margin-right: 12px;padding:32px;"&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </li>-->
 
                         <li>
                             {% if sing_news < 7 %}
-                                <diыv class="sline" >
-                                    <a onclick="myFunction()"  class="dropbtn"
+                                <div class="sline" >
+                                    <a onclick="myFunction()"  class="dropbtn_active"
                                        style="color:#FFFFFF;" >
-                                       <span style="color:#CDD86C">
-                                                  СОВА46&nbsp</span> ЗА НЕДЕЛЮ&#9660;</a>
+<!--                                       <span style="color:#CDD86C">-->
+                                                  ЗА НЕДЕЛЮ&#9660;</a>
+<!--                                       </span> -->
+
 <!--                                    <span class="numb_news" >[{{numnews.0}}]</span>-->
-                                </diыv>
+                                </div>
                             {% else %}
                                 <div>
-                                    <a onclick="myFunction()" class="dropbtn"  >
-                                    <span style="color:#CDD86C">СОВА46&nbsp</span>
+                                    <a onclick="myFunction()" class="dropbtn">
+<!--                                    <span style="color:#CDD86C">-->
                                         ЗА НЕДЕЛЮ&#9660;</a>
+<!--                                    </span>-->
+
 <!--                                    <span class="numb_news" >[{{numnews.0}}]</span>-->
                                 </div>
                             {% endif  %}
@@ -241,6 +289,10 @@
 
                     </ul>
             </nav>
+
+            <button class="burger" type="button">
+                <img class="burger-icon" src="{% static 'images/burger5.svg' %}" alt="">
+            </button>
         </div>
 <!--        <div class="currency">-->
 <!--            <p><a class="currency" href="https://www.cbr.ru/currency_base/daily/"target="_blank"-->
@@ -255,6 +307,7 @@
         {% block content %} {% endblock %}
 
     </div>
+
 
     <script>
     /*прогресбар*/

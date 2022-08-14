@@ -3,11 +3,11 @@ html{
     color:#83817E;
     background-color:#D9CDC1;
     font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
     width: 100%;
 }
 
-/*#D9CDC1*/
+/*#D9CDC1  'Roboto'*/
 
 *,
 *:before,
@@ -18,9 +18,8 @@ html{
 
 body{
     margin: 0px;
-    margin: 0px;
-    font-size: 20px; /* только для фулскрин режима */
-    font-family: 'Roboto', sans-serif;
+    font-size: 18px; /* только для фулскрин режима */
+    font-family: 'Nunito', sans-serif;
     width: 100%;
 }
 
@@ -38,14 +37,51 @@ body{
     justify-content: space-around;
     box-shadow: 0 0 45px #54453E;
 }
+#logo{
+    position: absolute;
+    height:40px;
+	left: 0px;
+	top:0px;
+	padding:15px;
+	margin-left: 0px;
+	display: flex;
+	width:250px;
+	height:auto;
+     }
+.logoimg {
+
+    padding:17px;
+    margin-top: -20px;
+    display: block;
+    z-index: 100;
+        /*padding-left: 10px;*/
+    /*position: absolute;*/
+    height:75px;
+	right: 175px;
+	top:10px;
+}
+
 .menu{
-    width:1000px;
+   /* width:1000px;*/
+    width:auto;
     display:flex;
 
 }
-ы
+
+.burger{
+    padding: 0;
+    background: none;
+    border: 0;
+    display: none;
+
+}
+
+
 .one{
     display:flex;
+    display:block;
+    align-self:center;
+    margin-top: 15px;
 }
 
 
@@ -438,7 +474,7 @@ border:1px solid red;
     color: #D9CDC1;
     padding: 19px;
     padding-right: 2px;
-    font-size: 20px;
+    /*font-size: 20px;*/
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -495,7 +531,7 @@ border:1px solid red;
     border-bottom-right-radius:15px;
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: 41px;
+    margin-left: -80px;
 
     }
 
@@ -697,11 +733,11 @@ margin: 20px 0; */
 
     left:15px
         }
-    *,
+    */*,
     *:before,
     *:after{
         box-sizing:none;
-        }
+        }*/
     .currency{
         display:none;
         }
@@ -761,14 +797,31 @@ margin: 20px 0; */
     width : 100%;
     padding : 0px;
     border: 1px solid #92837C;
-    height: 14px;
+
     z-index:5;
     display: flex;
     justify-content: space-around;
         }
-    .menu{
-    display: none;
+
+    .one{
+        display: none;
+
         }
+   /* .burger-icon{
+    }**/
+    .menu{
+    height: 60px;
+    }
+
+    .burger{
+        display: block;
+        z-index: 100;
+        /*padding-left: 10px;*/
+        position: absolute;
+        height:40px;
+	    right: 10px;
+	    top:10px;
+    }
 
     .qr-code{
         display:none;
@@ -792,11 +845,11 @@ margin: 20px 0; */
 
     left:15px
         }
-    *,
+  /*  *,
     *:before,
     *:after{
         box-sizing:none;
-        }
+        }*/
     .currency{
         display:none;
         }

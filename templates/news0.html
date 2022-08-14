@@ -4,72 +4,77 @@
 
 
 {% block content %}
+
+
 <div id="head1">
 
     <div class="qr-code" >
         <a href="/whyitsite/"><img  style="max-width:240px;"
                                     src="{% static 'images/sova3.svg' %}" alt=""></a>
-        <p class="qr-code-text"  style="color:#FFFFFF;font-weight: 900;" >SOVA46.ru</p>
+        <p class="qr-code-text"  style="color:#FFFFFF;font-weight: 900;" >SOVABOT.ru</p>
     </div>
 
     <div class="head_01">
         <div class="head_head">
             {% if sing_news == 0 %}
     <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">СВЕЖАЯ ЛЕНТА&nbsp-&nbsp<span style="color:#FFFFFF;">
-                {{numnews.0}}</span>&nbsp КУРСКИХ НОВОСТЕЙ</h1>
+                <h1 align="center">СВЕЖАЯ ЛЕНТА&nbsp-&nbsp
+                    <span class="blink7" style="color:#FFFFFF;">
+                {{numnews.0}}
+                    </span>&nbsp КУРСКИХ НОВОСТЕЙ</h1>
             {% endif  %}
             {% if sing_news == 1 %}
     <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">ЗА {{date_num.0}}&nbsp-&nbsp<span style="color:#FFFFFF;">
+                <h1 align="center">ЗА {{date_num.0}}&nbsp-&nbsp
+                    <span class="blink7" style="color:#FFFFFF;">
                 {{numnews.1}}</span>&nbsp  НОВОСТЕЙ</h1>
             {% endif  %}
             {% if sing_news == 2 %}
     <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">ЗА {{date_num.1}}&nbsp-&nbsp<span
-                        style="color:#FFFFFF;">
+                <h1 align="center">ЗА {{date_num.1}}&nbsp-&nbsp
+                       <span class="blink7" style="color:#FFFFFF;">
                 {{numnews.2}}</span>&nbsp  НОВОСТЕЙ</h1>
             {% endif  %}
             {% if sing_news == 3 %}
     <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">ЗА {{date_num.2}}&nbsp-&nbsp<span
-                        style="color:#FFFFFF;">
+                <h1 align="center">ЗА {{date_num.2}}&nbsp-&nbsp
+                       <span class="blink7" style="color:#FFFFFF;">
                 {{numnews.3}}</span>&nbsp  НОВОСТЕЙ</h1>
             {% endif  %}
             {% if sing_news == 4 %}
     <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">ЗА {{date_num.3}}&nbsp-&nbsp<span
-                        style="color:#FFFFFF;">
+                <h1 align="center">ЗА {{date_num.3}}&nbsp-&nbsp
+                       <span class="blink7" style="color:#FFFFFF;">
                 {{numnews.4}}</span>&nbsp  НОВОСТЕЙ</h1>
             {% endif  %}
             {% if sing_news == 5 %}
     <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">ЗА {{date_num.4}}&nbsp-&nbsp<span
-                        style="color:#FFFFFF;">
+                <h1 align="center">ЗА {{date_num.4}}&nbsp-&nbsp
+                       <span class="blink7" style="color:#FFFFFF;">
                 {{numnews.5}}</span>&nbsp НОВОСТЕЙ</h1>
             {% endif  %}
             {% if sing_news == 6 %}
     <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">ЗА {{date_num.5}} &nbsp-&nbsp<span
-                        style="color:#FFFFFF;">
+                <h1 align="center">ЗА {{date_num.5}} &nbsp-&nbsp
+                       <span class="blink7" style="color:#FFFFFF;">
                 {{numnews.6}}</span>&nbsp  НОВОСТЕЙ</h1>
             {% endif  %}
             {% if sing_news == 7 %}
     <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">АНОНСЫ &nbsp-&nbsp<span
-                        style="color:#FFFFFF;">
+                <h1 align="center">АНОНСЫ &nbsp-&nbsp
+                       <span class="blink7" style="color:#FFFFFF;">
                 {{numnews.7}}</span>&nbsp  НОВОСТЕЙ</h1>
             {% endif  %}
             {% if sing_news == 8 %}
     <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">ПРОИСШЕСТВИЯ &nbsp-&nbsp<span
-                        style="color:#FFFFFF;">
+                <h1 align="center">ПРОИСШЕСТВИЯ &nbsp-&nbsp
+                       <span class="blink7" style="color:#FFFFFF;">
                 {{numnews.8}}</span>&nbsp  НОВОСТЕЙ</h1>
             {% endif  %}
             {% if sing_news == 9 %}
     <!--        <h1 align="center">САМЫЕ ПОСЛЕДНИЕ НОВОСТИ{{sign_}}</h1>-->
-                <h1 align="center">ОБЩЕСТВО &nbsp-&nbsp<span
-                        style="color:#FFFFFF;">
+                <h1 align="center">ОБЩЕСТВО &nbsp-&nbsp
+                        <span class="blink7" style="color:#FFFFFF;">
                 {{numnews.9}}</span>&nbsp  НОВОСТЕЙ</h1>
             {% endif  %}
         </div>
@@ -88,7 +93,7 @@
     </div>
     <div class="qr-code">
         <a href="/whyitsite/"><img src="{% static 'images/qr-code.jpg' %}" alt=""></a>
-        <p class="qr-code-text" >www.sova46.ru</p>
+        <p class="qr-code-text" >www.sovabot.ru</p>
     </div>
 
 </div>
@@ -120,7 +125,7 @@
         {% for key, tm in news_dict.items %}
         <div id="news_box">
     <!--        <p id="text_block"><a class="nn" href="{% static tm %}"target="_blank">{{key}}</a></p>-->
-            <h3 class="text_block" style="font-family: 'Roboto', sans-serif;">
+            <h3 class="text_block" >
                 <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">
                 {{key}}</a>
             </h3>
@@ -204,4 +209,6 @@
 <!--                </div>-->
 <!--            </div>-->
 </div>
+
+
 {% endblock %}
