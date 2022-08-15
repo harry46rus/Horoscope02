@@ -73,7 +73,6 @@ body{
     background: none;
     border: 0;
     display: none;
-
 }
 
 
@@ -470,7 +469,7 @@ border:1px solid red;
 }
 
 .dropbtn {
-
+    font-size: 20px;
     color: #D9CDC1;
     padding: 19px;
     padding-right: 2px;
@@ -481,7 +480,7 @@ border:1px solid red;
 
 }
 .dropbtn_active {
-    padding: 19px;
+    padding: 25px;
     padding-right: 2px;
     font-size: 20px;
     border: none;
@@ -778,7 +777,7 @@ margin: 20px 0; */
 
         }
 
-     img{
+    /* img{
     overflow: hidden;
     height:auto;
     overflow: hidden;
@@ -787,7 +786,7 @@ margin: 20px 0; */
     width: 100%;
     height: 100%;
 
-        }
+        }*/
     .exper {
     position: absolute;
     background-color: #54453E;
@@ -805,28 +804,85 @@ margin: 20px 0; */
     .menu{
 
     }
+    nav{
+        display:flex;
+        flex-direction: column;
+    }
 
     .one{
        /* display: none;*/
+        /*flex-direction: column;
         width:100%;
         height:100vh;
-        flex-direction: column;
-        background-color:rgba(0,0,0,0.85);
+        background-color:rgba(84,69,62,0.85);
         position: absolute;
-        top:100%;
+        top:50px;
         left:0;
         right:0;
         z-index:100;
-
-
-
-
-
-
-
+        flex-flow: column wrap;
+        /*display:inline-flex;*/
+       /* display:flex;*/
+         }
+    .navi{
+        flex-direction: column;
+        width:100%;
+        height:100vh;
+        background-color:rgba(84,69,62,0.85);
+        position: absolute;
+        top:50px;
+        left:0;
+        right:0;
+        z-index:100;
+        text-align: right;
+    }
+    .dropbtn {
+    font-size: 22px;
+    padding-right: 20px;
         }
-   /* .burger-icon{
-    }**/
+    .dropbtn_active{
+        font-size:22px;
+        padding-right: 20px;
+    }
+    .head-button{
+        padding-right: 20px;
+    }
+    /*.gline, sline{
+        display:block;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color:#AA9B94;
+
+    }*/
+    .sline{
+        background-color:#8D7E77;
+        padding-top: 10px;
+    }
+    #myDropdown{
+        top: 105px;
+        margin-right: 5px;
+        font-size: 22px;
+        position: absolute;
+        right:0px
+    }
+   /* .hbtn{
+        flex-direction: column;
+    }*/
+    .mnbtn{
+        align-self:right;
+        padding-top: 60px;
+        padding-bottom: 0px;
+        font-size:22px;
+        align-content: right;
+
+    }
+
+
+
+
+
+    .burger-icon{
+    }
     .menu{
     height: 60px;
     }
@@ -908,7 +964,7 @@ margin: 20px 0; */
 
         }
 
-     img{
+    /* img{
     overflow: hidden;
     height:auto;
     overflow: hidden;
@@ -917,7 +973,7 @@ margin: 20px 0; */
     width: 100%;
     height: 100%;
 
-        }
+        }*/
     #source_ {
     padding-left: 15px;
     margin-top:0px;

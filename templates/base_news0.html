@@ -73,27 +73,12 @@
 
             <nav class="one">
     <!--            <h2>1. li {display: inline;}</h2>-->
-                    <ul class="navi">
-<!--                        <li><a class="head-button" href="/index"><i class="fa fa-home fa-fw"></i>Home</a></li>-->
-<!--                        <li><a class="head-button" href="#">НОВОСТИ ЗА НЕДЕЛЮ-->
-<!--                        <li>-->
-<!--                            <div style="margin-top:-7px;margin-right: 20px; width:30px;" >-->
-<!--                                        <a class="dropbtn1"-->
-<!--                                           href="/"><img-->
-<!--                                    src="{% static 'images/sova3.svg' %}" alt=""></a>-->
-
-<!--&lt;!&ndash;                                style="max-width:70px;padding-right:38px;&ndash;&gt;-->
-<!--&lt;!&ndash;                                        margin-top:20px;margin-bottom:20px;&ndash;&gt;-->
-<!--&lt;!&ndash;                                        "&ndash;&gt;-->
-<!--&lt;!&ndash;style="margin-top: -10px; margin-right: 12px;padding:32px;"&ndash;&gt;-->
-<!--                            </div>-->
-<!--                        </li>-->
-
-                        <li>
+                    <div class="navi">
+                        <div class="mnbtn">
                             {% if sing_news < 7 %}
                                 <div class="sline" >
                                     <a onclick="myFunction()"  class="dropbtn"
-                                       style="color:#FFFFFF;font-size: 20px;" >
+                                       style="color:#FFFFFF;" >
 <!--                                       <span style="color:#CDD86C">-->
                                                   ЗА НЕДЕЛЮ&#9660;</a>
 <!--                                       </span> -->
@@ -113,110 +98,110 @@
 
 
 
-                        </li>
-                            <div id="myDropdown" class="dropdown-content">
-                                <div>
-                                    {% if sing_news == 0 %}
-                                        <div class="gline">
-                                            <a href="/news0/0">ВСЕ ЗА НЕДЕЛЮ<span class="numb_news">
-                                                __________{{numnews.0}}
-                                                    </span></a>
-                                        </div>
-                                    {% else %}
-                                         <div>
-                                            <a href="/news0/0">ВСЕ ЗА НЕДЕЛЮ<span class="numb_news">
-                                                __________{{numnews.0}}</span></a>
-                                         </div>
-                                    {% endif  %}
-                                </div>
-                                <div>
-                                    {% if sing_news == 1 %}
-                                        <div class="gline">
-                                            <a href="/news0/1">ЗА {{date_num.0}} (ВЧЕРА)
-                                            <span class="numb_news" >___{{numnews.1}}</span></a>
-                                        </div>
-                                    {% else %}
-                                         <div>
-                                            <a href="/news0/1">ЗА {{date_num.0}} (ВЧЕРА)
-                                            <span class="numb_news" >___{{numnews.1}}</span></a>
-                                        </div>
-                                    {% endif  %}
-                                </div>
-                                <div>
-                                    {% if sing_news == 2 %}
-                                        <div class="gline">
-                                            <a href="/news0/2">ЗА {{date_num.1}}
-                                            <span class="numb_news" >______________{{numnews.2}}</span> </a>
-                                        </div>
-                                    {% else %}
-                                         <div>
-                                            <a href="/news0/2">ЗА {{date_num.1}}
-                                            <span class="numb_news" >______________{{numnews.2}}</span> </a>
-                                        </div>
-                                    {% endif  %}
-                                </div>
-                                <div>
-                                    {% if sing_news == 3 %}
-                                        <div class="gline">
-                                            <a href="/news0/3">ЗА {{date_num.2}}
-                                            <span class="numb_news" >______________{{numnews.3}}</span></a>
-                                        </div>
-                                    {% else %}
-                                         <div>
-                                            <a href="/news0/3">ЗА {{date_num.2}}
-                                            <span class="numb_news" >______________{{numnews.3}}</span></a>
-                                        </div>
-                                    {% endif  %}
-                                </div>
-                                <div>
-                                    {% if sing_news == 4 %}
-                                        <div class="gline">
-                                             <a href="/news0/4">ЗА {{date_num.3}}
-                                             <span class="numb_news" >______________{{numnews.4}}</span></a>
-                                        </div>
-                                    {% else %}
-                                         <div>
-                                             <a href="/news0/4">ЗА {{date_num.3}}
-                                             <span class="numb_news" >______________{{numnews.4}}</span></a>
-                                        </div>
-                                    {% endif  %}
-                                </div>
-                                <div>
-                                    {% if sing_news == 5 %}
-                                        <div class="gline">
-                                             <a href="/news0/5">ЗА {{date_num.4}}
-                                             <span class="numb_news" >______________{{numnews.5}}</span></a>
-                                        </div>
-                                    {% else %}
-                                         <div>
-                                             <a href="/news0/5">ЗА {{date_num.4}}
-                                              <span class="numb_news" >______________{{numnews.5}}</span></a>
-                                        </div>
-                                    {% endif  %}
-                                </div>
-                                <div>
-                                    {% if sing_news == 6 %}
-                                        <div class="gline">
-                                             <a href="/news0/6">ЗА {{date_num.5}}
-                                             <span class="numb_news" >______________{{numnews.6}}</span></a>
-                                        </div>
-                                    {% else %}
-                                         <div>
-                                             <a href="/news0/6">ЗА {{date_num.5}}
-                                             <span class="numb_news" >______________{{numnews.6}}</span></a>
-                                        </div>
-                                    {% endif  %}
-                                </div>
-
-
-                                <div class="box_hr_line">
-                                    <hr class="hr-line"><br>
-                                </div>
+                        </div>
+                        <div id="myDropdown" class="dropdown-content" class="hbtn">
+                            <div>
+                                {% if sing_news == 0 %}
+                                    <div class="gline">
+                                        <a href="/news0/0">ВСЕ ЗА НЕДЕЛЮ<span class="numb_news">
+                                            __________{{numnews.0}}
+                                                </span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                        <a href="/news0/0">ВСЕ ЗА НЕДЕЛЮ<span class="numb_news">
+                                            __________{{numnews.0}}</span></a>
+                                     </div>
+                                {% endif  %}
                             </div>
+                            <div>
+                                {% if sing_news == 1 %}
+                                    <div class="gline">
+                                        <a href="/news0/1">ЗА {{date_num.0}} (ВЧЕРА)
+                                        <span class="numb_news" >___{{numnews.1}}</span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                        <a href="/news0/1">ЗА {{date_num.0}} (ВЧЕРА)
+                                        <span class="numb_news" >___{{numnews.1}}</span></a>
+                                    </div>
+                                {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 2 %}
+                                    <div class="gline">
+                                        <a href="/news0/2">ЗА {{date_num.1}}
+                                        <span class="numb_news" >______________{{numnews.2}}</span> </a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                        <a href="/news0/2">ЗА {{date_num.1}}
+                                        <span class="numb_news" >______________{{numnews.2}}</span> </a>
+                                    </div>
+                                {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 3 %}
+                                    <div class="gline">
+                                        <a href="/news0/3">ЗА {{date_num.2}}
+                                        <span class="numb_news" >______________{{numnews.3}}</span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                        <a href="/news0/3">ЗА {{date_num.2}}
+                                        <span class="numb_news" >______________{{numnews.3}}</span></a>
+                                    </div>
+                                {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 4 %}
+                                    <div class="gline">
+                                         <a href="/news0/4">ЗА {{date_num.3}}
+                                         <span class="numb_news" >______________{{numnews.4}}</span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                         <a href="/news0/4">ЗА {{date_num.3}}
+                                         <span class="numb_news" >______________{{numnews.4}}</span></a>
+                                    </div>
+                                {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 5 %}
+                                    <div class="gline">
+                                         <a href="/news0/5">ЗА {{date_num.4}}
+                                         <span class="numb_news" >______________{{numnews.5}}</span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                         <a href="/news0/5">ЗА {{date_num.4}}
+                                          <span class="numb_news" >______________{{numnews.5}}</span></a>
+                                    </div>
+                                {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 6 %}
+                                    <div class="gline">
+                                         <a href="/news0/6">ЗА {{date_num.5}}
+                                         <span class="numb_news" >______________{{numnews.6}}</span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                         <a href="/news0/6">ЗА {{date_num.5}}
+                                         <span class="numb_news" >______________{{numnews.6}}</span></a>
+                                    </div>
+                                {% endif  %}
+                            </div>
+
+
+                            <div class="box_hr_line">
+                                <hr class="hr-line"><br>
+                            </div>
+                        </div>
 
 <!--                        <li><a class="head-button" href="/news1">ВЧЕРА</a></li>-->
 <!--                        <li><a class="head-button" href="/news2">ПОЗАВЧЕРА</a></li>-->
-                        <li>
+                        <div class="mnbtn">
                             <div>
                                 {% if sing_news == 7 %}
                                     <div class="sline">
@@ -231,8 +216,8 @@
                                      </div>
                                 {% endif  %}
                             </div>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="mnbtn">
                             <div>
                                 {% if sing_news == 8 %}
                                     <div class="sline">
@@ -248,8 +233,8 @@
                                     </div>
                                 {% endif  %}
                             </div>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="mnbtn">
                             <div>
                                 {% if sing_news == 9 %}
                                     <div class="sline">
@@ -265,8 +250,8 @@
                                     </div>
                                 {% endif  %}
                             </div>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="mnbtn">
                             <div>
                                 {% if sing_news == 10 %}
                                     <div class="sline">
@@ -285,9 +270,9 @@
                                 {% endif  %}
                             </div>
 
-                        </li>
+                        </div>
 
-                    </ul>
+                    </div>
             </nav>
 
             <button class="burger" type="button">
