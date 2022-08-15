@@ -22,7 +22,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+        crossorigin="anonymous"></script>
 <!--    <style>-->
 <!--    @-webkit-keyframes pulsate {-->
 <!--    50% { color: #fff; text-shadow: 0 -1px rgba(0,0,0,.6), 0 0 5px #ffd, 0 0 8px #fff; }-->
@@ -66,14 +68,14 @@
 
                 <div style="margin-top: 5px;">
                 <a href="/" class="dropbtn1" style="color:#FFFFFF;text-decoration: none;
-                    padding:0;" >
-                    СОВАБOT </a>
+                    padding:0;font-size: 22px;" >
+                    SovaBot.ru </a>
                 </div>
             </div>
 
             <nav class="one">
     <!--            <h2>1. li {display: inline;}</h2>-->
-                    <div class="navi">
+                    <div id="navi">
                         <div class="mnbtn">
                             {% if sing_news < 7 %}
                                 <div class="sline" >
@@ -333,6 +335,12 @@
     }
     </script>
 
+    <script>
+     $(function(){
+
+
+     });
+    </script>
 
 
 </body>
