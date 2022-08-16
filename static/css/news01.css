@@ -526,8 +526,8 @@ border:1px solid red;
     line-height: 1.1;
     font-weight: 500;
     top: 70px;
-    border-bottom-left-radius:15px;
-    border-bottom-right-radius:15px;
+    border-radius:15px;
+    /*border-bottom-right-radius:15px;*/
     padding-left: 0px;
     padding-right: 0px;
     margin-left: -80px;
@@ -829,7 +829,7 @@ margin: 20px 0; */
         flex-direction: column;
         width:100%;
         height:100vh;
-        background-color:rgba(84,69,62,0.85);
+        background-color:rgba(84,69,62,0.95);
         position: absolute;
         top:50px;
         left:0;
@@ -837,6 +837,10 @@ margin: 20px 0; */
         z-index:100;
         text-align: right;
     }
+    #navi.show{
+        display:block;
+    }
+
     .dropbtn {
     font-size: 22px;
     padding-right: 20px;

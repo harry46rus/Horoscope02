@@ -63,7 +63,7 @@
             <div id="logo" >
                 <div>
                     <a  href="/"><img class="logoimg"
-                       src="{% static 'images/sova3.svg' %}" alt=""></a>
+                       src="{% static 'images/sovabot.svg' %}" alt=""></a>
                 </div>
 
                 <div style="margin-top: 5px;">
@@ -277,7 +277,7 @@
                     </div>
             </nav>
 
-            <button class="burger" type="button">
+            <button class="burger" type="button" id="navToggle">
                 <img class="burger-icon" src="{% static 'images/burger5.svg' %}" alt="">
             </button>
         </div>
@@ -337,9 +337,15 @@
 
     <script>
      $(function(){
+        let navToggle = $('#navToggle');
+        let navi = $('#navi')
+        /*console.log(navToggle)*/
+        navToggle.on('click',function(event){
+            event.preventDefault();
 
-
+            navi.toggleClass('show')
      });
+     })
     </script>
 
 
