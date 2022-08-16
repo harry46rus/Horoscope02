@@ -309,6 +309,17 @@ form {
     text-shadow: 2px 2px 5px #3A2D26;
 
 }
+
+.why_img{
+    display:flex;
+    }
+.qr-code1{
+        display:flex;
+        hight:150px;
+        width: 150px;
+        justify-content: center;
+        margin-right: 25px;
+    }
 /*
 #progress-container{
     position:fixed;
@@ -904,6 +915,22 @@ margin: 20px 0; */
 
     .qr-code{
         display:none;
+        hight:150px;
+        width: 150px;
+    }
+
+    .qr-code1{
+        display:flex;
+        hight:150px;
+        width: 150px;
+        justify-content: center;
+        margin-right: 25px;
+    }
+
+    .why_img{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     }
 }
 
