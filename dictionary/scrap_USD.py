@@ -59,7 +59,8 @@ def scrap_USD():
         print(News30)
         print(News40,News41)
         print(News42,News43,)
-        dict_USD[News30] = [News40,News41,News42,News43]
+        ddday = str(datetime.datetime.now())[:16]
+        dict_USD[News30] = [News40,News41,News42,News43,ddday]
     except:
         pass
     return dict_USD
@@ -76,7 +77,8 @@ def json_date(dict_USD):
     print(ddday)
     sec = int(time.mktime(time.strptime(ddday, '%Y-%m-%d %H:%M')))
     # print('sec', sec)
-    print(time.ctime(sec))#Обратный преревод секунд в дату для контроля
+    check_time=time.ctime(sec)
+    print(check_time)#Обратный преревод секунд в дату для контроля
 
     # path = f"bd_json\\news_bd8.json"
 
@@ -146,11 +148,12 @@ def get_USD():
 #                 # get_USD()
 #                 # scrap_USD()
 time_list = [
-             '10:00',
-             '13:10',
+             # '10:00',
+             # '13:10',
              '15:00',
+             '16:00',
              '17:00',
-             '20:15'
+             '22:30'
                ]
 
 

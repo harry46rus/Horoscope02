@@ -912,6 +912,14 @@ margin: 20px 0; */
 	    right: 10px;
 	    top:10px;
     }
+    /*.burger:hover {
+        opacity: 0.8;
+    }*/
+    .burger-icon:hover{
+        opacity: 0.8;
+
+         cursor: pointer;
+    }
 
     .qr-code{
         display:none;
