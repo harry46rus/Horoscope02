@@ -1,35 +1,36 @@
 import requests
 import re
 import time
-from time import sleep
-import os
-import random
+# from time import sleep
+# import os
+# import random
 import json
 from bs4 import BeautifulSoup
-import schedule
-import pickle
+
+# import schedule
+# import pickle
 import datetime
 import threading
 
 
 
 
-def scrap(day_ago):
-    """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
-
-    # #чтение и конвертация в обычный словарь
-    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-            f"\\GLdate{day_ago}.json"
-
-    with open(path2, 'r', encoding='utf-8') as f_five:
-        json_data_news = json.load(f_five)
-
-    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
-
-    with open(path1, 'r', encoding='utf-8') as f_five:
-        numnews = json.load(f_five)
-
-    return json_data_news, numnews
+# def scrap(day_ago):
+#     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
+#
+#     # #чтение и конвертация в обычный словарь
+#     path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+#             f"\\GLdate{day_ago}.json"
+#
+#     with open(path2, 'r', encoding='utf-8') as f_five:
+#         json_data_news = json.load(f_five)
+#
+#     path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
+#
+#     with open(path1, 'r', encoding='utf-8') as f_five:
+#         numnews = json.load(f_five)
+#
+#     return json_data_news, numnews
 
 
 # def scrap1():
@@ -128,14 +129,15 @@ def scrap_news():
     # ==================================================================
 
     def kurskcity():
-
+        resp=None
         link = "https://kurskcity.ru/news/main"
         """дата в формате ( 16 июля 2022 года, 22:03)"""
         try:
             resp = requests.get(link, headers=header)
-            print(resp.status_code, 'kurskcity.ru')
+            # print(resp.status_code, 'kurskcity.ru')
         except:
-            print(resp.status_code, 'kurskcity.ru')
+            pass
+            # print(resp.status_code, 'kurskcity.ru')
             # resp.raise_for_status()
         #     for i in range(58):
         #         try:
@@ -157,7 +159,7 @@ def scrap_news():
                 # print(News6," ",reff)
             #     news_list = list(news_dict)
             except:
-                print(f"=====ошибка скрапинга кода kurskcity.ru=====итераций_{y}=========")
+                # print(f"=====ошибка скрапинга кода kurskcity.ru=====итераций_{y}=========")
                 break
         return news_dict
 
@@ -171,6 +173,7 @@ def scrap_news():
 
     # =======================================
     def gtrkkursk():
+        resp = None
         news_dict = {}
         page_site = ['', '?page=1']
         for x in page_site:
@@ -179,9 +182,10 @@ def scrap_news():
             """дата в формате ( чт, 4 августа 2022 - 17:22)"""
             try:
                 resp = requests.get(link, headers=header)
-                print(resp.status_code, 'gtrkkursk.ru')
+                # print(resp.status_code, 'gtrkkursk.ru')
             except:
-                print(resp.status_code, 'gtrkkursk.ru')
+                pass
+                # print(resp.status_code, 'gtrkkursk.ru')
                 # resp.raise_for_status()
             #     for i in range(58):
             #         try:
@@ -203,7 +207,8 @@ def scrap_news():
                     news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
                       'www.gtrkkursk.ru']
                 except:
-                    print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
+                    pass
+                    # print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
                 # print('News7'," ",News7)
                 # print('News8'," ",News8)
                 # print('News9'," ",News9)
@@ -213,15 +218,17 @@ def scrap_news():
         return news_dict
 
     def s46tv():
+        resp = None
 
         news_dict = {}
         link = "https://www.46tv.ru/odnoj-strokoj/v-kurske/"
         """дата в формате  (Сегодня, 18: 51) """
         try:
             resp = requests.get(link, headers=header)
-            print(resp.status_code, '46tv.ru')
+            # print(resp.status_code, '46tv.ru')
         except:
-            print(resp.status_code, '46tv.ru')
+            # print(resp.status_code, '46tv.ru')
+            pass
         news_list = []
 
         soup = BeautifulSoup(resp.text, 'lxml')
@@ -240,7 +247,7 @@ def scrap_news():
                 news_dict[News41] = [convert(time_)[0], convert(time_)[1], time_, News42,
                                      'www.46tv.ru']
             except:
-                print(f"=====ошибка скрапинга кода 46tv.ru=====итераций_{y}=========")
+                # print(f"=====ошибка скрапинга кода 46tv.ru=====итераций_{y}=========")
                 break
         return news_dict
 
@@ -259,9 +266,10 @@ def scrap_news():
             """дата в формате   (23:28 16.07.2022)"""
             try:
                 resp = requests.get(link, headers=header)
-                print(resp.status_code, 'seyminfo.ru')
+                # print(resp.status_code, 'seyminfo.ru')
             except:
-                print(resp.status_code, 'seyminfo.ru')
+                pass
+                # print(resp.status_code, 'seyminfo.ru')
             news_list = []
 
             soup = BeautifulSoup(resp.text, 'lxml')
@@ -283,7 +291,7 @@ def scrap_news():
                     news_dict[News41] = [convert(time_)[0], convert(time_)[1], time_, News42,
                                          'www.seyminfo.ru']
                 except:
-                    print(f"=====ошибка скрапинга кода seyminfo.ru=====итераций_{y}=========")
+                    # print(f"=====ошибка скрапинга кода seyminfo.ru=====итераций_{y}=========")
                     break
         return news_dict
 
@@ -303,9 +311,10 @@ def scrap_news():
             """дата в формате   (16 июля 2022 в 20:01)"""
             try:
                 resp = requests.get(link, headers=header)
-                print(resp.status_code, 'kursk-izvestia.ru')
+                # print(resp.status_code, 'kursk-izvestia.ru')
             except:
-                print(resp.status_code, 'kursk-izvestia.ru')
+                # print(resp.status_code, 'kursk-izvestia.ru')
+                pass
             news_list = []
 
             soup = BeautifulSoup(resp.text, 'lxml')
@@ -325,7 +334,7 @@ def scrap_news():
                                         'www.kursk-izvestia.ru']
 
                 except:
-                    print(f"=====ошибка скрапинга кода kursk-izvestia.ru=====итераций_{i}=========")
+                    # print(f"=====ошибка скрапинга кода kursk-izvestia.ru=====итераций_{i}=========")
                     break
         return news_dict
 
@@ -336,9 +345,10 @@ def scrap_news():
         """дата в формате   (16 июля 2022, 17:12)"""
         try:
             resp = requests.get(link, headers=header)
-            print(resp.status_code, 'dddkursk.ru')
+            # print(resp.status_code, 'dddkursk.ru')
         except:
-            print(resp.status_code, 'dddkursk.ru')
+            # print(resp.status_code, 'dddkursk.ru')
+            pass
         news_list = []
 
         soup = BeautifulSoup(resp.text, 'lxml')
@@ -370,8 +380,8 @@ def scrap_news():
     for i in range(len(list_scr) - 1):
         # merge_dict(list_scr[0], list_scr[i+1])
         list_scr[0].update(list_scr[i + 1])
-    print(list_scr[0])
-    print(len(list_scr[0]))
+    # print(list_scr[0])
+    # print(len(list_scr[0]))
     iterat_ += 1
 
     # =================================================
@@ -394,12 +404,12 @@ def scrap_news():
 
         # Определение  секунды сначала эпохи для начала текущего дня
         ddday = str(datetime.datetime.now())[:10]
-        print(ddday)
+        # print(ddday)
         today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
         # Определение  секунды сначала эпохи для начала  дня n-дня назад (вчера, позавчера,
         # поза-позавчера)
         start3d_ago = today_start_ - 86400 * 7
-        print("start3d_ago", start3d_ago)
+        # print("start3d_ago", start3d_ago)
         # print('yesterday_start_', today_start_ - 86400)
         # исключение данных ранее даты start3d_ago
         for j, i in gen.items():
@@ -460,7 +470,7 @@ def scrap_news():
         for w in sorted_keys:
             sorted_dict[w] = news_dict[w]
         count_news = len(sorted_dict)
-        print('количество новостей = ', count_news)
+        # print('количество новостей = ', count_news)
         # print(sorted_dict)
         return sorted_dict
 
@@ -520,12 +530,12 @@ def write_base(diapason):  # int
     # Определение  секунды сначала эпохи для начала текущего дня
 
     ddday = str(datetime.datetime.now())[:10]
-    print(ddday)
+    # print(ddday)
     today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
     # Определение  секунды сначала эпохи для начала  дня 3дня назад (вчера, позавчера, поза-позавчера)
     startNd_ago = today_start_ - 86400 * diapason
     startNd = today_start_ - 86400 * (diapason - 1)
-    print("start1d_ago", startNd_ago)
+    # print("start1d_ago", startNd_ago)
     # print('yesterday_start_', today_start_ - 86400)
     # исключение данных ранее даты start3d_ago
     for j, i in json_data_news.items():
@@ -562,7 +572,7 @@ def get_count_news():
 
         number_news.append(count)
     qual_index=(number_news[7]+number_news[8]+number_news[9])/number_news[0]
-    print(f'Качество отбора в рубрики анонс происшествия и общество___{qual_index}')
+    # print(f'Полнота отбора в рубрики: анонс, происшествия и общество___{qual_index}')
     path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
     with open(path1, 'w', encoding='utf-8') as file:
         json.dump(number_news, file, ensure_ascii=False, indent=0)
@@ -589,10 +599,10 @@ def anons():
     def get_day_month(nn):
 
         """дает сегодняшнюю дату числом и месяц+nn(август+1=сентябрь"""
-        сс = str(datetime.datetime.now())[:10]
-        day_ = int(сс[8:])
-        month0 = int(сс[5:7]) + nn
-        if (int(сс[5:7]) + nn) > 12:
+        cc = str(datetime.datetime.now())[:10]
+        day_ = int(cc[8:])
+        month0 = int(cc[5:7]) + nn
+        if (int(cc[5:7]) + nn) > 12:
             month0 = month0 - 12
         month_ = month_cirilic[month0]
         return day_, month_
@@ -608,12 +618,12 @@ def anons():
 
     for title, y in json_data_news.items():
         #
-        key_list = [f'\d+ {get_day_month(1)[1]}', f'[пвнд][ао]? {get_day_month(1)[1]}',
-                    f'\d+ {get_day_month(2)[1]}', f'[пвнд][ао]? {get_day_month(2)[1]}',
-                    f'\d+ {get_day_month(3)[1]}', f'[пвнд][ао]? {get_day_month(3)[1]}',
-                    f'\d+ {get_day_month(4)[1]}', f'[пвнд][ао]? {get_day_month(4)[1]}',
-                    f'\d+ {get_day_month(5)[1]}', f'[пвнд][ао]? {get_day_month(5)[1]}',
-                    f'[пвнд][ао]? \d+2[2,3,4] год']
+        key_list = [f'\d+ {get_day_month(1)[1]}', f'[кпвнд][ао]? {get_day_month(1)[1]}',
+                    f'\d+ {get_day_month(2)[1]}', f'[кпвнд][ао]? {get_day_month(2)[1]}',
+                    f'\d+ {get_day_month(3)[1]}', f'[кпвнд][ао]? {get_day_month(3)[1]}',
+                    f'\d+ {get_day_month(4)[1]}', f'[кпвнд][ао]? {get_day_month(4)[1]}',
+                    f'\d+ {get_day_month(5)[1]}', f'[кпвнд][ао]? {get_day_month(5)[1]}',
+                    f'[кпвнд][ао]? \d+2[2,3,4] год']
 
         # август',
         for key_ in key_list:
@@ -629,13 +639,14 @@ def anons():
         # print(result)
         # print(get_day_month(0)[0])
         if result:
-            if int(result[0][:2]) > get_day_month(0)[0]:
+            if int(result[0][:2]) >= get_day_month(0)[0]: #только число (день)
+                # print("gugu",result[0][:2],get_day_month(0)[0])
                 anons_dict[title] = y
 
     for title, y in json_data_news.items():
         # 'ся' учитывается и добавляется
         key_list1 = 'буд[еу]т|произойд[уе]т|установ[ия]т|начн[уе]т|создадут|представ[ия]т\
-               | наград[яи]т|анонс\w?|приглашают|провед[еу]т|восстановлен|восстанов[яи]т\
+               | наград[яи]т|анонс\w*|приглашают|провед[еу]т| н*[^е]* восстановлен|восстанов[яи]т\
                | постро[яи]т|реконструиру[ею]т|установ[ия]т|заверш[аи]т|увелич[аи]т|уменьш[аи]т\
                | обеспеч[аи]т|огранич[аи]т|установ[яи]т|обяж[уе]т|провед[уе]т|познаком[яи]т\
                | законч[аи]т|презенту[юе]т|выдадут|потребу[ею]т|убер[уе]т|отключ[аи]т|посадят\
@@ -645,10 +656,10 @@ def anons():
                | благоустро[ия]т|появ[ия]тся|стро[ия]тся|постро[ия]т|приобрет[уе]т|провер[яи]т\
                | отправ[ия]т|пройд[еу]т|поддержат|реш[иа][лт]|ответит|подготов[ия]т|подбер[еу]т\
                | собира[ею]тся|обеспеч[аи]т|откро[ею]тся|замен[ия]т|заверш[аи]т|получ[аи]т\
-               | ожида[ею]т|объяв[ия]т|оцен[ия]т|состо[ия]тся|стартовал|подтвердил|спилят\
+               | ожида[ею]т|объяв[ия]т|оцен[ия]т|состо[ия]т[ь]*ся|стартовал|подтвердил|спилят\
                | отдохн[еу]т|демонтиру[юе]т |демонтировать|обеща[ею]т|упростил|открыл[ио]\
-               | объявил| готов|снесут| под снос\
-               | строя'
+               | объявил| готов|снесут| под снос|потратят|ожида[ею]т|начал\w* проверку\
+               | строя| к зиме| к весне| к лету| к осени| получ[иа]т'
 
         # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
 
@@ -669,7 +680,7 @@ def anons():
         for w in sorted_keys:
             sorted_dict[w] = news_dict[w]
         count_news = len(sorted_dict)
-        print('количество новостей = ', count_news)
+        # print('количество новостей = ', count_news)
         # print(sorted_dict)
         return sorted_dict
 
@@ -697,30 +708,30 @@ def accidents():
     with open(path2, 'r', encoding='utf-8') as f_five:
         json_data_news = json.load(f_five)
 
-    print(len(json_data_news))
+    # print(len(json_data_news))
 
 
     for title, y in json_data_news.items():
 
         # 'ся' учитывается и добавляется
-        key_list1 = ' дтп\s|произош[е]?л\w?|случил[о]с?\w?|убийств\w?|подозрева\wт\w?\
-                   | подозревае| покушени\w?\
-                   | обвиня\wтся|авари\w?|госпитализирован\w?|ранен\w?|осужд\w?\
-                   | хищен\w? | п[р]?опал\w?| перелом\w?| изнасилов\w?|превышени\w \w? полномоч\w?\
-                   | столкновени\w?|поврежд\w?|перевернул\w?| пострада\w?| жертв\w?|ищут\
-                   | риговори\w?|тюрьм\w?|за решетку|сбил\w?|стрел\w?|горел\w?|пожар |убит\
-                   | смерт\w\w |обманул\w?|мошенник|пресекли|обезвредили|поймал|выманил\
+        key_list1 = ' дтп\s|произош[е]*л\w*|случил[о]с*\w*|убийств\w*|подозрева\wт\w*\
+                   | подозревае| покушени\w*|суд взыскал| выгорел\
+                   | обвиня\wтся|авари\w*|госпитализирован\w*|ранен\w*|осужд\w*\
+                   | хищен\w* | п[р]*опал\w*| перелом\w*| изнасилов\w*|превышени\w \w* полномоч\w*\
+                   | столкновени\w*|поврежд\w*|перевернул\w*| пострада\w*| жертв\w*|ищут\
+                   | риговори\w*|тюрьм\w*|за решетку|сбил\w*|стрел\w*|горел\w*|пожар |убит\
+                   | смерт\w\w |обманул\w*|мошенник|пресекли|обезвредили|поймал|выманил\
                    | оскорблени|угроз|аферист|госпитализирова|сжег|сожгла| краж|до смерти\
-                   | пропал|пропав\w?|скончал\w?|убил\w?|наркотик\w?|избил\w?|изиени\w?\
-                   | махинац\w?|осквернил\w? труп\w?|спасател\w?|силовик\w?|служб\w?[- ]?112\
-                   | беспилотн\w?|обнаружил\w?|по горячим следам|совращени\w?|лишил|утону\
-                   | украл\w?|похитил\w?|террорист\w?|акт\w |незаконн\w?|обстрел\w?|диверси\w?\
-                   | взрывоопасн\w? предмет\w?|нетрезв\w?|напал\w?|нападен\w?|артиллерийск\w?\
-                   | снаряд\w?|выписал\w?|протокол\w?|несанкционирован\w?|торговл\w?\
-                   | наркокурьер\w?\
-                   | колони\w?|умер\w?|пострадал\w?|зареза\w?|миниров\w?|дебошир\w?|задержал\w?\
+                   | пропал|пропав\w*|скончал\w*|убил\w*|наркотик\w*|избил\w*|изиени\w*\
+                   | махинац\w*|осквернил\w* труп\w*|силовик\w*|служб\w*[- ]*112\
+                   | беспилотн\w*|обнаружил\w*|по горячим следам|совращени\w*|лишил|утону\
+                   | украл\w*|похитил\w*|террорист\w*|акт\w |незаконн\w*|обстрел\w*|диверси\w*\
+                   | взрывоопасн\w* предмет\w*|нетрезв\w*|напал\w*|нападен\w*|артиллерийск\w*\
+                   | снаряд\w*|выписал\w*|протокол\w*|несанкционирован\w*|торговл\w*\
+                   | наркокурьер\w*|горит| вор\w|вор[уо]|клиент\w* банк|суд обязал\
+                   | колони\w*|умер\w*|пострадал\w*|зареза\w*|миниров\w*|дебошир\w*|задержал\w*\
                    | пропал|поиски|диверсант| подорвал| подрывал| разбой| угонщик| просроченны\
-                   | разбил| арест|отправ\w*т\w* в колонию\
+                   | разбил| арест|отправ\w*т\w* в колонию|за нападение\
                    | попал в аварию| использовал\w* [\S*\s]* оружие| применил\w* [\S*\s]* оружие\
                    | угнан| укус\w* клещ'
         # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
@@ -755,28 +766,30 @@ def societ():
     with open(path2, 'r', encoding='utf-8') as f_five:
         json_data_news = json.load(f_five)
 
-    print(len(json_data_news))
+    # print(len(json_data_news))
 
 
     for title, y in json_data_news.items():
 
-        key_list1 = ' построен| запущен| завершен\w?| преоборудован\w?| открыт\w?\
-                    | остановлен\w?| прекращен\w?| обнародован\w?| планироан\w?\
-                    | восстановле\w?| отремонтирован\w?| возобновлен\w?|станет|отметили\
-                    | обновлен\w?| реконструирован\w?|административн\w?|будующ\w?|встретил\w?\
-                    | курско\w? предприяти\w?| жил\w? застройк\w?| дорожн\w? развязк\w?\
-                    | проходит|прокуратур\w?| добива[юе]тся|приглаша[ею]т\
-                    | потратили|израсходован\w|строя| готов\
-                    | потрачен\w|вложен\w| инвестированн\w| заплати\w?| вруч\w?|льгот|трудится\
-                    | определ\w? порядок| палат\w| снизилась| повысилось| наград| нацпроект\
-                    | школа|больниц| дум[аые]| бюджет| налоги| акцизы| платежи| голосование\
+        key_list1 = ' построен| запущен| завершен\w*| преоборудован\w*| открыт\w*\
+                    | остановлен\w*| прекращен\w*| обнародован\w*| планироан\w*\
+                    | восстановле\w*| отремонтирован\w*| возобновлен\w*|станет|отметили\
+                    | обновлен\w*| реконструирован\w*|административн\w*|будующ\w*|встретил\w*\
+                    | курско\w* предприяти\w*| жил\w* застройк\w*| дорожн\w* развязк\w*\
+                    | проходит|прокуратур\w*| добива[юе]тся|приглаша[ею]т|турнир\
+                    | потратили|израсходован\w|строя| готов|обсуждают| фестиваль| оценил\
+                    | потрачен\w|вложен\w| инвестированн\w| заплати\w*| вруч\w*|льгот|трудится\
+                    | определ\w* порядок| палат\w*| снизилась| повысилось| наград| нацпроект\
+                    | школа|больниц| дум[аые] | бюджет| налоги| акцизы| платежи| голосование\
                     | в собственность регион|итоги работы|эскроу-счет|футбол|собственник\
-                    | обеспечени\w безопасност|контракт|купили|приобрели| решил|предложил\
-                    | нацпроект\w?|запуст\w?|ремонтирур\w?|открыти\w?|резервиров\w?\
-                    | преми[еюяи]| уголовн| ипотек|спорт|авангард|причин[уаы]|обанкротил\
-                    | добился|добились|комисси| готов[аы]?|упростил|проголосовал|%| подписал\
-                    | победил\
-                    | археолог'
+                    | обеспечени\w* безопасност|контракт|купили|приобрели| решил|предложил\
+                    | нацпроект\w*|запуст\w*|ремонтирур\w*|открыти\w*|резервиров\w*\
+                    | преми[еюяи]| уголовн| ипотек| спорт|авангард|причин[уаы]|обанкротил\
+                    | добился|добились|комисси| готов[аы]*|упростил|проголосовал|%| подписал\
+                    | победил| безработиц| инфляц| рост\w* цен| физкультур|запустил\
+                    | археолог|индекс\w* потребительских цен|одержал\w [\S*\s]* победу\
+                    | проходит| добил\w*с\
+                    | контрол| получ[иа]т'
 
         # 'ся' учитывается и добавляется
 
@@ -797,81 +810,81 @@ def societ():
 
 # =======================================================
 
-time_list0 = ['00:00', '00:20', '00:40', '01:00',
-              '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45',
-              '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45',
-              '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45',
-              '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:37', '14:45',
-              '15:00', '15:15', '15:30', '15:45', '16:00', '16:17', '16:30', '16:45',
-              '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45',
-              '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:51',
-              '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45',
-              '23:00', '23:20', '23:40'
-              ]
+# time_list0 = ['00:00', '00:20', '00:40', '01:00',
+#               '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45',
+#               '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45',
+#               '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45',
+#               '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:37', '14:45',
+#               '15:00', '15:15', '15:30', '15:45', '16:00', '16:17', '16:30', '16:45',
+#               '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45',
+#               '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:51',
+#               '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45',
+#               '23:00', '23:20', '23:40'
+#               ]
+#
+#
+# def loop_serv(time_scrap):
+#
+#     """запуск скрипта (парсера) по расписанию указанному в листе  'time_list0' """
+#
+#     def sec_count(hour_min_):
+#
+#         """вычисляет количесто секунд  от начала эпохи до сегодняшнего любого
+#          момента который дается  в формате  21:25 часы:минуты """
+#         full_date = f'{str(datetime.datetime.now())[:10]} {hour_min_}'
+#         secs_ = int(time.mktime(time.strptime(full_date, '%Y-%m-%d %H:%M')))
+#         return secs_
+#
+#     while True:
+#
+#         for hour_mins in time_scrap:
+#             # print()
+#             # print(f'Запуск в {hour_mins}')
+#
+#             # print('secs',sec_count(hour_mins))
+#
+#             ddday = str(datetime.datetime.now())[:16]
+#             # print(ddday)
+#             sec0 = int(time.mktime(time.strptime(ddday, '%Y-%m-%d %H:%M')))
+#             # print('sec0', sec0)
+#
+#             delta = sec_count(hour_mins) - sec0
+#
+#             # print(f'Ожидание {delta} секунд')
+#             # Если дата еще не наступила, то ждет ближайщую дату и запускает скрипт, потом дальще
+#             # повторяется все
+#             # print('not start==============')
+#             if delta > 0:
+#                 sleep(delta)
+#                 #
+#                 # print('start  of the NEWS-PARSER-script')
+#
+#                 totaldate(scrap_news())
+#                 div_base()
+#                 anons()
+#                 accidents()
+#                 societ()
+#                 get_count_news()
+#             elif time_scrap[-1] == hour_mins:
+#                 delta1 = 86400 - (sec_count(time_scrap[-1]) - sec_count(time_scrap[0]))
+#                 # print(f'ожидание {delta1} секунд до {time_scrap[0]}')
+#                 # print(time_scrap[-1], time_scrap[0])
+#                 # print(sec_count(time_scrap[-1]), sec_count(time_scrap[0]))
+#                 sleep(delta1)
+#                 totaldate(scrap_news())
+#                 div_base()
+#                 anons()
+#                 accidents()
+#                 societ()
+#                 get_count_news()
+# # print(scrap())
+#
+# # loop_serv()
 
-
-def loop_serv(time_scrap):
-
-    """запуск скрипта (парсера) по расписанию указанному в листе  'time_list0' """
-
-    def sec_count(hour_min_):
-
-        """вычисляет количесто секунд  от начала эпохи до сегодняшнего любого
-         момента который дается  в формате  21:25 часы:минуты """
-        full_date = f'{str(datetime.datetime.now())[:10]} {hour_min_}'
-        secs_ = int(time.mktime(time.strptime(full_date, '%Y-%m-%d %H:%M')))
-        return secs_
-
-    while True:
-
-        for hour_mins in time_scrap:
-            print()
-            print(f'Запуск в {hour_mins}')
-
-            # print('secs',sec_count(hour_mins))
-
-            ddday = str(datetime.datetime.now())[:16]
-            print(ddday)
-            sec0 = int(time.mktime(time.strptime(ddday, '%Y-%m-%d %H:%M')))
-            # print('sec0', sec0)
-
-            delta = sec_count(hour_mins) - sec0
-
-            print(f'Ожидание {delta} секунд')
-            # Если дата еще не наступила, то ждет ближайщую дату и запускает скрипт, потом дальще
-            # повторяется все
-            # print('not start==============')
-            if delta > 0:
-                sleep(delta)
-                #
-                print('start  of the NEWS-PARSER-script')
-
-                totaldate(scrap_news())
-                div_base()
-                anons()
-                accidents()
-                societ()
-                get_count_news()
-            elif time_scrap[-1] == hour_mins:
-                delta1 = 86400 - (sec_count(time_scrap[-1]) - sec_count(time_scrap[0]))
-                print(f'ожидание {delta1} секунд до {time_scrap[0]}')
-                print(time_scrap[-1], time_scrap[0])
-                print(sec_count(time_scrap[-1]), sec_count(time_scrap[0]))
-                sleep(delta1)
-                totaldate(scrap_news())
-                div_base()
-                anons()
-                accidents()
-                societ()
-                get_count_news()
-# print(scrap())
-
-# loop_serv()
-
-
+# =====================================================================
 # подключение функции скрапинга вторым потоком, иначе не запускается сервер
-t = threading.Thread(target=loop_serv, args=(time_list0,))
-t.start()
+# t = threading.Thread(target=loop_serv, args=(time_list0,))
+# t.start()
 
 
 
@@ -891,14 +904,52 @@ def get_dates():
     return list_days
 
 
+def script_scrap():
+    totaldate(scrap_news())
+    div_base()
+    anons()
+    accidents()
+    societ()
+    get_count_news()
+    print("===============scrap============")
+
+
+# script_scrap()
 
 
 
+# t = threading.Thread(target=script_scrap)
+# t.start()
 
 
+# подключение функции скрапинга вторым потоком, иначе не запускается сервер
+def main():
+    # script_scrap()
+
+    t = threading.Thread(target=script_scrap)
+    t.start()
 
 
+# if __name__ == '__main__':
+#     main()
+# else:
+#     # t = threading.Thread(target=script_scrap)
+#     # t.start()
+#     script_scrap()
 
+main()
+
+# подключение функции скрапинга вторым потоком, иначе не запускается сервер
+# t = threading.Thread(target=script_scrap)
+# t.start()
+# def main():
+#     t = threading.Thread(target=script_scrap)
+#     t.start()
+#
+# if __name__ == '__main__':
+#     main()
+# else:
+#     script_scrap()
 
 
 

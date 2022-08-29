@@ -1,10 +1,21 @@
 
+/* {
+    margin: 0px;
+    padding : 0px;
+    box-sizing: border-box
+}*/
 html{
+    /*width: 100%;
+
+    overflow-x: hidden;*/
+    margin: 0px;
+    padding : 0px;
     color:#83817E;
     background-color:#D9CDC1;
     font-size: 18px;
     font-family: 'Nunito', sans-serif;
     width: 100%;
+    min-width: 100%;
 }
 
 /*#D9CDC1  'Roboto'*/
@@ -18,6 +29,7 @@ html{
 
 body{
     margin: 0px;
+    padding : 0px;
     font-size: 18px; /* только для фулскрин режима */
     font-family: 'Nunito', sans-serif;
     width: 100%;
@@ -27,15 +39,21 @@ body{
     position: absolute;
     background-color: #54453E;
     position:fixed;
-    left:0;top:0px;
+    /*left:0;*/
+    top:0px;
     width : 100%;
     padding : 0px;
+    margin: 0px;
     border: 1px solid #92837C;
     height: 70px;
     z-index:5;
     display: flex;
     justify-content: space-around;
     box-shadow: 0 0 45px #54453E;
+}
+.global{
+    padding : 0px;
+    margin: 0px;
 }
 #logo{
     position: absolute;
@@ -97,7 +115,7 @@ body{
 
 
 .currency{
-    width:540px;
+    /*width:540px;*/
     right:0;
     z-index:6;
     color: #F9FCFF;
@@ -121,7 +139,7 @@ ul {
 
 #content{
 
-    margin-top: 25px;
+    margin-top: 0px;
     justify-content: center;
 }
 
@@ -803,7 +821,8 @@ margin: 20px 0; */
     background-color: #54453E;
 
     position:fixed;
-    left:0;top:0px;
+    /*left:0;*/
+    top:0px;
     width : 100%;
     padding : 0px;
     border: 1px solid #92837C;
@@ -943,6 +962,7 @@ margin: 20px 0; */
 }
 
 @media(max-width: 575px){
+
     .adv{
         display:none;
         }
@@ -1026,7 +1046,54 @@ margin: 20px 0; */
         margin-top:10px;
 
     }
+    @media(max-width: 428px){
+    body{
 
+
+    }
+
+
+    .global{
+        margin:0px;
+        padding:0px;
+        width:100%;
+        }
+    .adv{
+        display:none;
+        }
+    #content{
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+    #head1{
+        width:100%;
+        align-self:center;
+        }
+
+    #news_box{
+        padding-left: 25px;
+        padding-right: 18px;
+    }
+
+
+    #news_text{
+        width: 100%;
+
+        left:15px
+        }
+
+    }
+    .time_source{
+        margin-top:0px;
+        margin-top:10px;
+
+    }
+    @media(max-width: 228px){
+    .global{
+        margin:0px;
+        padding:0px;
+        width:100%;
+        }
 }
 
 

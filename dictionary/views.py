@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from dataclasses import dataclass
 from dictionary.loggics import search_words
 from dictionary.testcount import tcounter
-from dictionary.scrapingNEW3 import scrap,get_dates#,scrap1,scrap2
+from dictionary.scrap01 import scrap,get_dates#,scrap1,scrap2
 from dictionary.scrap_USD import get_USD
 from datetime import datetime
 
