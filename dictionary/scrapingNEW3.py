@@ -6,55 +6,11 @@ import time
 # import random
 import json
 from bs4 import BeautifulSoup
-
-# import schedule
-# import pickle
 import datetime
 import threading
-
-
-
-
-# def scrap(day_ago):
-#     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
-#
-#     # #чтение и конвертация в обычный словарь
-#     path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-#             f"\\GLdate{day_ago}.json"
-#
-#     with open(path2, 'r', encoding='utf-8') as f_five:
-#         json_data_news = json.load(f_five)
-#
-#     path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
-#
-#     with open(path1, 'r', encoding='utf-8') as f_five:
-#         numnews = json.load(f_five)
-#
-#     return json_data_news, numnews
-
-
-# def scrap1():
-#     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
-#
-#     # #чтение и конвертация в обычный словарь
-#     path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate1.json"
-#
-#     with open(path2, 'r', encoding='utf-8') as f_five:
-#         json_data_news = json.load(f_five)
-#
-#     return json_data_news
-#
-#
-# def scrap2():
-#     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
-#
-#     # #чтение и конвертация в обычный словарь
-#     path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate2.json"
-#
-#     with open(path2, 'r', encoding='utf-8') as f_five:
-#         json_data_news = json.load(f_five)
-#
-#     return json_data_news
+from scrapers import kurskcity,gtrkkursk,s46tv,seyminfo,k_izvestia,dddkursk,mchs,mvd
+from taggers import anons, accidents,societ
+from paths_01 import path_bd_json
 
 
 header = {'Accept': '*/*',
@@ -70,313 +26,11 @@ now = datetime.datetime.now()
 def scrap_news():
     global iterat_
 
-    def convert(timer):
-        """конвертация даты публикации сайта-источника и приведение (конвертация) к стандртному
-        виду"""
-        day_ = None
-        global iterat_
 
-        if 'Вчера' in timer:
-            day_ = datetime.datetime.now() - datetime.timedelta(days=1)
-            ddd = f'{str(day_)[:10]} {timer[-5:]}'
-            # print('1',ddd)
-            sec = int(time.mktime(time.strptime(ddd, '%Y-%m-%d %H:%M')))
-            hours_ = timer[-5:]
-            # print(timer, sec, hours_)
-
-        if 'Сегодня' in timer:
-            day_ = datetime.datetime.now()
-            ddd = f'{str(day_)[:10]} {timer[-5:]}'
-            # print('2',ddd)
-            sec = int(time.mktime(time.strptime(ddd, '%Y-%m-%d %H:%M')))
-            hours_ = timer[-5:]
-            # print(timer, sec, hours_)
-        try:
-            sec = int(time.mktime(time.strptime(timer, '%H:%M %d.%m.%Y')))  # '11:14 04.07.2022'
-            hours_ = timer[:5]
-            # print(timer, sec, hours_)
-
-        except:
-            pass
-
-        month_ = {
-            '01': 'января', '02': 'февраля', '03': 'марта', '04': 'апреля', '05': 'мая',
-            '06': 'июня',
-            '07': 'июля', '08': 'августа', '09': 'сентября', '10': 'октября', '11': 'ноября',
-            '12': 'декабря'
-        }
-
-        for j in range(12):
-            if month_[list(month_)[j]] in timer:
-                number_month = list(month_)[j]
-                # print(number_month)
-                date_ = f'{str(now)[:4]}-{number_month}-{timer[:2]} {timer[-5:]}'
-                # print(date_)
-                sec = int(time.mktime(time.strptime(date_, '%Y-%m-%d %H:%M')))
-                hours_ = timer[-5:]
-                # print(timer, sec, hours_)
-
-        try:
-            sec = int(time.mktime(time.strptime(timer, '%Y-%m-%d %H:%M')))  # '11:14 04.07.2022'
-            hours_ = timer[-5:]
-            # print(timer, sec, hours_)
-
-        except:
-            pass
-
-        return sec, hours_
-
-    # ==================================================================
-
-    def kurskcity():
-        resp=None
-        link = "https://kurskcity.ru/news/main"
-        """дата в формате ( 16 июля 2022 года, 22:03)"""
-        try:
-            resp = requests.get(link, headers=header)
-            # print(resp.status_code, 'kurskcity.ru')
-        except:
-            pass
-            # print(resp.status_code, 'kurskcity.ru')
-            # resp.raise_for_status()
-        #     for i in range(58):
-        #         try:
-        news_dict = {}
-        news_list = []
-
-        soup = BeautifulSoup(resp.text, 'lxml')
-        for i in range(16):
-            try:
-                News4 = soup.find_all('div', class_="container-fluid")  # [i].find('h3').text
-                News5 = soup.find_all('div', id="list_news_bl")  # .find_all('a').text
-                News6 = soup.find_all('div', class_="col-md-3 thumbnail row-flex")[i].find('a',
-                class_="black_link").text
-                News7 = soup.find_all('div', class_="post-inner")[i].find('a').get('href')
-                reff = 'https://kurskcity.ru' + News7
-                time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
-                news_dict[News6] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
-                                    'www.kurskcity.ru']
-                # print(News6," ",reff)
-            #     news_list = list(news_dict)
-            except:
-                # print(f"=====ошибка скрапинга кода kurskcity.ru=====итераций_{y}=========")
-                break
-        return news_dict
-
-    # print(kurskcity())
-    # print(len(kurskcity()))
-
-    # print(news_dict)
-    # print()
-    # for j in range (16):
-    #     print(news_list[j],news_dict[news_list[j]])
-
-    # =======================================
-    def gtrkkursk():
-        resp = None
-        news_dict = {}
-        page_site = ['', '?page=1']
-        for x in page_site:
-            link = "https://gtrkkursk.ru/news-list" + x
-
-            """дата в формате ( чт, 4 августа 2022 - 17:22)"""
-            try:
-                resp = requests.get(link, headers=header)
-                # print(resp.status_code, 'gtrkkursk.ru')
-            except:
-                pass
-                # print(resp.status_code, 'gtrkkursk.ru')
-                # resp.raise_for_status()
-            #     for i in range(58):
-            #         try:
-
-            news_list = []
-
-            soup = BeautifulSoup(resp.text, 'lxml')
-            for i in range(12):
-                try:
-                    News6 = soup.find('div', class_="view-content")#"сontent-wrap сontent-wrap-post")
-                    News7 = News6.find_all('a',class_='item_pic-wrapper')[i].get('href')
-                    reff = 'https://gtrkkursk.ru/' + News7
-
-                    News8 = News6.find_all('h2',class_='title')[i].text#
-
-                    News9 = News6.find_all('span',class_='item_time')[i].text#
-                    time_iss = f'{News9[-23:-8]} {News9[-5:]}'
-                    # time_iss = soup.find_all('div', class_="mainnewsdate small bltext")[i].text
-                    news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
-                      'www.gtrkkursk.ru']
-                except:
-                    pass
-                    # print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
-                # print('News7'," ",News7)
-                # print('News8'," ",News8)
-                # print('News9'," ",News9)
-                # print('time_iss'," ",time_iss)
-                # print('reff'," ",reff)
-            #     news_list = list(news_dict)
-        return news_dict
-
-    def s46tv():
-        resp = None
-
-        news_dict = {}
-        link = "https://www.46tv.ru/odnoj-strokoj/v-kurske/"
-        """дата в формате  (Сегодня, 18: 51) """
-        try:
-            resp = requests.get(link, headers=header)
-            # print(resp.status_code, '46tv.ru')
-        except:
-            # print(resp.status_code, '46tv.ru')
-            pass
-        news_list = []
-
-        soup = BeautifulSoup(resp.text, 'lxml')
-        # News_4 = soup.find_all('td', class_="right")
-        # News_4 = soup.find_all('ul', class_="lenta")[0]
-        for y in range(40):
-            try:
-                News40 = soup.find_all('div', id="dle-content")[0].find_all('div',
-                 class_="shortstory__content")[y].find('a')
-                time_ = soup.find_all('div', id="dle-content")[0].find_all('div',
-                class_="article-info__date")[y].text
-                News41 = News40.text
-                News42 = News40.get('href')
-                #         print(News41,News42)
-                #         # print(News40)
-                news_dict[News41] = [convert(time_)[0], convert(time_)[1], time_, News42,
-                                     'www.46tv.ru']
-            except:
-                # print(f"=====ошибка скрапинга кода 46tv.ru=====итераций_{y}=========")
-                break
-        return news_dict
-
-    #     # ======================================================
-    def seyminfo():
-        news_dict = {}
-        global iterat_
-        if iterat_ == 0:
-            pages_site = ['', '/page/2', '/page/3', '/page/4', '/page/5', '/page/6', '/page/7',
-                          '/page/8']
-        else:
-            pages_site = ['', ]
-        for x in pages_site:
-            # sleep(20)
-            link = "https://seyminfo.ru/news" + x
-            """дата в формате   (23:28 16.07.2022)"""
-            try:
-                resp = requests.get(link, headers=header)
-                # print(resp.status_code, 'seyminfo.ru')
-            except:
-                pass
-                # print(resp.status_code, 'seyminfo.ru')
-            news_list = []
-
-            soup = BeautifulSoup(resp.text, 'lxml')
-            # News_4 = soup.find_all('td', class_="right")
-            # News_4 = soup.find_all('ul', class_="lenta")[0]
-
-            for y in range(20):
-                try:
-                    News40 = \
-                    soup.find_all('div', class_="container content-container")[0].find_all('div',
-                     class_="card-body")[y]  # .find('a')
-                    time_ = \
-                    soup.find_all('div', class_="container content-container")[0].find_all('div',
-                         class_="card-body")[y].find('span').text
-                    News42 = News40.find('a').get('href')
-                    News41 = News40.find('a').text
-                    # print(News41, News42)
-                    # print(News40)
-                    news_dict[News41] = [convert(time_)[0], convert(time_)[1], time_, News42,
-                                         'www.seyminfo.ru']
-                except:
-                    # print(f"=====ошибка скрапинга кода seyminfo.ru=====итераций_{y}=========")
-                    break
-        return news_dict
-
-    # # ===============================================
-    def k_izvestia():
-        global iterat_
-        news_dict = {}
-        if iterat_ == 0:
-            pages_site = ['', '?page=2',
-                          '?page=3']  # ,'?page=4','?page=5','?page=6','?page=7','?page=8']
-        else:
-            pages_site = ['', ]
-        for x in pages_site:
-            # sleep(20)
-            link = "https://kursk-izvestia.ru/news" + x
-            # https://kursk-izvestia.ru/news?page=2
-            """дата в формате   (16 июля 2022 в 20:01)"""
-            try:
-                resp = requests.get(link, headers=header)
-                # print(resp.status_code, 'kursk-izvestia.ru')
-            except:
-                # print(resp.status_code, 'kursk-izvestia.ru')
-                pass
-            news_list = []
-
-            soup = BeautifulSoup(resp.text, 'lxml')
-            for i in range(32):
-                try:
-                    News2 = soup.find_all('div', class_="blleft")[0].find_all('div',
-                     class_="created")[i].text
-                    News3 = soup.find_all('div', class_="blleft")[0].find_all('div',
-                       class_="title")[i].text
-                    News4 = soup.find_all('div', class_="blleft")[0].find_all('div',
-                      class_="title")[i].find('a').get('href')
-                    reff = "https://kursk-izvestia.ru" + News4
-                    # print(News2,News3,reff)
-                    time_ = f'{News2[:12]}{News2[-6:]}'
-
-                    news_dict[News3] = [convert(time_)[0], convert(time_)[1], time_, reff,
-                                        'www.kursk-izvestia.ru']
-
-                except:
-                    # print(f"=====ошибка скрапинга кода kursk-izvestia.ru=====итераций_{i}=========")
-                    break
-        return news_dict
-
-    # # ==============================================
-    def dddkursk():
-        news_dict = {}
-        link = "http://www.dddkursk.ru/lenta/"
-        """дата в формате   (16 июля 2022, 17:12)"""
-        try:
-            resp = requests.get(link, headers=header)
-            # print(resp.status_code, 'dddkursk.ru')
-        except:
-            # print(resp.status_code, 'dddkursk.ru')
-            pass
-        news_list = []
-
-        soup = BeautifulSoup(resp.text, 'lxml')
-
-        for y in range(40):
-            try:
-                time_ = soup.find_all('td', class_="center")[1].find_all('nobr')[y].text
-                News_4 = soup.find_all('td', class_="center")[1].find_all('h3')[y]
-                News_5 = News_4.find('a').text
-                News_6 = News_4.find('a').get('href')
-                reff = "http://www.dddkursk.ru" + News_6
-                # print(time_)
-                # print(News_5)
-                # print(reff)
-                # print()
-                # print()
-                news_dict[News_5] = [convert(time_)[0], convert(time_)[1], time_, reff,
-                                     'www.dddkursk.ru']
-
-            except:
-                print(f"=====ошибка скрапинга кода dddkursk.ru=====итераций_{y}=========")
-                break
-        return news_dict
-
-    #     print("iterat_",iterat_)
     # =============================================
     dict_total = {}
-    list_scr = [dict_total, kurskcity(), gtrkkursk(), s46tv(), seyminfo(), k_izvestia(), dddkursk()]
+    list_scr = [dict_total, kurskcity(), gtrkkursk(), s46tv(), seyminfo(), k_izvestia(),
+                dddkursk(), mchs(), mvd()]
     for i in range(len(list_scr) - 1):
         # merge_dict(list_scr[0], list_scr[i+1])
         list_scr[0].update(list_scr[i + 1])
@@ -387,8 +41,10 @@ def scrap_news():
     # =================================================
 
     def read_json():
-        path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
 
+        path2 = f"{path_bd_json}GLdate0.json"
+        # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
+        # path2 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate0.json"
         with open(path2, 'r', encoding='utf-8') as f_five:
             json_data_news = json.load(f_five)
         # print("1", json_data_news)
@@ -506,8 +162,9 @@ def scrap_news():
 def totaldate(date_dict):
     """Запись словаря с данными после парсера в GLdate0.json json-файл."""
 
-    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
-
+    path1 = f"{path_bd_json}GLdate0.json"
+    # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
+    # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate0.json"
     with open(path1, 'w', encoding='utf-8') as file:
         json.dump(date_dict, file, ensure_ascii=False, indent=0)
 
@@ -518,7 +175,9 @@ def totaldate(date_dict):
 def write_base(diapason):  # int
     """диапазон  хранения данных за сколько дней"""
 
-    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
+    path2 = f"{path_bd_json}GLdate0.json"
+    # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
+    # path2 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate0.json"
 
     with open(path2, 'r', encoding='utf-8') as f_five:
         json_data_news = json.load(f_five)
@@ -544,8 +203,10 @@ def write_base(diapason):  # int
             # print(j, "___", i)
             dict_Nday_ago[j] = i
 
-    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-            f"\\GLdate{diapason}.json"
+    path1 = f"{path_bd_json}GLdate{diapason}.json"
+    # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+    #         f"\\GLdate{diapason}.json"
+    # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate{diapason}.json"
 
     with open(path1, 'w', encoding='utf-8') as file:
         json.dump(dict_Nday_ago, file, ensure_ascii=False, indent=0)
@@ -562,8 +223,10 @@ def get_count_news():
     """создает список: количество новостей в каждой папке GLdate0.json-GLdate10.json"""
     number_news =[]
     for day_ago in range(10):
-        path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-                f"\\GLdate{day_ago}.json"
+        path2 = f"{path_bd_json}GLdate{day_ago}.json"
+        # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+        #         f"\\GLdate{day_ago}.json"
+        # path2 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate{day_ago}.json"
 
         with open(path2, 'r', encoding='utf-8') as f_five:
             json_data_news = json.load(f_five)
@@ -573,242 +236,15 @@ def get_count_news():
         number_news.append(count)
     qual_index=(number_news[7]+number_news[8]+number_news[9])/number_news[0]
     # print(f'Полнота отбора в рубрики: анонс, происшествия и общество___{qual_index}')
-    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
+    path1 = f"{path_bd_json}numnews.json"
+    # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
+    # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/numnews.json"
+
     with open(path1, 'w', encoding='utf-8') as file:
         json.dump(number_news, file, ensure_ascii=False, indent=0)
 
 # =====================================================
-def anons():
-    """Выборка  json-файла для показа на сайте и конвертация в обычный словарь"""
-    month_cirilic = {
-        1: 'январ',
-        2: 'феврал',
-        3: 'март',
-        4: 'апрел',
-        5: 'мая',
-        6: 'июн',
-        7: 'июл',
-        8: 'август',
-        9: 'сентябр',
-        10: 'октябр',
-        11: 'ноябр',
-        12: 'декабр'}
 
-    anons_dict = {}
-
-    def get_day_month(nn):
-
-        """дает сегодняшнюю дату числом и месяц+nn(август+1=сентябрь"""
-        cc = str(datetime.datetime.now())[:10]
-        day_ = int(cc[8:])
-        month0 = int(cc[5:7]) + nn
-        if (int(cc[5:7]) + nn) > 12:
-            month0 = month0 - 12
-        month_ = month_cirilic[month0]
-        return day_, month_
-
-    # #чтение и конвертация в обычный словарь
-    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-            f"\\GLdate0.json"
-
-    with open(path2, 'r', encoding='utf-8') as f_five:
-        json_data_news = json.load(f_five)
-
-    # print(len(json_data_news))
-
-    for title, y in json_data_news.items():
-        #
-        key_list = [f'\d+ {get_day_month(1)[1]}', f'[кпвнд][ао]? {get_day_month(1)[1]}',
-                    f'\d+ {get_day_month(2)[1]}', f'[кпвнд][ао]? {get_day_month(2)[1]}',
-                    f'\d+ {get_day_month(3)[1]}', f'[кпвнд][ао]? {get_day_month(3)[1]}',
-                    f'\d+ {get_day_month(4)[1]}', f'[кпвнд][ао]? {get_day_month(4)[1]}',
-                    f'\d+ {get_day_month(5)[1]}', f'[кпвнд][ао]? {get_day_month(5)[1]}',
-                    f'[кпвнд][ао]? \d+2[2,3,4] год']
-
-        # август',
-        for key_ in key_list:
-            result = re.findall(key_, title.lower())
-            # print(result)
-            if result:
-                # print(result)
-                anons_dict[title] = y
-
-    for title, y in json_data_news.items():
-        key_ = f'\d+ {get_day_month(0)[1]}'
-        result = re.findall(key_, title.lower())
-        # print(result)
-        # print(get_day_month(0)[0])
-        if result:
-            if int(result[0][:2]) >= get_day_month(0)[0]: #только число (день)
-                # print("gugu",result[0][:2],get_day_month(0)[0])
-                anons_dict[title] = y
-
-    for title, y in json_data_news.items():
-        # 'ся' учитывается и добавляется
-        key_list1 = 'буд[еу]т|произойд[уе]т|установ[ия]т|начн[уе]т|создадут|представ[ия]т\
-               | наград[яи]т|анонс\w*|приглашают|провед[еу]т| н*[^е]* восстановлен|восстанов[яи]т\
-               | постро[яи]т|реконструиру[ею]т|установ[ия]т|заверш[аи]т|увелич[аи]т|уменьш[аи]т\
-               | обеспеч[аи]т|огранич[аи]т|установ[яи]т|обяж[уе]т|провед[уе]т|познаком[яи]т\
-               | законч[аи]т|презенту[юе]т|выдадут|потребу[ею]т|убер[уе]т|отключ[аи]т|посадят\
-               | разработа[ю]т|застав[я]т|отпраздну[ю]т|назнач[и]т|постав[ия]т|запланиру[ею]т\
-               | утверд[яи]т|выдел[яи]т|прекрат[ия]т|призов[еу]т|мобилизу[юе]т|выступ[ия]т\
-               | перекро[юе]т|приглас[ия]т|отмет[ия]т|встрет[ия]т|распредел[ия]т|могут|станет\
-               | благоустро[ия]т|появ[ия]тся|стро[ия]тся|постро[ия]т|приобрет[уе]т|провер[яи]т\
-               | отправ[ия]т|пройд[еу]т|поддержат|реш[иа][лт]|ответит|подготов[ия]т|подбер[еу]т\
-               | собира[ею]тся|обеспеч[аи]т|откро[ею]тся|замен[ия]т|заверш[аи]т|получ[аи]т\
-               | ожида[ею]т|объяв[ия]т|оцен[ия]т|состо[ия]т[ь]*ся|стартовал|подтвердил|спилят\
-               | отдохн[еу]т|демонтиру[юе]т |демонтировать|обеща[ею]т|упростил|открыл[ио]\
-               | объявил| готов|снесут| под снос|потратят|ожида[ею]т|начал\w* проверку\
-               | строя| к зиме| к весне| к лету| к осени| получ[иа]т'
-
-        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
-
-        result = re.findall(key_list1, title.lower())
-        if result:
-            res = re.findall(f'\d+ {get_day_month(0)[1]}', title.lower())
-            if res:
-                pass
-            else:
-
-                anons_dict[title] = y
-
-    def sorted_dicts1(news_dict):
-        """Сортировка словаря по дате элементов(новостей). Вверху самые поздние """
-        sorted_dict = {}
-        sorted_keys = sorted(news_dict, key=news_dict.get, reverse=True)  # [1, 3, 2]
-
-        for w in sorted_keys:
-            sorted_dict[w] = news_dict[w]
-        count_news = len(sorted_dict)
-        # print('количество новостей = ', count_news)
-        # print(sorted_dict)
-        return sorted_dict
-
-    sorted_anons_dict = sorted_dicts1(anons_dict)
-    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-            f"\\GLdate7.json"
-
-    with open(path1, 'w', encoding='utf-8') as file:
-        json.dump(sorted_anons_dict, file, ensure_ascii=False, indent=0)
- # ==============================================
-
-
-def accidents():
-    """Выборка  json-файла для показа на сайте и конвертация в обычный словарь"""
-
-
-    accidents_dict = {}
-
-
-
-    # #чтение и конвертация в обычный словарь
-    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-            f"\\GLdate0.json"
-
-    with open(path2, 'r', encoding='utf-8') as f_five:
-        json_data_news = json.load(f_five)
-
-    # print(len(json_data_news))
-
-
-    for title, y in json_data_news.items():
-
-        # 'ся' учитывается и добавляется
-        key_list1 = ' дтп\s|произош[е]*л\w*|случил[о]с*\w*|убийств\w*|подозрева\wт\w*\
-                   | подозревае| покушени\w*|суд взыскал| выгорел\
-                   | обвиня\wтся|авари\w*|госпитализирован\w*|ранен\w*|осужд\w*\
-                   | хищен\w* | п[р]*опал\w*| перелом\w*| изнасилов\w*|превышени\w \w* полномоч\w*\
-                   | столкновени\w*|поврежд\w*|перевернул\w*| пострада\w*| жертв\w*|ищут\
-                   | риговори\w*|тюрьм\w*|за решетку|сбил\w*|стрел\w*|горел\w*|пожар |убит\
-                   | смерт\w\w |обманул\w*|мошенник|пресекли|обезвредили|поймал|выманил\
-                   | оскорблени|угроз|аферист|госпитализирова|сжег|сожгла| краж|до смерти\
-                   | пропал|пропав\w*|скончал\w*|убил\w*|наркотик\w*|избил\w*|изиени\w*\
-                   | махинац\w*|осквернил\w* труп\w*|силовик\w*|служб\w*[- ]*112\
-                   | беспилотн\w*|обнаружил\w*|по горячим следам|совращени\w*|лишил|утону\
-                   | украл\w*|похитил\w*|террорист\w*|акт\w |незаконн\w*|обстрел\w*|диверси\w*\
-                   | взрывоопасн\w* предмет\w*|нетрезв\w*|напал\w*|нападен\w*|артиллерийск\w*\
-                   | снаряд\w*|выписал\w*|протокол\w*|несанкционирован\w*|торговл\w*\
-                   | наркокурьер\w*|горит| вор\w|вор[уо]|клиент\w* банк|суд обязал\
-                   | колони\w*|умер\w*|пострадал\w*|зареза\w*|миниров\w*|дебошир\w*|задержал\w*\
-                   | пропал|поиски|диверсант| подорвал| подрывал| разбой| угонщик| просроченны\
-                   | разбил| арест|отправ\w*т\w* в колонию|за нападение\
-                   | попал в аварию| использовал\w* [\S*\s]* оружие| применил\w* [\S*\s]* оружие\
-                   | угнан| укус\w* клещ'
-        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
-
-        result = re.findall(key_list1, title.lower())
-        if result:
-            accidents_dict[title] = y
-
-
-
-    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-            f"\\GLdate8.json"
-
-    with open(path1, 'w', encoding='utf-8') as file:
-        json.dump(accidents_dict, file, ensure_ascii=False, indent=0)
-        # =========================================
-
-
-def societ():
-    """Сортирует словарь событий по теме,  записывает json-файла по пути (для показа на
-    сайте) и  конвертация в обычный словарь"""
-
-
-    societ_dict = {}
-
-
-
-    # #чтение и конвертация в обычный словарь
-    path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-            f"\\GLdate0.json"
-
-    with open(path2, 'r', encoding='utf-8') as f_five:
-        json_data_news = json.load(f_five)
-
-    # print(len(json_data_news))
-
-
-    for title, y in json_data_news.items():
-
-        key_list1 = ' построен| запущен| завершен\w*| преоборудован\w*| открыт\w*\
-                    | остановлен\w*| прекращен\w*| обнародован\w*| планироан\w*\
-                    | восстановле\w*| отремонтирован\w*| возобновлен\w*|станет|отметили\
-                    | обновлен\w*| реконструирован\w*|административн\w*|будующ\w*|встретил\w*\
-                    | курско\w* предприяти\w*| жил\w* застройк\w*| дорожн\w* развязк\w*\
-                    | проходит|прокуратур\w*| добива[юе]тся|приглаша[ею]т|турнир\
-                    | потратили|израсходован\w|строя| готов|обсуждают| фестиваль| оценил\
-                    | потрачен\w|вложен\w| инвестированн\w| заплати\w*| вруч\w*|льгот|трудится\
-                    | определ\w* порядок| палат\w*| снизилась| повысилось| наград| нацпроект\
-                    | школа|больниц| дум[аые] | бюджет| налоги| акцизы| платежи| голосование\
-                    | в собственность регион|итоги работы|эскроу-счет|футбол|собственник\
-                    | обеспечени\w* безопасност|контракт|купили|приобрели| решил|предложил\
-                    | нацпроект\w*|запуст\w*|ремонтирур\w*|открыти\w*|резервиров\w*\
-                    | преми[еюяи]| уголовн| ипотек| спорт|авангард|причин[уаы]|обанкротил\
-                    | добился|добились|комисси| готов[аы]*|упростил|проголосовал|%| подписал\
-                    | победил| безработиц| инфляц| рост\w* цен| физкультур|запустил\
-                    | археолог|индекс\w* потребительских цен|одержал\w [\S*\s]* победу\
-                    | проходит| добил\w*с\
-                    | контрол| получ[иа]т'
-
-        # 'ся' учитывается и добавляется
-
-        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
-
-        result = re.findall(key_list1, title.lower())
-        # print(result)
-        if result:
-            societ_dict[title] = y
-
-
-
-    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-            f"\\GLdate9.json"
-
-    with open(path1, 'w', encoding='utf-8') as file:
-        json.dump(societ_dict, file, ensure_ascii=False, indent=0)
-
-# =======================================================
 
 # time_list0 = ['00:00', '00:20', '00:40', '01:00',
 #               '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45',
@@ -930,12 +366,7 @@ def main():
     t.start()
 
 
-# if __name__ == '__main__':
-#     main()
-# else:
-#     # t = threading.Thread(target=script_scrap)
-#     # t.start()
-#     script_scrap()
+
 
 main()
 

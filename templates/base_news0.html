@@ -5,56 +5,14 @@
     <link rel="stylesheet" href="{% static 'css/news01.css' %} ">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!--    {% for key, tm in news_dict.items %}-->
-<!--    <meta name="description" content="{{key}}">-->
-<!--    <title>{{key}} СоваБот - НОВОСТИ</title>-->
-<!--    {% endfor %}-->
-
-
-
-
-    <link href="{% static 'css/favicon.ico' %} " rel="shortcut icon" type="image/x-icon"/>
-<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,900;1,300&display=swap" rel="stylesheet">-->
-
-<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
-<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-<!--    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">-->
-
+   <meta name="description" content="НОВОСТИ КУРСКА">
+    <title>СоваБот - НОВОСТИ</title>
+    <link href="{% static 'favicon.ico' %} " rel="shortcut icon" type="image/x-icon"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-
-<!--    <style>-->
-<!--    @-webkit-keyframes pulsate {-->
-<!--    50% { color: #fff; text-shadow: 0 -1px rgba(0,0,0,.6), 0 0 5px #ffd, 0 0 8px #fff; }-->
-<!--    }-->
-<!--    @keyframes pulsate {-->
-<!--    50% { color: #fff; text-shadow: 0 -1px rgba(0,0,0,.6), 0 0 5px #ffd, 0 0 8px #fff; }-->
-<!--    }-->
-<!--    .blink7 {-->
-<!--    color: rgb(245,245,245);-->
-<!--    text-shadow: 0 -1px rgba(0,0,0,.1);-->
-<!--    background: #82736C;-->
-<!--    -webkit-animation: pulsate 1.2s linear infinite;-->
-<!--    animation: pulsate 2.2s linear infinite;-->
-<!--    }-->
-
-<!--    </style>-->
-
-
-
-
-
 </head>
 <body>
-
-
-
-
-
     <div class="exper">
         <div id="progress-container">
             <div id="ProgressBar" class="blog-progress-bar">
@@ -76,32 +34,20 @@
             </div>
 
             <nav class="one">
-    <!--            <h2>1. li {display: inline;}</h2>-->
                     <div id="navi">
                         <div class="mnbtn">
                             {% if sing_news < 7 %}
                                 <div class="sline" >
                                     <a onclick="myFunction()"  class="dropbtn"
                                        style="color:#FFFFFF;" >
-<!--                                       <span style="color:#CDD86C">-->
                                                   ЗА НЕДЕЛЮ&#9660;</a>
-<!--                                       </span> -->
-
-<!--                                    <span class="numb_news" >[{{numnews.0}}]</span>-->
                                 </div>
                             {% else %}
                                 <div>
                                     <a onclick="myFunction()" class="dropbtn">
-<!--                                    <span style="color:#CDD86C">-->
                                         ЗА НЕДЕЛЮ&#9660;</a>
-<!--                                    </span>-->
-
-<!--                                    <span class="numb_news" >[{{numnews.0}}]</span>-->
                                 </div>
                             {% endif  %}
-
-
-
                         </div>
                         <div id="myDropdown" class="dropdown-content" class="hbtn">
                             <div>
@@ -196,15 +142,10 @@
                                     </div>
                                 {% endif  %}
                             </div>
-
-
                             <div class="box_hr_line">
                                 <hr class="hr-line"><br>
                             </div>
                         </div>
-
-<!--                        <li><a class="head-button" href="/news1">ВЧЕРА</a></li>-->
-<!--                        <li><a class="head-button" href="/news2">ПОЗАВЧЕРА</a></li>-->
                         <div class="mnbtn">
                             <div>
                                 {% if sing_news == 7 %}
@@ -275,28 +216,16 @@
                             </div>
 
                         </div>
-
                     </div>
             </nav>
-
             <button class="burger" type="button" id="navToggle">
                 <img class="burger-icon" src="{% static 'images/burger5.svg' %}" alt="">
             </button>
         </div>
-<!--        <div class="currency">-->
-<!--            <p><a class="currency" href="https://www.cbr.ru/currency_base/daily/"target="_blank"-->
-<!--                  style="text-decoration: none; color: #F9FCFF;">USD {{ usd }}&nbsp EUR {{ eur }}</a></p>-->
-<!--&lt;!&ndash;                ЦБ РФ на {{ date_ }}:&nbsp USD {{ usd }}&nbsp EUR {{ eur }}</a></p>&ndash;&gt;-->
-<!--        </div>-->
     </div>
-
     <div class="global">
-
-
         {% block content %} {% endblock %}
-
     </div>
-
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
         integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
         crossorigin="anonymous">
@@ -304,17 +233,12 @@
     <script>
     /*прогресбар*/
     document.addEventListener('scroll', function(){
-
         var h = document.documentElement,
             b = document.body,
             st = 'scrollTop',
             sh = 'scrollHeight';
-
         var score = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
-
         document.querySelector('#ProgressBar').style.width = score + '%';
-
-
         });
    </script>
     <script>
@@ -323,11 +247,9 @@
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
-
     // Close the dropdown if the user clicks outside of it
     window.onclick = function(event) {
       if (!event.target.matches('.dropbtn')) {
-
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
         for (i = 0; i < dropdowns.length; i++) {
@@ -339,7 +261,6 @@
       }
     }
     </script>
-
     <script>
      $(function(){
         let navToggle = $('#navToggle');
@@ -347,12 +268,9 @@
         /*console.log(navToggle)*/
         navToggle.on('click',function(event){
             event.preventDefault();
-
             navi.toggleClass('show')
      });
      })
     </script>
-
-
 </body>
 </html>
