@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 import datetime
 import threading
 from scrapers import kurskcity,gtrkkursk,s46tv,seyminfo,k_izvestia,dddkursk,mchs,mvd
-from taggers import anons, accidents,societ,jkh
+from taggers import anons, accidents, societ, jkh, sport, medicin, education, economic
 from paths_01 import path_bd_json
 
 
@@ -237,8 +237,12 @@ def script_scrap():
     anons()
     accidents()
     societ()
-    get_count_news()
     jkh()
+    sport()
+    medicin()
+    education()
+    economic()
+    get_count_news()
     print("===============scrap============")
 
 

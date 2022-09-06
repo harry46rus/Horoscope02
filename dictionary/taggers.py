@@ -22,6 +22,7 @@ def anons():
         12: 'декабр'}
 
     anons_dict = {}
+    anons_dict1 = {}
 
     def get_day_month(nn):
 
@@ -62,17 +63,7 @@ def anons():
                 # print(result)
                 anons_dict[title] = y
 
-        #работа со словом "сегодня"
-        result = re.findall("сегодня", title.lower())
-        if result:
-            print('сегодня_news')
-            today_start_ = int(time.mktime(time.strptime(str(datetime.datetime.now())[:10],
-                 '%Y-%m-%d')))
-            delta = y[0] - today_start_
-            print(delta)
-            if 0 < delta < 86400:
-                anons_dict[title] = y
-                print('сегодня_ ', title, y[2])
+
 
     for title, y in json_data_news.items():
         key_ = f'\d+ {get_day_month(0)[1]}'
@@ -100,7 +91,7 @@ def anons():
                | ожида[ею]т|объяв[ия]т|оцен[ия]т|состо[ия]т[ь]*ся|стартовал|подтвердил|спилят\
                | отдохн[еу]т|демонтиру[юе]т |демонтировать|обеща[ею]т|упростил|открыл[ио]\
                | объявил| готов|снесут| под снос|потратят|ожида[ею]т|начал\w* проверку\
-               | строя| к зиме| к весне| к лету| к осени| получ[иа]т| можно'
+               | строя| к зиме| к весне| к лету| к осени| получ[иа]т| можно|сегодня'
 
         # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
 
@@ -112,6 +103,20 @@ def anons():
             else:
 
                 anons_dict[title] = y
+    for title, y in anons_dict.items():
+        # работа со словом "сегодня"
+        result = re.findall("сегодня", title.lower())
+        if result:
+            print('сегодня_news')
+            today_start_ = int(time.mktime(time.strptime(str(datetime.datetime.now())[:10],
+                  '%Y-%m-%d')))
+            delta = y[0] - today_start_
+            print(delta)
+            if 0 < delta < 86400:
+                anons_dict1[title] = y
+                print('сегодня_ ', title, y[2])
+        else:
+            anons_dict1[title] = y
 
     def sorted_dicts1(news_dict):
         """Сортировка словаря по дате элементов(новостей). Вверху самые поздние """
@@ -125,7 +130,7 @@ def anons():
         # print(sorted_dict)
         return sorted_dict
 
-    sorted_anons_dict = sorted_dicts1(anons_dict)
+    sorted_anons_dict = sorted_dicts1(anons_dict1)
     path1 = f"{path_bd_json}GLdate7.json"
     # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
     #         f"\\GLdate7.json"
@@ -306,7 +311,7 @@ def jkh():
         result = re.findall(key_list1, title.lower())
         # print(result)
         if result:
-            jkh[title] = y
+            jkh_dict[title] = y
 
 
 
@@ -469,6 +474,8 @@ def education():
 
 
 
+
+
     path1 = f"{path_bd_json}GLdate13.json"
     # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
     #         f"\\GLdate9.json"
@@ -482,6 +489,7 @@ def economic():
     сайте) и  конвертация в обычный словарь"""
 
     economic_dict = {}
+    economic_dict1 = {}
 
     # #чтение и конвертация в обычный словарь
     path2 = f"{path_bd_json}GLdate0.json"
@@ -516,14 +524,22 @@ def economic():
 
         # 'ся' учитывается и добавляется
 
-        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
-
         result = re.findall(key_list1, title.lower())
         # print(result)
         if result:
             economic_dict[title] = y
+    #исключение из словаря предложений с таким словами
+    for title, y in economic_dict.items():
+        key_list1 = r'мошенник|похити[лтв]|укра[вл]|лиши[вл]|потеря[вл]|отня[втл]|обману[тлв]\
+                    |выманива|погиб| краж|подозреваемы|голосова[нв]|фиктивн|умер\
+                    |отсудил|смерт'
 
-
+        result1 = re.findall(key_list1, title.lower())
+        # print(result)
+        if result1:
+            pass
+        else:
+            economic_dict1[title] = y
 
     path1 = f"{path_bd_json}GLdate14.json"
     # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
@@ -531,9 +547,10 @@ def economic():
     # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate9.json"
 
     with open(path1, 'w', encoding='utf-8') as file:
-        json.dump(economic_dict, file, ensure_ascii=False, indent=0)
+        json.dump(economic_dict1, file, ensure_ascii=False, indent=0)
 # jkh()
 # sport()
 # medicin()
 # education()
-economic()
+# economic()
+anons()
