@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 # import pickle
 # import datetime
 # import threading
-
+from dictionary.paths_01 import path_usd_json
 
 header = {'Accept': '*/*',
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\
@@ -82,7 +82,7 @@ def json_date(dict_USD):
 
     # path = f"bd_json\\news_bd8.json"
 
-    path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\USD_json\\{sec}_USD.json"
+    path1 = f"{path_usd_json}{sec}_USD.json"
 
     # sorted_dict={'01':1, '02':6, '03':sec}
 
@@ -91,25 +91,25 @@ def json_date(dict_USD):
 
 
 
-def get_USD():
-    """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
-    fild_bd = []
-    #Перебор всех имен файлов в папке и запись в список имен
-    for root, directory, file in os.walk(
-            'C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\USD_json'):
-        # print(root)
-        # print(directory)
-        for file_bd in file:
-            fild_bd.append(file_bd)
-    # Выборка позднего json-файла для показа на сайте
-    print(max(fild_bd))
-    #конвертация в обычный словарь
-    path2=f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\USD_json\\{max(fild_bd)}"
-
-    with open(path2, 'r', encoding='utf-8') as f_five:
-        json_data_news = json.load(f_five)
-    print(json_data_news)
-    return json_data_news
+# def get_USD():
+#     """Выборка последнего json-файла для показа на сайте и конвертация в обычный словарь"""
+#     fild_bd = []
+#     #Перебор всех имен файлов в папке и запись в список имен
+#     for root, directory, file in os.walk(
+#             'C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\USD_json'):
+#         # print(root)
+#         # print(directory)
+#         for file_bd in file:
+#             fild_bd.append(file_bd)
+#     # Выборка позднего json-файла для показа на сайте
+#     print(max(fild_bd))
+#     #конвертация в обычный словарь
+#     path2=f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\USD_json\\{max(fild_bd)}"
+#
+#     with open(path2, 'r', encoding='utf-8') as f_five:
+#         json_data_news = json.load(f_five)
+#     print(json_data_news)
+#     return json_data_news
 
 # def loop_serv1():
 #     """запуск скрипта (парсера) по расписанию указанному в листе  'time_scrap' """

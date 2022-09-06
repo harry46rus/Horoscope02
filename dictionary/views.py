@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from dictionary.loggics import search_words
 from dictionary.testcount import tcounter
 from dictionary.scrap01 import scrap,get_dates#,scrap1,scrap2
-from dictionary.scrap_USD import get_USD
+from dictionary.read_USD import get_USD
 from datetime import datetime
 
 # def leo(request):
@@ -35,7 +35,7 @@ zodiac_dict = {
     'capricorn': 'Козерог - десятый знак зодиака, планета Сатурн (с 23 декабря по 20 января).',
     'aquarius': 'Водолей - одиннадцатый знак зодиака, планеты Уран и Сатурн (с 21 января по 19 февраля).',
     'pisces': 'Рыбы - двенадцатый знак зодиака, планеты Юпитер (с 20 февраля по 20 марта).',
-}
+     }
 
 
 # def get_sign_name(request, sing_name: str):

@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 import datetime
 import threading
 from scrapers import kurskcity,gtrkkursk,s46tv,seyminfo,k_izvestia,dddkursk,mchs,mvd
-from taggers import anons, accidents,societ
+from taggers import anons, accidents,societ,jkh
 from paths_01 import path_bd_json
 
 
@@ -91,31 +91,20 @@ def scrap_news():
         for i, j in json_data_news.items():
             # print(i,"_____",j)
             nal_dict[j[3]] = [i, j[0], j[1], j[2], j[4]]
+
         for i, j in nal_dict.items():
+            # print(i,j)
             dtime = time.ctime(int(j[1])).split()
             day_time = f'{dtime[2]} {month_liter[dtime[1]]}'
             # print(i,"_____",j)
-            final_dict[j[0]] = [j[1], j[2], day_time, i, j[4]]
+            # не берет новости без заголовков
+            if j[0]!="":
+                final_dict[j[0]] = [j[1], j[2], day_time, i, j[4]]
             # final_dict[j[0]] = [j[1], j[2], j[3], i, j[4]]
 
         return final_dict
 
-    # ===================================================
-    #     for i,j in json_data_news.items():
-    #         # print(i,"_____",j)
-    #         nal_dict[j[3]]= [i,j[0],j[1],j[2],j[4]]
-    #
-    #     for i,j in nal_dict.items():
-    #         dtime = time.ctime(int(j[1])).split()
-    #         day_time = f'{dtime[2]} {month_liter[dtime[1]]}'
-    #
-    #         # print(i,"_____",j)
-    #         final_dict[j[0]]=[j[1],j[2],day_time,i,j[4]]
-    #         # final_dict[j[0]]=[j[1],j[2],j[3],i,j[4]]
-    #     # for i,j in final_dict.items():
-    #     #     print(i,"__",day_time,"__",j)
-    #     # return final_dict
-    #     return final_dict
+
 
     # ==================================================
     def sorted_dicts(news_dict):
@@ -137,25 +126,7 @@ def scrap_news():
     return dddd
 
 
-# =============================================================
-# def json_date(sorted_dict):
-#
-#     with open('news_bd8.json', 'w', encoding ='utf-8') as file:
-#         json.dump(sorted_dict, file, ensure_ascii=False, indent=0)
-#
-#
-# json_date(scrap_news())
-#
-#
-# def scrap():
-#     path = "news_bd8.json"
-#     with open(path, 'r', encoding='utf-8') as f_five:
-#         json_data_news = json.load(f_five)
-#
-#     return json_data_news
-#
 
-# print(pack_dict)
 # ========================================
 
 
@@ -222,7 +193,7 @@ def div_base():
 def get_count_news():
     """создает список: количество новостей в каждой папке GLdate0.json-GLdate10.json"""
     number_news =[]
-    for day_ago in range(10):
+    for day_ago in range(11):
         path2 = f"{path_bd_json}GLdate{day_ago}.json"
         # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
         #         f"\\GLdate{day_ago}.json"
@@ -242,86 +213,6 @@ def get_count_news():
 
     with open(path1, 'w', encoding='utf-8') as file:
         json.dump(number_news, file, ensure_ascii=False, indent=0)
-
-# =====================================================
-
-
-# time_list0 = ['00:00', '00:20', '00:40', '01:00',
-#               '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45',
-#               '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45',
-#               '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45',
-#               '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:37', '14:45',
-#               '15:00', '15:15', '15:30', '15:45', '16:00', '16:17', '16:30', '16:45',
-#               '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45',
-#               '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:51',
-#               '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45',
-#               '23:00', '23:20', '23:40'
-#               ]
-#
-#
-# def loop_serv(time_scrap):
-#
-#     """запуск скрипта (парсера) по расписанию указанному в листе  'time_list0' """
-#
-#     def sec_count(hour_min_):
-#
-#         """вычисляет количесто секунд  от начала эпохи до сегодняшнего любого
-#          момента который дается  в формате  21:25 часы:минуты """
-#         full_date = f'{str(datetime.datetime.now())[:10]} {hour_min_}'
-#         secs_ = int(time.mktime(time.strptime(full_date, '%Y-%m-%d %H:%M')))
-#         return secs_
-#
-#     while True:
-#
-#         for hour_mins in time_scrap:
-#             # print()
-#             # print(f'Запуск в {hour_mins}')
-#
-#             # print('secs',sec_count(hour_mins))
-#
-#             ddday = str(datetime.datetime.now())[:16]
-#             # print(ddday)
-#             sec0 = int(time.mktime(time.strptime(ddday, '%Y-%m-%d %H:%M')))
-#             # print('sec0', sec0)
-#
-#             delta = sec_count(hour_mins) - sec0
-#
-#             # print(f'Ожидание {delta} секунд')
-#             # Если дата еще не наступила, то ждет ближайщую дату и запускает скрипт, потом дальще
-#             # повторяется все
-#             # print('not start==============')
-#             if delta > 0:
-#                 sleep(delta)
-#                 #
-#                 # print('start  of the NEWS-PARSER-script')
-#
-#                 totaldate(scrap_news())
-#                 div_base()
-#                 anons()
-#                 accidents()
-#                 societ()
-#                 get_count_news()
-#             elif time_scrap[-1] == hour_mins:
-#                 delta1 = 86400 - (sec_count(time_scrap[-1]) - sec_count(time_scrap[0]))
-#                 # print(f'ожидание {delta1} секунд до {time_scrap[0]}')
-#                 # print(time_scrap[-1], time_scrap[0])
-#                 # print(sec_count(time_scrap[-1]), sec_count(time_scrap[0]))
-#                 sleep(delta1)
-#                 totaldate(scrap_news())
-#                 div_base()
-#                 anons()
-#                 accidents()
-#                 societ()
-#                 get_count_news()
-# # print(scrap())
-#
-# # loop_serv()
-
-# =====================================================================
-# подключение функции скрапинга вторым потоком, иначе не запускается сервер
-# t = threading.Thread(target=loop_serv, args=(time_list0,))
-# t.start()
-
 
 
 
@@ -347,15 +238,13 @@ def script_scrap():
     accidents()
     societ()
     get_count_news()
+    jkh()
     print("===============scrap============")
 
 
 # script_scrap()
 
 
-
-# t = threading.Thread(target=script_scrap)
-# t.start()
 
 
 # подключение функции скрапинга вторым потоком, иначе не запускается сервер
@@ -370,39 +259,3 @@ def main():
 
 main()
 
-# подключение функции скрапинга вторым потоком, иначе не запускается сервер
-# t = threading.Thread(target=script_scrap)
-# t.start()
-# def main():
-#     t = threading.Thread(target=script_scrap)
-#     t.start()
-#
-# if __name__ == '__main__':
-#     main()
-# else:
-#     script_scrap()
-
-
-
-
-
-
-
-# def json_date(sorted_dict):
-#     """Запись словаря с данными после парсера в json-файл. Наименование файла - секунды с начала
-#     эпохи"""
-#     #Определение  секунды сначала эпохи для текущего момента(для именование файла)
-#     ddday = str(datetime.datetime.now())[:16]
-#     print(ddday)
-#     sec = int(time.mktime(time.strptime(ddday, '%Y-%m-%d %H:%M')))
-#     print('sec', sec)
-#     print(time.ctime(sec))#Обратный преревод секунд в дату для контроля
-#
-#     # path = f"bd_json\\news_bd8.json"
-#
-#     path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\{sec}.json"
-#
-#     # sorted_dict={'01':1, '02':6, '03':sec}
-#
-#     with open(path1, 'w', encoding ='utf-8') as file:
-#         json.dump(sorted_dict, file, ensure_ascii=False, indent=0)

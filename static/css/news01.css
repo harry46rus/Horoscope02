@@ -230,14 +230,13 @@ ul {
 #news_text{
     width: 100%;
     width:1024px;
+   /* margin: 0 auto;
+    padding: 0 15px;*/
     margin: 0 auto;
-    padding: 0 15px;
+    padding:10px;
     align-self:center;
     }
-/*align: center;
- margin-left: 200px;
-    margin-right: 200px;
-  */
+
 
 #news_box{
     padding-left: 50px;

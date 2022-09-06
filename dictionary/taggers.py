@@ -1,6 +1,8 @@
 import json
 import re
 import datetime
+import time
+
 from dictionary.paths_01 import path_bd_json
 
 def anons():
@@ -60,6 +62,18 @@ def anons():
                 # print(result)
                 anons_dict[title] = y
 
+        #работа со словом "сегодня"
+        result = re.findall("сегодня", title.lower())
+        if result:
+            print('сегодня_news')
+            today_start_ = int(time.mktime(time.strptime(str(datetime.datetime.now())[:10],
+                 '%Y-%m-%d')))
+            delta = y[0] - today_start_
+            print(delta)
+            if 0 < delta < 86400:
+                anons_dict[title] = y
+                print('сегодня_ ', title, y[2])
+
     for title, y in json_data_news.items():
         key_ = f'\d+ {get_day_month(0)[1]}'
         result = re.findall(key_, title.lower())
@@ -86,7 +100,7 @@ def anons():
                | ожида[ею]т|объяв[ия]т|оцен[ия]т|состо[ия]т[ь]*ся|стартовал|подтвердил|спилят\
                | отдохн[еу]т|демонтиру[юе]т |демонтировать|обеща[ею]т|упростил|открыл[ио]\
                | объявил| готов|снесут| под снос|потратят|ожида[ею]т|начал\w* проверку\
-               | строя| к зиме| к весне| к лету| к осени| получ[иа]т'
+               | строя| к зиме| к весне| к лету| к осени| получ[иа]т| можно'
 
         # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
 
@@ -146,7 +160,7 @@ def accidents():
     for title, y in json_data_news.items():
 
         # 'ся' учитывается и добавляется
-        key_list1 = ' дтп\s|произош[е]*л\w*|случил[о]с*\w*|убийств\w*|подозрева\wт\w*\
+        key_list1 = r' дтп\s|произош[е]*л\w*|случил[о]с*\w*|убийств\w*|подозрева\wт\w*\
                    | подозревае| покушени\w*|суд взыскал| выгорел\
                    | обвиня\wтся|авари\w*|госпитализирован\w*|ранен\w*|осужд\w*\
                    | хищен\w* | п[р]*опал\w*| перелом\w*| изнасилов\w*|превышени\w \w* полномоч\w*\
@@ -163,7 +177,7 @@ def accidents():
                    | наркокурьер\w*|горит| вор\w|вор[уо]|клиент\w* банк|суд обязал\
                    | колони\w*|умер\w*|пострадал\w*|зареза\w*|миниров\w*|дебошир\w*|задержал\w*\
                    | пропал|поиски|диверсант| подорвал| подрывал| разбой| угонщик| просроченны\
-                   | разбил| арест|отправ\w*т\w* в колонию|за нападение\
+                   | разбил| арест|отправ\w*т\w* в колонию|за нападение|фальшив|подделк\
                    | попал в аварию| использовал\w* [\S*\s]* оружие| применил\w* [\S*\s]* оружие\
                    | угнан| укус\w* клещ'
         # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
@@ -207,7 +221,7 @@ def societ():
 
     for title, y in json_data_news.items():
 
-        key_list1 = ' построен| запущен| завершен\w*| преоборудован\w*| открыт\w*\
+        key_list1 = r' построен| запущен| завершен\w*| преоборудован\w*| открыт\w*\
                     | остановлен\w*| прекращен\w*| обнародован\w*| планироан\w*\
                     | восстановле\w*| отремонтирован\w*| возобновлен\w*|станет|отметили\
                     | обновлен\w*| реконструирован\w*|административн\w*|будующ\w*|встретил\w*\
@@ -225,7 +239,7 @@ def societ():
                     | победил| безработиц| инфляц| рост\w* цен| физкультур|запустил\
                     | археолог|индекс\w* потребительских цен|одержал\w [\S*\s]* победу\
                     | проходит| добил\w*с\
-                    | контрол| получ[иа]т'
+                    | контрол| получ[иа]т|госуслуг'
 
         # 'ся' учитывается и добавляется
 
@@ -247,3 +261,279 @@ def societ():
         json.dump(societ_dict, file, ensure_ascii=False, indent=0)
 
 # =======================================================
+
+
+def jkh():
+    """Сортирует словарь событий по теме,  записывает json-файла по пути (для показа на
+    сайте) и  конвертация в обычный словарь"""
+
+
+    jkh_dict = {}
+
+
+
+    # #чтение и конвертация в обычный словарь
+    path2 = f"{path_bd_json}GLdate0.json"
+    # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+    #         f"\\GLdate0.json"
+    # path2 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate0.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        json_data_news = json.load(f_five)
+
+    # print(len(json_data_news))
+
+
+    for title, y in json_data_news.items():
+
+        key_list1 = r'жкх|без газа|гасоснабж|канализац|отключен|отключат\
+                    |остановлен\w*|аварийны\w* дом|рассел[еия][тн]\
+                    |восстановле\w*| отремонтирован\w*| возобновлен\w*|отметили\
+                    |обновлен\w*|реконструирован\w*|жители дома\
+                    |(отключени\w*|без )[\s\w]{,10}(вод[^и]|свет|электр|движени\w*)\
+                    |дорожн\w* развязк\w*|капремонт|капитальн\w* ремонт\
+                    |(вод|свет|электр)[\s\w]{,10}(отключени\w*)|«Квадр[аыо]\w*»\
+                    |(холодн|горяч)[\s\w]{,10}(вод)| мусор| свалк\
+                    |подач\w газ\w| инвестированн\w|освещенн\w? улиц|теплосет\w*\
+                    |(вод|свет|электр)[\s\w]{,10}(обещают)| дорожн\w* работ| нацпроект\
+                    |(ремонт|укладк|строит|убирал|уборк)[\s\w]{,10}(доро[гж])|утилизаци\w* тко\
+                    |(коммунальн\w*) (удобств|услуг)'
+
+        # 'ся' учитывается и добавляется
+
+        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
+
+        result = re.findall(key_list1, title.lower())
+        # print(result)
+        if result:
+            jkh[title] = y
+
+
+
+    path1 = f"{path_bd_json}GLdate10.json"
+    # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+    #         f"\\GLdate9.json"
+    # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate9.json"
+
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(jkh_dict, file, ensure_ascii=False, indent=0)
+# ==========================================================
+
+def sport():
+    """Сортирует словарь событий по теме,  записывает json-файла по пути (для показа на
+    сайте) и  конвертация в обычный словарь"""
+
+
+    sport_dict = {}
+
+
+
+    # #чтение и конвертация в обычный словарь
+    path2 = f"{path_bd_json}GLdate0.json"
+    # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+    #         f"\\GLdate0.json"
+    # path2 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate0.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        json_data_news = json.load(f_five)
+
+    # print(len(json_data_news))
+
+
+    for title, y in json_data_news.items():
+
+        key_list1 =r'чемпионат|авангард|бокс|маунтинбайк|\s?спорт\
+                |турнир|гимнаст|физкультур|рапирист|динамо|биатлон\
+                |пауэрлифт|ипподром|спартакиад|регби|евролиг|лыжн[оиы]\
+                |стритбол|забег|болельщик|кикбоксинг|тренировочн\w* сбор\
+                |дзюдо|спортивн\w* борьб|паралимпий|троебор»|фитнес-центр\
+                |марафон|плей-офф|единоборств|первенств|киокусинкай|волейбол\
+                |куб[о]?к\w* России|спортивны\w* соревновани|спортивн\w* ориентирован\
+                |легко\w* атлетик|шахмат|спартакиада|фехтовани|мастер\w* спорт\
+                |многоборь|(завоевал)[\s\w]{,10}(золото|серебр|бронз)|олимпиад\
+                |олимпийск\w* д[е]?н[я]?|автокросс| мотокросс|бегун|пауэрлифтинг\
+                |кросс|карат[еи]|плавани|скейтбординг|баскетбол|чемпионск\w* титул\
+                |футбол|акробатическ\w* рок-н-ролл|(велосипедн\w*) (гонк|спорт)\
+                |парашут\w* спорт|кат[о]?к[е]? с искусственным льдом\
+                |спортивн\w* стрельб'
+
+
+        # 'ся' учитывается и добавляется
+
+        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
+
+        result = re.findall(key_list1, title.lower())
+        # print(result)
+        if result:
+            sport_dict[title] = y
+
+
+
+    path1 = f"{path_bd_json}GLdate11.json"
+    # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+    #         f"\\GLdate9.json"
+    # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate9.json"
+
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(sport_dict, file, ensure_ascii=False, indent=0)
+# =================================================================
+def medicin():
+    """Сортирует словарь событий по теме,  записывает json-файла по пути (для показа на
+    сайте) и  конвертация в обычный словарь"""
+
+    medicin_dict = {}
+
+    # #чтение и конвертация в обычный словарь
+    path2 = f"{path_bd_json}GLdate0.json"
+    # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+    #         f"\\GLdate0.json"
+    # path2 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate0.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        json_data_news = json.load(f_five)
+
+    # print(len(json_data_news))
+
+
+    for title, y in json_data_news.items():
+
+        key_list1 =r'поликлиник|больниц|амбулатори|скор\w* помощ\
+                |covid|ковид|вакцин|коронавирус|омикрон|санитарн|медкарт\
+                |санавиаци|масочн\w* режим|карт\w* пациент|пациент|больничны\
+                |«спутник\w* v»|«ковиваком»| привив|«эпиваккорон\w*»|онколог\
+                |медицин|смертност|стоматолог|лечени|анестези|инфаркт\
+                | омс |медсестр|здравоохранени|\bрод[ыо]|пандеми|волейбол\
+                |продолжительность жизни|перинатальн\w* центр|перинатальн\
+                |инфекционн|бактери|медучрежден|донор\w* крови|онкоцентр\
+                |уролог|(делал|выполнил|провел)[\s\w]{,10}(операц)|врач\
+                |заболеван|грипп|заболел|здоровь|медик|иммунитет\
+                |\bорви |планов\w* помощ|госпитал'
+
+
+        # 'ся' учитывается и добавляется
+
+        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
+
+        result = re.findall(key_list1, title.lower())
+        # print(result)
+        if result:
+            medicin_dict[title] = y
+
+
+
+    path1 = f"{path_bd_json}GLdate12.json"
+    # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+    #         f"\\GLdate9.json"
+    # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate9.json"
+
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(medicin_dict, file, ensure_ascii=False, indent=0)
+# ====================================================
+def education():
+    """Сортирует словарь событий по теме,  записывает json-файла по пути (для показа на
+    сайте) и  конвертация в обычный словарь"""
+
+    education_dict = {}
+
+    # #чтение и конвертация в обычный словарь
+    path2 = f"{path_bd_json}GLdate0.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        json_data_news = json.load(f_five)
+
+    # print(len(json_data_news))
+
+
+    for title, y in json_data_news.items():
+
+        key_list1 =r'педагог|школ|детск\w* сад|детсад\
+                |абитуриент|\bегэ|выпускник|информатик\
+                |государственн\w* итогов\w* аттестац|\bвуз|учащиеся\
+                | переобучени| урок|выпускни[кц]|\bюзгу|\bкгу|\bсха\
+                |образовани|наставник|диктант|учител|уч[иа]т\
+                |научат|университет|колледж|воспитател|школьни[кц]|учени[кц]\
+                |студент|грант|просвещени| дошколят|лице[йеюя]\
+                |старшеклассни[кц]|учёны[йм]|олимпиад\w*[\s\w]{,12}по|гимназия|педсовет\
+                |грамот|академи|стипендиат\
+                |последн\w* звон[o]к|выпускно\w|учебн\w* год'
+
+
+        # 'ся' учитывается и добавляется
+
+        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
+
+        result = re.findall(key_list1, title.lower())
+        # print(result)
+        if result:
+            education_dict[title] = y
+
+
+
+    path1 = f"{path_bd_json}GLdate13.json"
+    # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+    #         f"\\GLdate9.json"
+    # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate9.json"
+
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(education_dict, file, ensure_ascii=False, indent=0)
+# =========================================
+def economic():
+    """Сортирует словарь событий по теме,  записывает json-файла по пути (для показа на
+    сайте) и  конвертация в обычный словарь"""
+
+    economic_dict = {}
+
+    # #чтение и конвертация в обычный словарь
+    path2 = f"{path_bd_json}GLdate0.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        json_data_news = json.load(f_five)
+
+    # print(len(json_data_news))
+
+
+    for title, y in json_data_news.items():
+
+        key_list1 =r'выплат|предприяти|\bдолг[и]? |кредит|субсиди|ипоте[кч]\
+                |экономик|\bналог|зарплат|информатик|льгот|\bсборы|медкарт\
+                |производств|технологи|электронн|предпринимател\
+                |сельхозтоваропроизводител|бюджет|деньг|\bбанк|отрасл\
+                |финанс|социальн\w* сфер|(получ[иа]т|выплат)[\s\w]{,10}(рублей)\
+                |кредитн\w* карт|экспорт|микрозайм|экономическ|инвестиц|учени[кц]\
+                |доход|платеж|систем\w* быстрых платежей|нарушени\w* на\
+                |богаты|бедны|сервис|цифров|эскроу|недвижимост\
+                |\bсчет|академи|маткапитал|прожиточн\w* минимум\
+                |материнск\w* капитал|подорожал\w|подешевел\w* год\
+                |(начисл|банковск|кредитн|дебетов|пластиков)[\s\w]{,10}(карт)\
+                |правительств|пенси[ийю]|бизнес|заемщик|средств|адресн\w* помощ\
+                |индекс|банкрот|аграри|аренд|посевн|фермер|\bцен |\bцены\
+                |платёжн\w* систем|потребител|экспорт|валют|нацпроект\
+                |(млн|млрд) (рублей)акциз|обесцен|инфляциурожайзакупк\
+                |аграрны|норматив|доллар|убыт[о]?к|сев\w* озимыхгектар\
+                |товаропроизводител|производител|федеральн\w* средств\
+                |ярмарк|задолжал|компенсац|\bминист[е]?|торговл|зерновы'
+
+
+        # 'ся' учитывается и добавляется
+
+        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
+
+        result = re.findall(key_list1, title.lower())
+        # print(result)
+        if result:
+            economic_dict[title] = y
+
+
+
+    path1 = f"{path_bd_json}GLdate14.json"
+    # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
+    #         f"\\GLdate9.json"
+    # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate9.json"
+
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(economic_dict, file, ensure_ascii=False, indent=0)
+# jkh()
+# sport()
+# medicin()
+# education()
+economic()
