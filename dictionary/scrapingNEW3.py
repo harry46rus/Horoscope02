@@ -193,7 +193,7 @@ def div_base():
 def get_count_news():
     """создает список: количество новостей в каждой папке GLdate0.json-GLdate10.json"""
     number_news =[]
-    for day_ago in range(11):
+    for day_ago in range(16):
         path2 = f"{path_bd_json}GLdate{day_ago}.json"
         # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
         #         f"\\GLdate{day_ago}.json"
@@ -205,8 +205,9 @@ def get_count_news():
         count=len(json_data_news)
 
         number_news.append(count)
+
     qual_index=(number_news[7]+number_news[8]+number_news[9])/number_news[0]
-    # print(f'Полнота отбора в рубрики: анонс, происшествия и общество___{qual_index}')
+    print(f'Полнота отбора в рубрики: {qual_index}')
     path1 = f"{path_bd_json}numnews.json"
     # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
     # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/numnews.json"

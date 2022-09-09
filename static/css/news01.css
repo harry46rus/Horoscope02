@@ -744,6 +744,9 @@ margin: 20px 0; */
 }
 
 @media(max-width: 767px){
+    body{
+    font-size: 0.8em;
+    }
     .adv{
         display:none;
         }
