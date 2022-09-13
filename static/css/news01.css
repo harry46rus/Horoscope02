@@ -540,7 +540,7 @@ border:1px solid red;
 .dropdown-content {
     display: none;
     position: absolute;
-    min-width: 160px;
+    min-width: 270px;
     overflow: auto;
     background-color:#F5F4F2;
     border: 3px solid #FFFFFF;
@@ -561,13 +561,23 @@ border:1px solid red;
     margin-left: -80px;
 
     }
+#myDropdown1{
+    line-height: 1.1;
+    font-weight: 500;
+    top: 70px;
+    border-radius:15px;
+    /*border-bottom-right-radius:15px;*/
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 360px;
 
+    }
 .dropdown-content a {
     color: #454340;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    min-width: 285px;
+    min-width: 225px;
 }
 
 .dropdown-content a:hover {
@@ -580,6 +590,7 @@ border:1px solid red;
 
 .show {display: block;}
 
+.wh_space{white-space: nowrap;}
 
 
 
@@ -652,8 +663,9 @@ margin: 20px 0; */
     width: fit-content;
 
         }
-
-
+    #sova{
+    display:none;
+    }
 
      img{
     overflow: hidden;
@@ -746,6 +758,9 @@ margin: 20px 0; */
 @media(max-width: 767px){
     body{
     font-size: 0.8em;
+    font-size: 15px;
+    font-size: 80%;
+
     }
     .adv{
         display:none;
@@ -874,11 +889,11 @@ margin: 20px 0; */
     }
 
     .dropbtn {
-    font-size: 22px;
+    font-size: 20px;
     padding-right: 20px;
         }
     .dropbtn_active{
-        font-size:22px;
+        font-size:20px;
         padding-right: 20px;
     }
     .head-button{
@@ -898,7 +913,14 @@ margin: 20px 0; */
     #myDropdown{
         top: 105px;
         margin-right: 5px;
-        font-size: 22px;
+        font-size: 18px;
+        position: absolute;
+        right:0px
+    }
+    #myDropdown1{
+        top: 155px;
+        margin-right: 5px;
+        font-size: 18px;
         position: absolute;
         right:0px
     }
@@ -907,17 +929,20 @@ margin: 20px 0; */
     }*/
     .mnbtn{
         align-self:right;
-        padding-top: 60px;
+        padding-top: 30px;
         padding-bottom: 0px;
-        font-size:22px;
+        font-size:20px;
         align-content: right;
 
     }
+    #source_ {
+        padding-left: 0px;
 
-
-
-
-
+    }
+    .time_source {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
     .burger-icon{
     }
     .menu{
@@ -960,6 +985,9 @@ margin: 20px 0; */
         display: flex;
         flex-direction: column;
         height: 100%;
+    }
+    #sova{
+    display:block;
     }
 }
 
@@ -1037,20 +1065,21 @@ margin: 20px 0; */
 
         }*/
     #source_ {
-    padding-left: 15px;
+    /*padding-left: 15px;*/
     margin-top:0px;
-    flex-flow: column-reverse;
+    /*flex-flow: column-reverse;*/
     margin-top: 0px;
     margin-bottom: 0px;
     }
     .time_source{
         margin-top:0px;
-        margin-top:10px;
-
     }
+
     @media(max-width: 428px){
     body{
-
+    font-size: 0.65em;
+    font-size: 12px;
+    font-size: 65%;
 
     }
 
@@ -1087,7 +1116,6 @@ margin: 20px 0; */
     }
     .time_source{
         margin-top:0px;
-        margin-top:10px;
 
     }
     @media(max-width: 228px){

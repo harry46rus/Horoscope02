@@ -31,8 +31,8 @@ def rewrite_json():
     try:
         with open(path1, 'r', encoding='utf-8') as f_five:
             old_dict = json.load(f_five)
-        # print(old_dict)
-        # print(json_data_news)
+        print(old_dict)
+        print(json_data_news)
         old_dict.update(json_data_news)
 
         with open(path1, 'w', encoding='utf-8') as file:
