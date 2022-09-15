@@ -9,7 +9,8 @@ from bs4 import BeautifulSoup
 import datetime
 import threading
 from scrapers import kurskcity,gtrkkursk,s46tv,seyminfo,k_izvestia,dddkursk,mchs,mvd
-from taggers import anons, accidents, societ, jkh, sport, medicin, education, economic,culture
+from taggers import *
+# from taggers import anons, accidents, societ, jkh, sport, medicin, education, economic,culture
 from paths_01 import path_bd_json
 
 
@@ -188,7 +189,7 @@ def get_count_news():
     """создает список: количество новостей в каждой папке GLdate0.json-GLdate10.json"""
     number_news =[]
 
-    for day_ago in range(16):
+    for day_ago in range(22):
         path2 = f"{path_bd_json}GLdate{day_ago}.json"
         # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
         #         f"\\GLdate{day_ago}.json"
@@ -236,6 +237,12 @@ def script_scrap():
     education()
     economic()
     culture()
+    dtp()
+    fire()
+    moshen()
+    lifting()
+    syd()
+    svo()
     get_count_news()
     print("===============scrap============")
 

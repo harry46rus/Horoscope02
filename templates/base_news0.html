@@ -166,20 +166,128 @@
                         </div>
 <!--                        ==========================-->
                         <div class="mnbtn">
+                            {% if sing_news > 15 and sing_news < 22 %}
+                                <div class="sline" >
+                                    <a onclick="myFunction2()"  class="dropbtn"
+                                       style="color:#FFFFFF;" >
+                                                  ПРОИСШЕСТВИЯ&#9660;</a>
+                                </div>
+                            {% else %}
+                                <div>
+                                    <a onclick="myFunction2()" class="dropbtn">
+                                        ПРОИСШЕСТВИЯ&#9660;</a>
+                                </div>
+                            {% endif  %}
+                        </div>
+<!--                        ===========================-->
+
+                        <div id="myDropdown2" class="dropdown-content" class="hbtn">
                             <div>
                                 {% if sing_news == 8 %}
-                                    <div class="sline">
-                                        <a class="dropbtn_active" class="head-button"
-                                             href="/news0/8">ПРОИСШЕСТВИЯ</a>
-<!--                                        <span class="numb_news" >[{{numnews.8}}]</span>-->
+                                    <div class="gline">
+                                        <a href="/news0/8">все ПРОИСШЕСТВИЯ<span class="numb_news">
+                                            _{{numnews.8}}
+                                                </span></a>
                                     </div>
                                 {% else %}
-                                    <div>
-                                        <a class="head-button" class="dropbtn" href="/news0/8">
-                                            ПРОИСШЕСТВИЯ</a>
-<!--                                        <span class="numb_news" >[{{numnews.8}}]</span>-->
+                                     <div>
+                                        <a href="/news0/8">все ПРОИСШЕСТВИЯ<span class="numb_news">
+                                            _{{numnews.8}}</span></a>
+                                     </div>
+                                {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 16 %}
+                                    <div class="gline">
+                                        <a href="/news0/16">ДТП<span class="numb_news">
+                                            ______________________{{numnews.16}}
+                                                </span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                        <a href="/news0/16">ДТП<span class="numb_news">
+                                            ______________________{{numnews.16}}</span></a>
+                                     </div>
+                                {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 17 %}
+                                    <div class="gline">
+                                        <a href="/news0/17">ПОЖАРЫ
+                                        <span class="numb_news" >
+                                            ________________{{numnews.17}}</span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                        <a href="/news0/17">ПОЖАРЫ
+                                        <span class="numb_news" >
+                                            ________________{{numnews.17}}</span></a>
                                     </div>
                                 {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 18 %}
+                                    <div class="gline">
+                                        <a href="/news0/18">МОШЕННИКИ
+                                        <span class="numb_news" >__________{{numnews.18}}</span>
+                                        </a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                        <a href="/news0/18">МОШЕННИКИ
+                                        <span class="numb_news" >__________{{numnews.18}}</span>
+                                        </a>
+                                    </div>
+                                {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 19 %}
+                                    <div class="gline">
+                                        <a href="/news0/19">КРАЖИ
+                                        <span class="numb_news" >
+                                            __________________{{numnews.19}}</span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                        <a href="/news0/19">КРАЖИ
+                                        <span class="numb_news" >
+                                            __________________{{numnews.19}}</span></a>
+                                    </div>
+                                {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 20 %}
+                                    <div class="gline">
+                                         <a href="/news0/20">СУДЫ
+                                         <span class="numb_news" >
+                                             ___________________{{numnews.20}}</span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                         <a href="/news0/20">СУДЫ
+                                         <span class="numb_news" >
+                                             ___________________{{numnews.20}}</span></a>
+                                    </div>
+                                {% endif  %}
+                            </div>
+                            <div>
+                                {% if sing_news == 21 %}
+                                    <div class="gline">
+                                         <a href="/news0/21">СВО
+                                         <span class="numb_news" >
+                                             _____________________{{numnews.21}}</span></a>
+                                    </div>
+                                {% else %}
+                                     <div>
+                                         <a href="/news0/21">СВО
+                                          <span class="numb_news" >
+                                              _____________________{{numnews.21}}</span></a>
+                                    </div>
+                                {% endif  %}
+                            </div>
+
+                            <div class="box_hr_line">
+                                <hr class="hr-line"><br>
                             </div>
                         </div>
 <!--                        =========================-->
@@ -302,7 +410,7 @@
 <!--                        ============================-->
                         <div class="mnbtn">
                             <div>
-                                {% if sing_news == 20 %}
+                                {% if sing_news == 99 %}
                                     <div class="sline">
                                         <a class="dropbtn_active" class="head-button"
                                              href="/whyitsite/">ЧаВо</a>
@@ -314,7 +422,6 @@
                                         <a class="head-button" class="dropbtn" href="/whyitsite/">
                                             ЧаВо</a>
 <!--                                            ЗАЧЕМ ЭТОТ САЙТ?</a>-->
-
                                     </div>
                                 {% endif  %}
                             </div>
@@ -370,6 +477,26 @@
     toggle between hiding and showing the dropdown content */
     function myFunction1() {
         document.getElementById("myDropdown1").classList.toggle("show");
+    }
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+    </script>
+    <script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction2() {
+        document.getElementById("myDropdown2").classList.toggle("show");
     }
     // Close the dropdown if the user clicks outside of it
     window.onclick = function(event) {

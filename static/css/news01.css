@@ -537,16 +537,7 @@ border:1px solid red;
     display: inline-block;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    min-width: 270px;
-    overflow: auto;
-    background-color:#F5F4F2;
-    border: 3px solid #FFFFFF;
-    box-shadow: 0 0 25px #82736C;
-    z-index: 1;
-}
+
 
 /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   background-color: #f1f1f1;*/
@@ -558,7 +549,7 @@ border:1px solid red;
     /*border-bottom-right-radius:15px;*/
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: -80px;
+    margin-left: -60px;
 
     }
 #myDropdown1{
@@ -569,7 +560,18 @@ border:1px solid red;
     /*border-bottom-right-radius:15px;*/
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: 360px;
+    margin-left: 450px;
+
+    }
+#myDropdown2{
+    line-height: 1.1;
+    font-weight: 500;
+    top: 70px;
+    border-radius:15px;
+    /*border-bottom-right-radius:15px;*/
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 250px;
 
     }
 .dropdown-content a {
@@ -577,7 +579,17 @@ border:1px solid red;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    min-width: 225px;
+    min-width: 240px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 240px;
+    overflow: auto;
+    background-color:#F5F4F2;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 0 25px #82736C;
+    z-index: 1;
 }
 
 .dropdown-content a:hover {
@@ -911,25 +923,32 @@ margin: 20px 0; */
         padding-top: 10px;
     }
     #myDropdown{
-        top: 105px;
+        top: 45px;
         margin-right: 5px;
-        font-size: 18px;
+        font-size: 16px;
         position: absolute;
-        right:0px
+        right:0px;
     }
     #myDropdown1{
-        top: 155px;
+        top: 215px;
         margin-right: 5px;
-        font-size: 18px;
+        font-size: 16px;
         position: absolute;
-        right:0px
+        right:0px;
+    }
+    #myDropdown2{
+        top: 140px;
+        margin-right: 5px;
+        font-size: 16px;
+        position: absolute;
+        right:0px;
     }
    /* .hbtn{
         flex-direction: column;
     }*/
     .mnbtn{
         align-self:right;
-        padding-top: 30px;
+        padding-top: 21px;
         padding-bottom: 0px;
         font-size:20px;
         align-content: right;

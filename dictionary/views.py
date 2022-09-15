@@ -103,7 +103,7 @@ def get_why(request):
         dddate, usd, eur = date_, value[1], value[3]
 
     date_num = get_dates()
-    sing_news = 20
+    sing_news = 99
     data = {
         'sing_news': sing_news,
         'numnews': numnews,
