@@ -189,7 +189,7 @@ def get_count_news():
     """создает список: количество новостей в каждой папке GLdate0.json-GLdate10.json"""
     number_news =[]
 
-    for day_ago in range(22):
+    for day_ago in range(27):
         path2 = f"{path_bd_json}GLdate{day_ago}.json"
         # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
         #         f"\\GLdate{day_ago}.json"
@@ -243,6 +243,11 @@ def script_scrap():
     lifting()
     syd()
     svo()
+    today_(0)
+    today_(1)
+    today_(2)
+    events()
+    adverts()
     get_count_news()
     print("===============scrap============")
 

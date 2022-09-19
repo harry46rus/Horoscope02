@@ -23,6 +23,7 @@ def anons():
 
     anons_dict = {}
     anons_dict1 = {}
+    anons_dict2 = {}
 
     def get_day_month(nn):
 
@@ -91,8 +92,9 @@ def anons():
           | ожида[ею]т|объяв[ия]т|оцен[ия]т|состо[ия]т[ь]*ся|стартовал|подтвердил|спилят|ььь\
           | отдохн[еу]т|демонтиру[юе]т |демонтировать|обеща[ею]т|упростил|открыл[ио]|ььь\
           | объявил| готов|снесут| под снос|потратят|ожида[ею]т|начал\w* проверку|ььь\
-          | строя| к зиме| к весне| к лету| к осени| получ[иа]т| можно|сегодня|ььь\
-           |прос[яи]т сообщ[аи]ть|прогноз чс|на контроле гу мчс|планиру[ею]т'
+          |строя| получ[иа]т|\bможно|сегодня|проходит|провод[ия]т|ььь\
+          |прос[яи]т сообщ[аи]ть|прогноз чс|на контроле гу мчс|планиру[ею]т|\w*[яи]тся|ььь\
+          |новогодн\w* ноч|(\bдо\b|\bк\b)[\s\w]{,20}(зим[ые]|весн[ые]|лет[ау]|осени)'
 
         # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
 
@@ -118,6 +120,17 @@ def anons():
                 print('сегодня_ ', title, y[2])
         else:
             anons_dict1[title] = y
+
+    # исключение из словаря предложений с таким словами
+    for title, y in anons_dict1.items():
+        key_list2 = r'\bкраж|судит|нарушени|задержа|лишит\w* прав'
+
+        result1 = re.findall(key_list2, title.lower())
+        # print(result)
+        if result1:
+            pass
+        else:
+            anons_dict2[title] = y
 
     def sorted_dicts1(news_dict):
         """Сортировка словаря по дате элементов(новостей). Вверху самые поздние """
@@ -227,7 +240,7 @@ def societ():
     for title, y in json_data_news.items():
 
         key_list1 = r' построен| запущен| завершен\w*| преоборудован\w*| открыт\w*|ььь\
-                    | остановлен\w*| прекращен\w*| обнародован\w*| планироан\w*|субботник|ььь|ььь\
+                    | остановлен\w*| прекращен\w*| обнародован\w*| планироан\w*|субботник|ььь\
                     | восстановле\w*| отремонтирован\w*| возобновлен\w*|станет|отметили|ььь\
                     | обновлен\w*| реконструирован\w*|административн\w*|будующ\w*|встретил\w*|ььь\
                     | курско\w* предприяти\w*| жил\w* застройк\w*| дорожн\w* развязк\w*|ььь\
@@ -243,8 +256,9 @@ def societ():
                     | добился|добились|комисси| готов[аы]*|упростил|проголосовал|%| подписал|ььь\
                     | победил| безработиц| инфляц| рост\w* цен| физкультур|запустил|депутат|ььь\
                     | археолог|индекс\w* потребительских цен|одержал\w [\S*\s]* победу|ььь\
-                    | проходит| добил\w*с|муниципал| слушани|совещан|мэр[иаоеу]|гимн|ььь\
-                    |семейнсемь[яиею]| контрол| получ[иа]т|госуслуг|\bit\Wтехнологи'
+                    | добил\w*с|муниципал| слушани|совещан|мэр[иаоеу]|гимн|ььь\
+                    |семейнсемь[яиею]| контрол| получ[иа]т|госуслуг|\bit\Wтехнологи|ььь\
+                    |обществен\w* транспорт|отметил'
 
 
         # 'ся' учитывается и добавляется
@@ -291,7 +305,7 @@ def jkh():
 
         key_list1 = r'жкх|без газа|гасоснабж|канализац|отключен|отключат|ььь\
                     |остановлен\w*|аварийны\w* дом|рассел[еия][тн]|ььь\
-                    |восстановле\w*| отремонтирован\w*| возобновлен\w*|отметили|ььь\
+                    |восстановле\w*| отремонтирован\w*| возобновлен\w*|ььь\
                     |обновлен\w*|реконструирован\w*|жители дома|ььь\
                     |(отключени\w*|без )[\s\w]{,15}(вод[^и]|свет|электр|движени\w*)|ььь\
                     |дорожн\w* развязк\w*|капремонт|капитальн\w* ремонт|ььь\
@@ -345,7 +359,7 @@ def sport():
 
     for title, y in json_data_news.items():
 
-        key_list1 =r'чемпионат|авангард|бокс|маунтинбайк|\s?спорт|рекорд по|ььь\
+        key_list1 =r'чемпионат|авангард|бокс|маунтинбайк|\bспорт|рекорд по|ььь\
                 |турнир|гимнаст|физкультур|рапирист|динамо|биатлон|ььь\
                 |пауэрлифт|ипподром|спартакиад|регби|евролиг|лыжн[оиы]|ььь\
                 |стритбол|забег|болельщик|кикбоксинг|тренировочн\w* сбор|ььь\
@@ -443,6 +457,8 @@ def education():
     сайте) и  конвертация в обычный словарь"""
 
     education_dict = {}
+    education_dict1 = {}
+    education_dict2 = {}
 
     # #чтение и конвертация в обычный словарь
     path2 = f"{path_bd_json}GLdate0.json"
@@ -458,10 +474,10 @@ def education():
         key_list1 =r'педагог|школ|детск\w* сад|детсад|академи|ььь\
                 |абитуриент|\bегэ|выпускник|информатик|\bогэ\b|ььь\
                 |государственн\w* итогов\w* аттестац|\bвуз|учащиеся|ььь\
-                | переобучени| урок|выпускни[кц]|\bюзгу|\bкгу|\bсха|ььь\
-                |образовани|наставник|диктант|учител|уч[иа]т|ььь\
+                | переобучени|\bурок|выпускни[кц]|\bюзгу|\bкгу|\bсха|ььь\
+                |образовани|наставник|диктант|учител|\bуч[иа]т|\bизуч[иа]т|ььь\
                 |научат|университет|колледж|воспитател|школьни[кц]|учени[кц]|ььь\
-                |студент|грант|просвещени| дошколят|лице[йеюя]|ььь\
+                |студент|грант|просвещени| дошколят|\bлице[йеюя]|ььь\
                 |старшеклассни[кц]|учёны[йм]|олимпиад\w*[\s\w]{,12}по|гимназия|педсовет|ььь\
                 |грамот|академи|стипендиат|грамотност|\bit|ььь\
                 |последн\w* звон[o]к|выпускно\w|учебн\w* год'
@@ -476,9 +492,17 @@ def education():
         if result:
             education_dict[title] = y
 
+        # исключение из словаря предложений с таким словами
+        for title, y in education_dict.items():
+            key_list2 = r'на школьн|ул[.\w]* школьн'
 
-
-
+            result1 = re.findall(key_list2, title.lower())
+            # print(result)
+            if result1:
+                education_dict2[title] = y
+                pass
+            else:
+                education_dict1[title] = y
 
     path1 = f"{path_bd_json}GLdate13.json"
     # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
@@ -486,7 +510,7 @@ def education():
     # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate9.json"
 
     with open(path1, 'w', encoding='utf-8') as file:
-        json.dump(education_dict, file, ensure_ascii=False, indent=0)
+        json.dump(education_dict1, file, ensure_ascii=False, indent=0)
 # =======================================================
 def economic():
     """Сортирует словарь событий по теме,  записывает json-файла по пути (для показа на
@@ -511,8 +535,8 @@ def economic():
                 |производств|технологи|электронн|предпринимател|ььь\
                 |сельхозтоваропроизводител|бюджет|деньг|\bбанк|отрасл|ььь\
                 |финанс|социальн\w* сфер|(получ[иа]т|выплат)[\s\w]{,15}(рублей)|ььь\
-                |кредитн\w* карт|экспорт|микрозайм|экономическ|инвестиц|учени[кц]|ььь\
-                |доход|платеж|систем\w* быстрых платежей|нарушени\w* на|ььь\
+                |кредитн\w* карт|экспорт|микрозайм|экономическ|инвестиц|ььь\
+                |доход|платеж|систем\w* быстрых платежей|ььь\
                 |богаты|бедны|сервис|цифров|эскроу|недвижимост|самозанят|ььь\
                 |\bсчет|маткапитал|прожиточн\w* минимум|вве[лд][\s\w]{,25}\bжиль[яе]|ььь\
                 |материнск\w* капитал|подорожал\w|подешевел\w* год|ььь\
@@ -537,8 +561,8 @@ def economic():
         key_list2 = r'мошенник|похити[лтв]|укра[вл]|лиши[вл]|потеря[вл]|отня[втл]|обману[тлв]|ььь\
                     |выманива|погиб| краж|подозреваемы|голосова[нв]|фиктивн|умер|ььь\
                     |отсудил|смерт|(чужой|не своей)[\s\w]{,20}(картой)|напал|ущерб|ььь\
-                    |\bподлог|\bзадержа|\bподделал|в суде|судебн\w* иск|ььь\
-                    |призывн[ио]|сигарет|уличил|поздрав[ия]|скрыл'
+                    |\bподлог|\bзадержа|\bподделал|в суде|судебн\w* иск|незаконно|ььь\
+                    |призывн[ио]|сигарет|уличил|поздрав[ия]|скрыл|со счет|\bучил[иса]'
 
         result1 = re.findall(key_list2, title.lower())
         # print(result)
@@ -560,6 +584,7 @@ def culture():
         сайте) и  конвертация в обычный словарь"""
 
     culture_dict = {}
+    culture_dict1 = {}
 
     # #чтение и конвертация в обычный словарь
     path2 = f"{path_bd_json}GLdate0.json"
@@ -572,8 +597,8 @@ def culture():
     for title, y in json_data_news.items():
 
         key_list1 = r'конкурс|фестивал|концерт|джаз|мастер-класс|ььь\
-                    |экскурси|\bкино|\bактер|пев[ие]ц|\bпоэт|ььь\
-                    |композитор|культур[еауо]|праздни[кч]|\bпоказ|ььь\
+                    |экскурси|\bкино|\bактер|пев[ие]ц|\bпоэт|лектори|ььь\
+                    |композитор|культур[еауо]|праздни[кч]|\bпоказ|крестн\w* ход|ььь\
                     |фильм|лауреат|премьер[аоы]|спектакл|выставка|\bпати|ььь\
                     |им\.\sпушкин|винцкевич|party|библиотек|филармрони|ььь\
                     |режисер|по радио|культурн\w*[-\s\w]{,10}мероприят|галере\w* «ая»|ььь\
@@ -596,9 +621,20 @@ def culture():
         if result:
             culture_dict[title] = y
 
+     # исключение из словаря предложений с таким словами
+    for title, y in culture_dict.items():
+        key_list2 = r'\bбоевых'
+
+        result1 = re.findall(key_list2, title.lower())
+        # print(result)
+        if result1:
+            pass
+        else:
+            culture_dict1[title] = y
+
     path1 = f"{path_bd_json}GLdate15.json"
     with open(path1, 'w', encoding='utf-8') as file:
-        json.dump(culture_dict, file, ensure_ascii=False, indent=0)
+        json.dump(culture_dict1, file, ensure_ascii=False, indent=0)
 # =======================================================
 def dtp():
     """Выборка  json-файла для показа на сайте и конвертация в обычный словарь"""
@@ -633,7 +669,8 @@ def dtp():
                 dtp_dict[title] = y
         # исключение из словаря предложений с таким словами
         for title, y in dtp_dict.items():
-            key_list2 = r'\bракет|\bпво|энергоснабжен'
+            key_list2 = r'\bракет|\bпво|энергоснабжен|нехватк|дефицит|депресси|теплотрасс|ььь\
+                        |теплосет|\bлини\w* электо|\bводо[сп]'
 
             result1 = re.findall(key_list2, title.lower())
             # print(result)
@@ -708,7 +745,7 @@ def moshen():
 
     for title, y in json_data_news.items():
 
-        key_list1 = r'мошен[н]?и[кч]|аферист|обман|\bпод видом'
+        key_list1 = r'мошен[н]?и[кч]|аферист|обман|\bпод видом|незакон\w* завладел|\bлже'
         # 'ся' учитывается и добавляется
 
         # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
@@ -752,7 +789,7 @@ def lifting():
 
     for title, y in json_data_news.items():
 
-        key_list1 = r'краж[аиоу]?|обокрал|угнал|угон|похити[тл]|хищен|\bукравш'
+        key_list1 = r'краж[аиоу]?|обокрал|угнал|угон|похити[тл]|хищен|\bукравш|грабил|украл'
         # 'ся' учитывается и добавляется
 
         # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
@@ -842,7 +879,7 @@ def svo():
 
         key_list1 = r'\bсво\b|обстрел|\bвсу\b|\bднр\b|\bлнр\b|\bмин[аыу]\b|\bминомет|\bминир|ььь\
         |(границ\ц*)[\s\w]{,30}(белгородс|курской)|украин|диверсант|диверси|\bz[а-я]*|ььь\
-        |госизмен|шпион|террористическ\w* опасност'
+        |госизмен|шпион|террористическ\w* опасност|подозрительн\w* лиц'
         # 'ся' учитывается и добавляется
 
         # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
@@ -869,7 +906,279 @@ def svo():
     with open(path1, 'w', encoding='utf-8') as file:
         json.dump(svo_dict1, file, ensure_ascii=False, indent=0)
 # ===============================
+def today_(mm):
+    """Выбирает события из json-файла и записывает в json-файл с датами события происходящими
+       в этот день,mm=0 сегодня, mm=1 завтра, mm=2 послезавтра"""
+    today_dict={}
 
+    # #чтение anons и конвертация в обычный словарь
+    path2 = f"{path_bd_json}GLdate7.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        anons_dict = json.load(f_five)
+ # ================================
+    # со словом сегодня , дата совпадает с датой выпуска новости
+    if mm == 0:
+        for title, y in anons_dict.items():
+            # работа со словом "сегодня"
+            result = re.findall("сегодня", title.lower())
+            if result:
+                # print('сегодня_news')
+                today_start_ = int(time.mktime(time.strptime(str(datetime.datetime.now())[:10],
+                      '%Y-%m-%d')))
+                delta = y[0] - today_start_
+                # print(delta)
+                if 0 < delta < 86400:
+                    today_dict[title] = y
+                    # print('сегодня_ ', title,' ; ',y[2])
+
+        # print('zzz',today_dict)
+# ================================================
+    #
+    month_cirilic = { 1: 'январ', 2: 'феврал', 3: 'март', 4: 'апрел', 5: 'мая', 6: 'июн',
+        7: 'июл', 8: 'август', 9: 'сентябр', 10: 'октябр', 11: 'ноябр', 12: 'декабр'}
+
+    def get_day_month(nn):
+
+        """дает сегодняшнюю дату числом и месяц+nn(август+1=сентябрь)и месяц числом
+        n=0 - текущий месяц, n=1 - следущий месяц"""
+        cc = str(datetime.datetime.now())[:10]
+        day_ = int(cc[8:])
+        month0 = int(cc[5:7]) + nn
+        if (int(cc[5:7]) + nn) > 12:
+            month0 = month0 - 12
+        month_ = month_cirilic[month0]
+        return day_, month_,month0 #10,сентябр,9
+
+# =================================================
+    # добавляет только  с совпалдающей датой
+    for title, y in anons_dict.items():
+        # mm = 0# 0-сегодня,1- завтра, 2- послезавтра
+        key_= f'\d+ {get_day_month(0)[1]}'
+        result = re.findall(key_, title.lower())
+
+        if result:
+            # print("&&&&", result, get_day_month(0)[0] + mm)
+            # print('**', result)
+            # today_dict[title] = y
+            if int(result[0][:2]) == int(get_day_month(0)[0]+mm):  # только число (день)
+                # print("gugu", result[0][:2], get_day_month(0)[0])
+                today_dict[title] = y
+                # print(title)
+
+    # print("xxxxx", today_dict)
+    # print(len(today_dict))
+# =====================================================
+
+    def transft(dd,mon,yy):
+        """перевод даты в секунды от начала эпохи"""
+        sec = int(time.mktime((yy, mon, dd, 12, 0, 0, 0, 0, 0)))
+        #2022, 9, 28, 12, 0, 0, 0, 0, 0
+
+        return sec
+# ===========================================================
+    ddday = str(datetime.datetime.now())[:16]
+    year_=time.strptime(ddday, '%Y-%m-%d %H:%M').tm_year
+
+    sec_today = int(time.mktime(time.strptime(ddday,
+        '%Y-%m-%d %H:%M')))+86400*mm
+ # ========================================================
+    for title, y in anons_dict.items():
+        # добавляет с 00 сентября по/до 00 сентября
+        key_1 = f'с \d?\d {get_day_month(0)[1]}\w* [пд]о \d?\d {get_day_month(0)[1]}'
+
+        result = re.findall(key_1, title.lower())
+        if result:
+            # print("----",result,get_day_month(0)[1])
+            key2 = r'(\d?\d)'
+            result1 = re.findall(key2, result[0])
+            start_time = transft(int(result1[0]),int(get_day_month(0)[2]),int(year_))
+            # print(result1[0])
+            finish_time = transft(int(result1[1]), int(get_day_month(0)[2]), int(year_))
+            # print(result1[1])
+            if start_time<=sec_today<=finish_time:
+                today_dict[title] = y
+                # print(title)
+
+# ================================================================
+        # добавляет с 00 -/по/до 00 сентября
+        key_2 = f'с?\s?\d?\d\s?[-пд]о?\s?\d?\d {get_day_month(0)[1]}'
+        result = re.findall(key_2, title.lower())
+        if result:
+            # print("-==-", result, get_day_month(0)[1])
+            key2 = r'(\d?\d)'
+            result1 = re.findall(key2, result[0])
+            # print(result1[0],get_day_month(0)[2],year_)
+            start_time = transft(int(result1[0]), int(get_day_month(0)[2]), int(year_))
+            # print(result1[0])
+            finish_time = transft(int(result1[1]), int(get_day_month(0)[2]), int(year_))
+            # print(result1[1])
+            if start_time <= sec_today <= finish_time:
+                today_dict[title] = y
+                # print(title)
+# ==================================================
+        # добавляет с 00 сентября по/до 00 октября
+        key_1 = f'с \d?\d {get_day_month(0)[1]}\w* [пд]о \d?\d {get_day_month(1)[1]}'
+
+        result = re.findall(key_1, title.lower())
+        if result:
+            # print("-=-=", result, get_day_month(0)[1])
+            key2 = r'(\d?\d)'
+            result1 = re.findall(key2, result[0])
+            start_time = transft(int(result1[0]), int(get_day_month(0)[2]), int(year_))
+            # print(result1[0])
+            finish_time = transft(int(result1[1]), int(get_day_month(1)[2]), int(year_))
+            # print(result1[1])
+            if start_time <= sec_today <= finish_time:
+                today_dict[title] = y
+                # print(title)
+ # ================================================
+        # добавляет  00.00.2022
+        key_1 = r'\d?\d\.\d\d\.\d{2,4}'
+        result = re.findall(key_1, title.lower())
+        if result:
+            # print("-*-*", result, get_day_month(0)[1])
+            key2 = r'(\d?\d)'
+            result1 = re.findall(key2, result[0])
+            if int(result1[0])==int(get_day_month(0)[0]+mm) and \
+                int(result1[1])==int(get_day_month(0)[2]):
+                today_dict[title] = y
+                # print("^^^^",title)
+                # print("^^^^",int(result1[0]),int(get_day_month(0)[0]+mm),"and",
+                # int(result1[1]),int(get_day_month(0)[2]))
+# ===============================================
+    def sorted_dicts1(news_dict):
+        """Сортировка словаря по дате элементов(новостей). Вверху самые поздние """
+        sorted_dict = {}
+        sorted_keys = sorted(news_dict, key=news_dict.get, reverse=True)  # [1, 3, 2]
+
+        for w in sorted_keys:
+            sorted_dict[w] = news_dict[w]
+        count_news = len(sorted_dict)
+        # print('количество новостей = ', count_news)
+        # print(sorted_dict)
+        return sorted_dict
+
+    sorted_today_dict = sorted_dicts1(today_dict)
+    path1 = f"{path_bd_json}GLdate2{2+mm}.json"
+
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(sorted_today_dict, file, ensure_ascii=False, indent=0)
+# =============================================================
+def events():
+    """Выбирает события из json-файла и записывает в json-файл с датами события происходящими
+       в этот день,mm=0 сегодня, mm=1 завтра, mm=2 послезавтра"""
+    events_dict={}
+
+    # #чтение anons и конвертация в обычный словарь
+    path2 = f"{path_bd_json}GLdate7.json"
+
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        anons_dict = json.load(f_five)
+ # ================================
+    for title, y in anons_dict.items():
+        # 'ся' учитывается и добавляется
+        key_list1 = r'конкурс|фестивал|концерт|джаз|мастер-класс|ььь\
+                    |экскурси|\bкино|\bактер|пев[ие]ц|\bпоэт|лектори|ььь\
+                    |композитор|культур[еауо]|праздни[кч]|\bпоказ|крестн\w* ход|ььь\
+                    |фильм|лауреат|премьер[аоы]|спектакл|выставка|\bпати|ььь\
+                    |им\.\sпушкин|винцкевич|party|библиотек|филармрони|ььь\
+                    |режисер|по радио|культурн\w*[-\s\w]{,10}мероприят|галере\w* «ая»|ььь\
+                    |оркестр|солист|вернисаж|мемориал|туристическ\w* маршрут|ььь\
+                    |(создадут|установ[ия]т|постав[ия]т)[\s\w]{,15}(памятник|доск)|ььь\
+                    |благотворительн фонд|капелл|вечер\w* памяти|\bпьес[ыаоу]|ььь\
+                    |художни[кц]|хореографическ|искусств|стипендиат|живопис|ььь\
+                    |театр|\bтенор|xxi век|литературн|анимаци|\bмузе[йяея]|музыкальн|ььь\
+                    |мастер-класс|пленэр|пушкинск\w* карт|художествен|мастериц|ььь\
+                    |торжественн\w* открыти|ден\w* город|(творческ\w*)(встреч|вечер)|ььь\
+                    |нов[ы]\w* год|традиционн\w* ремес|водян\w* мельниц|комеди[яеи]|ььь\
+                    |джазов\w* провинци|диктант|скульптор|натюрморт|\bтворчес[кт]|ььь\
+                    |чемпионат|авангард|бокс|маунтинбайк|\bспорт|рекорд по|ььь\
+                    |турнир|гимнаст|физкультур|рапирист|динамо|биатлон|ььь\
+                    |пауэрлифт|ипподром|спартакиад|регби|евролиг|лыжн[оиы]|ььь\
+                    |стритбол|забег|болельщик|кикбоксинг|тренировочн\w* сбор|ььь\
+                    |дзюдо|спортивн\w* борьб|паралимпий|троебор»|фитнес-центр|ььь\
+                    |марафон|плей-офф|единоборств|первенств|киокусинкай|волейбол|ььь\
+                    |куб[о]?к\w* России|спортивны\w* соревновани|спортивн\w* ориентирован|ььь\
+                    |легко\w* атлетик|шахмат|спартакиада|фехтовани|мастер\w* спорт|ььь\
+                    |многоборь|(завоевал)[\s\w]{,15}(золото|серебр|бронз)|олимпиад|ььь\
+                    |олимпийск\w* д[е]?н[я]?|автокросс| мотокросс|бегун|пауэрлифтинг|ььь\
+                    |кросс|карат[еи]|плавани|скейтбординг|баскетбол|чемпионск\w* титул|ььь\
+                    |футбол|акробатическ\w* рок-н-ролл|(велосипедн\w*) (гонк|спорт)|ььь\
+                    |парашут\w* спорт|кат[о]?к[е]? с искусственным льдом|ььь\
+                    |спортивн\w* стрельб|триатлон|соревновани\w* по|болельщик'
+        # key_list1 = ['[а-я]+[аеиюя]т\s',]#'[а-я]+ят ','[а-я]+ют ','[а-я]+ат ']
+
+        result = re.findall(key_list1, title.lower())
+        if result:
+            events_dict[title] = y
+            # print(result)
+# ===============================================
+    def sorted_dicts1(news_dict):
+        """Сортировка словаря по дате элементов(новостей). Вверху самые поздние """
+        sorted_dict = {}
+        sorted_keys = sorted(news_dict, key=news_dict.get, reverse=True)  # [1, 3, 2]
+
+        for w in sorted_keys:
+            sorted_dict[w] = news_dict[w]
+        count_news = len(sorted_dict)
+        # print('количество новостей = ', count_news)
+        # print(sorted_dict)
+        return sorted_dict
+
+    sorted_events_dict = sorted_dicts1(events_dict)
+    path1 = f"{path_bd_json}GLdate25.json"
+
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(sorted_events_dict, file, ensure_ascii=False, indent=0)
+# =============================================================
+def adverts():
+    """Выбирает события из json-файла и записывает в json-файл с датами события происходящими
+       в этот день,mm=0 сегодня, mm=1 завтра, mm=2 послезавтра. Запускать после events()"""
+    adverts_dict={}
+
+    # #чтение anons и конвертация в обычный словарь
+    path2 = f"{path_bd_json}GLdate7.json"
+    with open(path2, 'r', encoding='utf-8') as f_five:
+        anons_dict = json.load(f_five)
+ # ================================
+    path3 = f"{path_bd_json}GLdate25.json"
+    with open(path3, 'r', encoding='utf-8') as f_five:
+        events_dict = json.load(f_five)
+
+# ==================================
+    def differ_dict(dic1, dic2):
+        """вычитание словарей dic1-dic2=dic3,словарь3 получается из словаря1 без
+        ключей словаря2"""
+
+        dic3 = dic1.copy()
+        for key2 in dic2.keys():
+            # print(key2)
+            for key1 in dic1.keys():
+                if key1 == key2:
+                    dic3.pop(key1)
+        return dic3
+
+    adverts_dict = differ_dict(anons_dict,events_dict)
+# ===============================================
+    def sorted_dicts1(news_dict):
+        """Сортировка словаря по дате элементов(новостей). Вверху самые поздние """
+        sorted_dict = {}
+        sorted_keys = sorted(news_dict, key=news_dict.get, reverse=True)  # [1, 3, 2]
+
+        for w in sorted_keys:
+            sorted_dict[w] = news_dict[w]
+        count_news = len(sorted_dict)
+        # print('количество новостей = ', count_news)
+        # print(sorted_dict)
+        return sorted_dict
+
+    sorted_dict = sorted_dicts1(adverts_dict)
+    path1 = f"{path_bd_json}GLdate26.json"
+
+    with open(path1, 'w', encoding='utf-8') as file:
+        json.dump(sorted_dict, file, ensure_ascii=False, indent=0)
+# ==========================================================
 # anons()
 # accidents()
 # societ()

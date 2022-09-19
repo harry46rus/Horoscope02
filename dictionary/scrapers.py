@@ -408,22 +408,22 @@ def mvd():
             time_0 = soup.find('div', class_="b-news").find_all('div',
             class_="sl-item-date")[y].text[:]
             time_1 = (re.findall('\d?\d?\s?\w*', time_0))[0]
-            print(time_1)
+            # print(time_1)
             # time_1 = soup.find('div', class_="b-news").find_all('div',
             #         class_="sl-item-date")[5].text
             time_2 = (re.findall('\d{2}:\d{2}', time_0))[0]
-            print(time_2)
+            # print(time_2)
             time_ = f'{time_1.lower()} {time_2}'
-            print(time_)
+            # print(time_)
             title_ = soup.find('div', class_="b-news").find_all('div',
             class_="sl-item-title")[y].text
-            print(title_)
+            # print(title_)
             reff = soup.find('div', class_="b-news").find_all('div',
             class_="sl-item-title")[y].find('a').get('href')
             reff = 'https://46.мвд.рф' + reff
-            print(reff)
-            print(convert(time_)[0])
-            print(convert(time_)[1])
+            # print(reff)
+            # print(convert(time_)[0])
+            # print(convert(time_)[1])
 
             news_dict[title_.strip('\n')] = [convert(time_)[0], convert(time_)[1], time_, reff,
                                  'www.46.мвд.рф']

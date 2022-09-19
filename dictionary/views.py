@@ -152,7 +152,7 @@ def get_home(request):
     sing_news = 0
     fff, numnews = scrap(sing_news)
     usd_ = get_USD()
-    # number_news = len(fff)
+
     for date_, value in usd_.items():
         dddate, usd, eur = date_, value[1], value[3]
 
@@ -161,7 +161,7 @@ def get_home(request):
     data = {
         'sing_news': sing_news,
         'numnews': numnews,
-        # 'number_news': number_news,
+
         'date_': dddate,
         'usd': usd,
         'eur': eur,
