@@ -85,10 +85,11 @@ def scrap_news():
 
     nal_dict = {}
     final_dict = {}
+    final_dict1 = {}
 
     def filter(json_data_news):
         """Удаляет дубли новостей которые получаются, когда редакции корректируют заголовок после
-        выпуска"""
+        выпуска и исключение из словаря предложений с некоторыми словами"""
         for i, j in json_data_news.items():
             # print(i,"_____",j)
             nal_dict[j[3]] = [i, j[0], j[1], j[2], j[4]]
@@ -103,7 +104,16 @@ def scrap_news():
                 final_dict[j[0]] = [j[1], j[2], day_time, i, j[4]]
             # final_dict[j[0]] = [j[1], j[2], j[3], i, j[4]]
 
-        return final_dict
+        # исключение из словаря предложений с таким словами
+        for title, y in final_dict.items():
+            key_list2 = r'психиатр|психолог'
+            result1 = re.findall(key_list2, title.lower())
+            # print(result)
+            if result1:
+                pass
+            else:
+                final_dict1[title] = y
+        return final_dict1
 
     # ==================================================
     def sorted_dicts(news_dict):
@@ -204,6 +214,7 @@ def get_count_news():
 
     qual_index=(number_news[7]+number_news[8]+number_news[9])/number_news[0]
     print(f'Полнота отбора в рубрики: {qual_index}')
+    print(number_news[7])
     path1 = f"{path_bd_json}numnews.json"
     # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
     # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/numnews.json"

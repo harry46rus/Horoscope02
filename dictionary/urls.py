@@ -15,4 +15,4 @@ urlpatterns = [
     # path('znak/', views.get_znak),
 ]
 
-
+# handler404="view.handle_404"

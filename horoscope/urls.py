@@ -32,6 +32,7 @@ urlpatterns = [
     path('test/', views.get_sign_name),
     path('testcount/', views.get_test_count),
     path('whyitsite/', views.get_why),
+    # path('404/', views.get_404),
     path('znak/', views.get_znak),
     # path('', views.hello2),
     path('', views.get_home),
@@ -44,4 +45,6 @@ urlpatterns = [
     #     path('<str:sing_name>/', views.get_sign_name),
         ])),
 ]
+
+handler404=views.handle_404
 

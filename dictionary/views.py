@@ -121,29 +121,35 @@ def get_why(request):
 
 
 def get_news0(request, sing_news: int):
-    hour_= datetime.strftime(datetime.now(), "%H")
-    days_= datetime.strftime(datetime.now(), "%d")
-    # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-    fff, numnews = scrap(sing_news)
-    usd_ = get_USD()
-    # number_news = len(fff)
-    for date_, value in usd_.items():
-        dddate, usd, eur = date_, value[1], value[3]
+    
 
-    date_num=get_dates()
+    if sing_news < 27:
+        hour_= datetime.strftime(datetime.now(), "%H")
+        days_= datetime.strftime(datetime.now(), "%d")
+        # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+        fff, numnews = scrap(sing_news)
+        usd_ = get_USD()
+        # number_news = len(fff)
+        for date_, value in usd_.items():
+            dddate, usd, eur = date_, value[1], value[3]
 
-    data = {
-        'sing_news': sing_news,
-        'numnews': numnews,
-        # 'number_news': number_news,
-        'date_': dddate,
-        'usd': usd,
-        'eur': eur,
-        'news_dict': fff,
-        "time": hour_,
-        "day_": days_,
-        "date_num": date_num}
-    return render(request, "news0.html", context=data)
+        date_num=get_dates()
+
+        data = {
+            'sing_news': sing_news,
+            'numnews': numnews,
+            # 'number_news': number_news,
+            'date_': dddate,
+            'usd': usd,
+            'eur': eur,
+            'news_dict': fff,
+            "time": hour_,
+            "day_": days_,
+            "date_num": date_num}
+
+        return render(request, "news0.html", context=data)
+    else:
+        return render(request, "error404.html")
 
 def get_home(request):
     hour_ = datetime.strftime(datetime.now(), "%H")
@@ -171,50 +177,23 @@ def get_home(request):
         "date_num": date_num}
     return render(request, "news0.html", context=data)
 
+def handle_404(request, exception):
+    fff, numnews = scrap('0')
+    usd_ = get_USD()
+    for date_, value in usd_.items():
+        dddate, usd, eur = date_, value[1], value[3]
+    date_num = get_dates()
+    sing_news = 100
+    data = {
+        'sing_news': sing_news,
+        'numnews': numnews,
+        'date_': dddate,
+        'usd': usd,
+        'eur': eur,
+        'news_dict': fff,
 
-
-# def get_news1(request):
-#     hour_= datetime.strftime(datetime.now(), "%H")
-#     days_= datetime.strftime(datetime.now(), "%d")
-#     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-#     fff = scrap1()
-#     usd_ = get_USD()
-#     number_news = len(fff)
-#     for date_, value in usd_.items():
-#         dddate, usd, eur = date_, value[1], value[3]
-#
-#     data = {
-#         'number_news': number_news,
-#         'date_': dddate,
-#         'usd': usd,
-#         'eur': eur,
-#         'news_dict': fff,
-#         "time": hour_,
-#         "day_": days_,}
-#     return render(request, "news1.html", context=data)
-#
-# def get_news2(request):
-#     hour_= datetime.strftime(datetime.now(), "%H")
-#     days_= datetime.strftime(datetime.now(), "%d")
-#     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-#     fff = scrap2()
-#     usd_ = get_USD()
-#     number_news = len(fff)
-#     for date_, value in usd_.items():
-#         dddate, usd, eur = date_, value[1], value[3]
-#
-#     data = {
-#         'number_news': number_news,
-#         'date_': dddate,
-#         'usd': usd,
-#         'eur': eur,
-#         'news_dict': fff,
-#         "time": hour_,
-#         "day_": days_,}
-#     return render(request, "news2.html", context=data)
-
-# list_s=[i*6 for i in range(1,10)]
-
+        "date_num": date_num}
+    return render(request, 'error404.html',context=data)
 
 
 def get_test_count(request):
@@ -280,24 +259,9 @@ def get_znak(request):
     return render(request, "search_.html", context=context1)
 
 
-# def hello(request):
-#     # today = datetime.datetime.now().date()
-#     # daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-#     return redirect("https://www.djangoproject.com")
-# # Create your views here.
-#
-#
+
 def hello2(request):
     pass
     return HttpResponseRedirect("https://www.djangoproject.com")
 
-# def myView(request):
-#     context = {}
-#     if request.method == 'POST':
-#         city = request.POST.get('city')
-#         api_address = 'http://api.openweathermap.org/data/2.5/weather? appid=KEY&q='
-#         url = api_address + city
-#         json_data = requests.get(url).json()
-#         kelvin = json_data['main']['temp']
-#         context['temperature'] = round(kelvin - 273.15, 0)
-#     render(request, 'template_name.html', context)
+

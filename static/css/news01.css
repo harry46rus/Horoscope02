@@ -158,6 +158,17 @@ ul {
     justify-content: center;
     top:0;
     }
+#head2{
+    color:#F9FCFF;
+    margin-top: 0px;
+
+    padding-top: -235px;
+    padding-bottom: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
 
 .head_head{
     color:#D9CDC1;
@@ -560,7 +571,7 @@ border:1px solid red;
     /*border-bottom-right-radius:15px;*/
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: 450px;
+    margin-left: 478px;
 
     }
 #myDropdown2{
@@ -571,7 +582,7 @@ border:1px solid red;
     /*border-bottom-right-radius:15px;*/
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: 250px;
+    margin-left: 285px;
 
     }
 #myDropdown3{
@@ -582,7 +593,7 @@ border:1px solid red;
     /*border-bottom-right-radius:15px;*/
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: 70px;
+    margin-left: 106px;
 
     }
 .dropdown-content a {

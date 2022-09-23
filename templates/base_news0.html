@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="description" content="КУРСКИЕ НОВОСТИ: ПРОИСШЕСТВИЯ, АНОНСЫ, ОБЩЕСТВО">
-    <title>СоваБот - КУРСКИЕ НОВОСТИ</title>
+    <title>СоваБот - КУРСКИЕ НОВОСТИ </title>
     <link href="{% static 'favicon.ico' %} " rel="shortcut icon" type="image/x-icon"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -194,7 +194,7 @@
 <!--                        </div>-->
                         <!--                        ==========================-->
                         <div class="mnbtn">
-                            {% if sing_news > 21 and sing_news < 27 %}
+                            {% if sing_news > 21 and sing_news < 27 or sing_news == 7 %}
                                 <div class="sline" >
                                     <a onclick="myFunction3()"  class="dropbtn"
                                        style="color:#FFFFFF;" >
@@ -306,7 +306,7 @@
 <!--                        =========================-->
 <!--                        ==========================-->
                         <div class="mnbtn">
-                            {% if sing_news > 15 and sing_news < 22 %}
+                            {% if sing_news > 15 and sing_news < 22 or sing_news == 8 %}
                                 <div class="sline" >
                                     <a onclick="myFunction2()"  class="dropbtn"
                                        style="color:#FFFFFF;" >
