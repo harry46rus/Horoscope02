@@ -36,14 +36,19 @@ urlpatterns = [
     path('znak/', views.get_znak),
     # path('', views.hello2),
     path('', views.get_home),
-    path('news0/', include([
-        path('<int:sing_news>/', views.get_news0),
+    # path('', include([
+    #     # path('<int:sing_news>/', views.get_news0),
+    #     path('<str:sing_news>/', views.get_sign_name),
+    path('<str:sing_news>/', views.get_sign_name),
+    # path('news0/', include([
+    #     path('<int:sing_news>/', views.get_news0),
+    #     path('<str:sing_name>/', views.get_sign_name),
 
     # path('dictionary/', include('dictionary.urls')),
     # path('dictionary/', include([
     #     path('<int:sing_name>/', views.get_sign_name_number),
     #     path('<str:sing_name>/', views.get_sign_name),
-        ])),
+    #     ])),
 ]
 
 handler404=views.handle_404

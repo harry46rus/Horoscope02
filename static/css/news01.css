@@ -603,10 +603,10 @@ border:1px solid red;
     display: block;
     /*min-width: 240px;*/
 }
-.dropdown-content {
+.dropdown-content{
     display: none;
     position: absolute;
-    min-width: 240px;
+    min-width: 260px;
     overflow: auto;
     background-color:#F5F4F2;
     border: 3px solid #FFFFFF;

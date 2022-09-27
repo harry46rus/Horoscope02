@@ -132,7 +132,7 @@ def gtrkkursk():
         try:
             resp = requests.get(link, headers=header)
             soup = BeautifulSoup(resp.text, 'lxml')
-            # print(resp.status_code, 'gtrkkursk.ru')
+            print(resp.status_code, 'gtrkkursk.ru')
         except:
             print('ERROR-gtrkkursk.ru')
             pass
@@ -153,19 +153,21 @@ def gtrkkursk():
                 News8 = News6.find_all('h2' ,class_='title')[i].text#
 
                 News9 = News6.find_all('span' ,class_='item_time')[i].text#
-                time_iss = f'{News9[-23:-8]} {News9[-5:]}'
+                time_iss = f'{News9[-24:-8]} {News9[-5:]}'
 
                 news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
                                     'www.gtrkkursk.ru']
+
             except:
                 pass
-                # print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
+                print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
             # print('News7'," ",News7)
             # print('News8'," ",News8)
             # print('News9'," ",News9)
             # print('time_iss'," ",time_iss)
             # print('reff'," ",reff)
         #     news_list = list(news_dict)
+    print(news_dict)
     return news_dict
 
 def s46tv():

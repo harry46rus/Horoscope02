@@ -8,6 +8,7 @@ from dictionary.testcount import tcounter
 from dictionary.scrap01 import scrap,get_dates#,scrap1,scrap2
 from dictionary.read_USD import get_USD
 from datetime import datetime
+from dictionary.seo_logics import head_title,html_date
 
 # def leo(request):
 #     return HttpResponse("Hello, Dictionary!!!")
@@ -74,12 +75,7 @@ def get_sign_name(request):#, sing_name: str):
     return render(request, 'horoscop.html')#, context=data)
 
 
-def get_sign_name_number(request, sing_name: int):
-    zodiacs = list(zodiac_dict)
-    if sing_name > len(zodiacs):
-        return HttpResponseNotFound(f"Неправильный знак зодиака--{sing_name}!!!")
-    name_zodiac = zodiacs[sing_name - 1]
-    return HttpResponseRedirect(f'/dictionary/{name_zodiac}')
+
 
 
 def get_contacts(request):
@@ -103,9 +99,9 @@ def get_why(request):
         dddate, usd, eur = date_, value[1], value[3]
 
     date_num = get_dates()
-    sing_news = 99
+    num_news = 99
     data = {
-        'sing_news': sing_news,
+        'num_news': num_news,
         'numnews': numnews,
         # 'number_news': number_news,
         'date_': dddate,
@@ -121,7 +117,7 @@ def get_why(request):
 
 
 def get_news0(request, sing_news: int):
-    
+
 
     if sing_news < 27:
         hour_= datetime.strftime(datetime.now(), "%H")
@@ -132,16 +128,65 @@ def get_news0(request, sing_news: int):
         # number_news = len(fff)
         for date_, value in usd_.items():
             dddate, usd, eur = date_, value[1], value[3]
-
+        # =====================================================
+        titl,sss,descrip =head_title(sing_news)
+        # sss=0
         date_num=get_dates()
+        # if 0 < sing_news < 7:
+        #     sss = date_num[sing_news-1]
 
         data = {
             'sing_news': sing_news,
             'numnews': numnews,
-            # 'number_news': number_news,
+            'sss': sss,
             'date_': dddate,
             'usd': usd,
             'eur': eur,
+            "titl":titl,
+            # 'count_n':count_n,
+            'descrip':descrip,
+            'news_dict': fff,
+            "time": hour_,
+            "day_": days_,
+            "date_num": date_num}
+
+        return render(request, "news0.html", context=data)
+    else:
+        return render(request, "error404.html")
+
+def get_sign_name(request, sing_news: str):
+    # перевод ссылки в число
+    num_news,list_link = html_date(sing_news)
+    # html_date(link_='novosti-za-sem-dnej')
+    print(num_news,list_link)
+
+    if num_news < 27:
+        hour_ = datetime.strftime(datetime.now(), "%H")
+        days_ = datetime.strftime(datetime.now(), "%d")
+        # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
+        fff, numnews = scrap(num_news)
+        usd_ = get_USD()
+        # number_news = len(fff)
+        for date_, value in usd_.items():
+            dddate, usd, eur = date_, value[1], value[3]
+        # =====================================================
+        titl,sss,descrip,hh3 = head_title(num_news)
+        # sss=0
+        date_num = get_dates()
+        # if 0 < sing_news < 7:
+        #     sss = date_num[sing_news-1]
+
+        data = {
+            'num_news': num_news,
+            'numnews': numnews,
+            'sss': sss,
+            'hh3': hh3,
+            'date_': dddate,
+            'usd': usd,
+            'eur': eur,
+            "titl": titl,
+            'list_link':list_link,
+            'descrip': descrip,
             'news_dict': fff,
             "time": hour_,
             "day_": days_,
@@ -155,8 +200,8 @@ def get_home(request):
     hour_ = datetime.strftime(datetime.now(), "%H")
     days_ = datetime.strftime(datetime.now(), "%d")
     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-    sing_news = 0
-    fff, numnews = scrap(sing_news)
+    num_news = 0
+    fff, numnews = scrap(0)
     usd_ = get_USD()
 
     for date_, value in usd_.items():
@@ -165,7 +210,7 @@ def get_home(request):
     date_num = get_dates()
 
     data = {
-        'sing_news': sing_news,
+        'num_news': num_news,
         'numnews': numnews,
 
         'date_': dddate,
@@ -176,6 +221,7 @@ def get_home(request):
         "day_": days_,
         "date_num": date_num}
     return render(request, "news0.html", context=data)
+
 
 def handle_404(request, exception):
     fff, numnews = scrap('0')

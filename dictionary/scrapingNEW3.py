@@ -8,10 +8,10 @@ import json
 from bs4 import BeautifulSoup
 import datetime
 import threading
-from scrapers import kurskcity,gtrkkursk,s46tv,seyminfo,k_izvestia,dddkursk,mchs,mvd
-from taggers import *
+from dictionary.scrapers import kurskcity,gtrkkursk,s46tv,seyminfo,k_izvestia,dddkursk,mchs,mvd
+from dictionary.taggers import *
 # from taggers import anons, accidents, societ, jkh, sport, medicin, education, economic,culture
-from paths_01 import path_bd_json
+from dictionary.paths_01 import path_bd_json
 
 
 header = {'Accept': '*/*',
@@ -223,7 +223,7 @@ def get_count_news():
         json.dump(number_news, file, ensure_ascii=False, indent=0)
 # ========================================
 
-def get_dates():
+def get_dates1():
     """дает даты(день, месяц, год) дней -  вчера , позавчера, ..., 6 дней назад"""
 
     date_format = '%d.%m.%Y'

@@ -2,15 +2,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+	<link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="{% static 'favicon.ico' %}" rel="apple-touch-icon" type="image/png">
     <link rel="stylesheet" href="{% static 'css/news01.css' %} ">
+
+    <title>{{titl}}</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="КУРСКИЕ НОВОСТИ: ПРОИСШЕСТВИЯ, АНОНСЫ, ОБЩЕСТВО">
-    <title>СоваБот - КУРСКИЕ НОВОСТИ </title>
-    <link href="{% static 'favicon.ico' %} " rel="shortcut icon" type="image/x-icon"/>
+	<meta content="text/html" http-equiv="Content-Type">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="новости курска, новости курска сегодня, курские новости, новости курской области">
+    <meta  name="description"
+           content="{{descrip}}">
+	<meta  property="og:description" content="{{descrip}}">
+
+	<meta content="https://sovabot.ru/" property="og:site_name">
+	<meta content="{{titl}}" property="og:title">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="exper">
@@ -55,7 +67,7 @@
                 </div>
 
                 <div id="sova" style="margin-top: 5px;">
-                <a href="/" class="dropbtn1" style="color:#FFFFFF;text-decoration: none;
+                <a href="/{{list_link.0}}" class="dropbtn1" style="color:#FFFFFF;text-decoration: none;
                     padding:0;font-size: 22px;" >
                     SOVAbot.ru </a>
                 </div>
@@ -64,7 +76,7 @@
             <nav class="one">
                     <div id="navi">
                         <div class="mnbtn">
-                            {% if sing_news < 7 %}
+                            {% if num_news < 7 %}
                                 <div class="sline" >
                                     <a onclick="myFunction()"  class="dropbtn"
                                        style="color:#FFFFFF;" >
@@ -72,7 +84,7 @@
                                 </div>
                             {% else %}
                                 <div>
-                                    <a onclick="myFunction()" class="dropbtn">
+                                    <a onclick="myFunction()" class="dropbtn" >
                                         ЗА НЕДЕЛЮ&#9660;</a>
                                 </div>
                             {% endif  %}
@@ -80,93 +92,96 @@
 <!--                        =====================-->
                         <div id="myDropdown" class="dropdown-content" class="hbtn">
                             <div>
-                                {% if sing_news == 0 %}
+                                {% if num_news == 0 %}
                                     <div class="gline">
-                                        <a href="/news0/0">все ЗА НЕДЕЛЮ<span class="numb_news">
+                                        <a href="/novosti-za-sem-dnej/">все ЗА НЕДЕЛЮ<span
+                                                class="numb_news">
                                             _____{{numnews.0}}
                                                 </span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/0">все ЗА НЕДЕЛЮ<span class="numb_news">
+                                        <a href="/novosti-za-sem-dnej/">все ЗА НЕДЕЛЮ<span
+                                                class="numb_news">
                                             _____{{numnews.0}}</span></a>
                                      </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 1 %}
+                                {% if num_news == 1 %}
                                     <div class="gline">
-                                        <a href="/news0/1">за {{date_num.0}} (ВЧЕРА)
+                                        <a href="/kurskie-novosti-za-vchera/">за {{date_num.0}}
+<!--                                            (ВЧЕРА)-->
                                         <span class="numb_news" >_________{{numnews.1}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/1">за {{date_num.0}}
+                                        <a href="/kurskie-novosti-za-vchera/">за {{date_num.0}}
                                         <span class="numb_news" >_________{{numnews.1}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 2 %}
+                                {% if num_news == 2 %}
                                     <div class="gline">
-                                        <a href="/news0/2">за {{date_num.1}}
+                                        <a href="/kurskie-novosti-za-pozavchera/">за {{date_num.1}}
                                         <span class="numb_news" >_________{{numnews.2}}</span> </a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/2">за {{date_num.1}}
+                                        <a href="/kurskie-novosti-za-pozavchera/">за {{date_num.1}}
                                         <span class="numb_news" >_________{{numnews.2}}</span> </a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 3 %}
+                                {% if num_news == 3 %}
                                     <div class="gline">
-                                        <a href="/news0/3">за {{date_num.2}}
+                                        <a href="/kurskie-novosti-tri-dnya-nazad/">за {{date_num.2}}
                                         <span class="numb_news" >_________{{numnews.3}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/3">за {{date_num.2}}
+                                        <a href="/kurskie-novosti-tri-dnya-nazad/">за {{date_num.2}}
                                         <span class="numb_news" >_________{{numnews.3}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 4 %}
+                                {% if num_news == 4 %}
                                     <div class="gline">
-                                         <a href="/news0/4">за {{date_num.3}}
+                                         <a href="/kurskie-novosti-chetyre-dnya-nazad/">за {{date_num.3}}
                                          <span class="numb_news" >_________{{numnews.4}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                         <a href="/news0/4">за {{date_num.3}}
+                                         <a href="/kurskie-novosti-chetyre-dnya-nazad/">за {{date_num.3}}
                                          <span class="numb_news" >_________{{numnews.4}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 5 %}
+                                {% if num_news == 5 %}
                                     <div class="gline">
-                                         <a href="/news0/5">за {{date_num.4}}
+                                         <a href="/kurskie-novosti-pyat-dnej-nazad/">за {{date_num.4}}
                                          <span class="numb_news" >_________{{numnews.5}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                         <a href="/news0/5">за {{date_num.4}}
+                                         <a href="/kurskie-novosti-pyat-dnej-nazad/">за {{date_num.4}}
                                           <span class="numb_news" >_________{{numnews.5}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 6 %}
+                                {% if num_news == 6 %}
                                     <div class="gline">
-                                         <a href="/news0/6">за {{date_num.5}}
+                                         <a href="/kurskie-novosti-shest-dnej-nazad/">за {{date_num.5}}
                                          <span class="numb_news" >_________{{numnews.6}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                         <a href="/news0/6">за {{date_num.5}}
+                                         <a href="/kurskie-novosti-shest-dnej-nazad/">за {{date_num.5}}
                                          <span class="numb_news" >_________{{numnews.6}}</span></a>
                                     </div>
                                 {% endif  %}
@@ -175,26 +190,10 @@
                                 <hr class="hr-line"><br>
                             </div>
                         </div>
-<!--                        ============================-->
-<!--                        <div class="mnbtn">-->
-<!--                            <div>-->
-<!--                                {% if sing_news == 7 %}-->
-<!--                                    <div class="sline">-->
-<!--                                        <a class="dropbtn_active" class="head-button"-->
-<!--                                         href="/news0/7">АНОНСЫ</a>-->
-<!--&lt;!&ndash;                                        <span class="numb_news" >[{{numnews.7}}]</span>&ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                {% else %}-->
-<!--                                    <div>-->
-<!--                                        <a class="head-button" class="dropbtn" href="/news0/7">АНОНСЫ</a>-->
-<!--&lt;!&ndash;                                        <span class="numb_news" >[{{numnews.7}}]</span>&ndash;&gt;-->
-<!--                                     </div>-->
-<!--                                {% endif  %}-->
-<!--                            </div>-->
-<!--                        </div>-->
+
                         <!--                        ==========================-->
                         <div class="mnbtn">
-                            {% if sing_news > 21 and sing_news < 27 or sing_news == 7 %}
+                            {% if num_news > 21 and num_news < 27 or num_news == 7 %}
                                 <div class="sline" >
                                     <a onclick="myFunction3()"  class="dropbtn"
                                        style="color:#FFFFFF;" >
@@ -211,88 +210,94 @@
 
                         <div id="myDropdown3" class="dropdown-content" class="hbtn">
                             <div>
-                                {% if sing_news == 7 %}
+                                {% if num_news == 7 %}
                                     <div class="gline">
-                                        <a href="/news0/7">все АНОНСЫ<span class="numb_news">
+                                        <a href="/vse-anonsy-kurskih-sobytij/">все АНОНСЫ<span
+                                                class="numb_news">
                                             ____{{numnews.7}}
                                                 </span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/7">все АНОНСЫ<span class="numb_news">
+                                        <a href="/vse-anonsy-kurskih-sobytij/">все АНОНСЫ<span
+                                                class="numb_news">
                                             ____{{numnews.7}}</span></a>
                                      </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 22 %}
+                                {% if num_news == 22 %}
                                     <div class="gline">
-                                        <a href="/news0/22">СЕГОДНЯ<span class="numb_news">
+                                        <a href="/kurskie-anonsy-na-segodnya/">СЕГОДНЯ<span
+                                                class="numb_news">
                                             _________{{numnews.22}}
                                                 </span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/22">СЕГОДНЯ<span class="numb_news">
+                                        <a href="/kurskie-anonsy-na-segodnya/">СЕГОДНЯ<span
+                                                class="numb_news">
                                             _________{{numnews.22}}</span></a>
                                      </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 23 %}
+                                {% if num_news == 23 %}
                                     <div class="gline">
-                                        <a href="/news0/23">ЗАВТРА
+                                        <a href="/kurskie-anonsy-na-zavtra/">ЗАВТРА
                                         <span class="numb_news" >
                                             ___________{{numnews.23}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/23">ЗАВТРА
+                                        <a href="/kurskie-anonsy-na-zavtra/">ЗАВТРА
                                         <span class="numb_news" >
                                             ___________{{numnews.23}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 24 %}
+                                {% if num_news == 24 %}
                                     <div class="gline">
-                                        <a href="/news0/24">ПОСЛЕЗАВТРА
+                                        <a href="/anonsy-kurskih-sobytij-na-poslezavtra/">
+                                            ПОСЛЕЗАВТРА
                                         <span class="numb_news" >__{{numnews.24}}</span>
                                         </a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/24">ПОСЛЕЗАВТРА
+                                        <a href="/anonsy-kurskih-sobytij-na-poslezavtra/">
+                                            ПОСЛЕЗАВТРА
                                         <span class="numb_news" >__{{numnews.24}}</span>
                                         </a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 25 %}
+                                {% if num_news == 25 %}
                                     <div class="gline">
-                                        <a href="/news0/25">СОБЫТИЯ
+                                        <a href="/anonsy-kurskih-sobytij-na-zavtra/">СОБЫТИЯ
                                         <span class="numb_news" >
                                             _______{{numnews.25}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/25">СОБЫТИЯ
+                                        <a href="/anonsy-kurskih-sobytij-na-zavtra/">СОБЫТИЯ
                                         <span class="numb_news" >
                                             _______{{numnews.25}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 26 %}
+                                {% if num_news == 26 %}
                                     <div class="gline">
-                                         <a href="/news0/26">ОБЪЯВЛЕНИЯ
+                                         <a href="/obyavleniya-po-kursku-i-oblasti/">ОБЪЯВЛЕНИЯ
                                          <span class="numb_news" >
                                              _{{numnews.26}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                         <a href="/news0/26">ОБЪЯВЛЕНИЯ
+                                         <a href="/obyavleniya-po-kursku-i-oblasti/">ОБЪЯВЛЕНИЯ
                                          <span class="numb_news" >
                                              _{{numnews.26}}</span></a>
                                     </div>
@@ -306,7 +311,7 @@
 <!--                        =========================-->
 <!--                        ==========================-->
                         <div class="mnbtn">
-                            {% if sing_news > 15 and sing_news < 22 or sing_news == 8 %}
+                            {% if num_news > 15 and num_news < 22 or num_news == 8 %}
                                 <div class="sline" >
                                     <a onclick="myFunction2()"  class="dropbtn"
                                        style="color:#FFFFFF;" >
@@ -323,103 +328,107 @@
 
                         <div id="myDropdown2" class="dropdown-content" class="hbtn">
                             <div>
-                                {% if sing_news == 8 %}
+                                {% if num_news == 8 %}
                                     <div class="gline">
-                                        <a href="/news0/8">все ПРОИСШЕСТВИЯ<span class="numb_news">
+                                        <a href="/proisshestviya-v-kurske-i-oblasti/">все
+                                            ПРОИСШЕСТВИЯ<span class="numb_news">
                                             _{{numnews.8}}
                                                 </span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/8">все ПРОИСШЕСТВИЯ<span class="numb_news">
+                                        <a href="/proisshestviya-v-kurske-i-oblasti/">все
+                                            ПРОИСШЕСТВИЯ<span class="numb_news">
                                             _{{numnews.8}}</span></a>
                                      </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 16 %}
+                                {% if num_news == 16 %}
                                     <div class="gline">
-                                        <a href="/news0/16">ДТП<span class="numb_news">
+                                        <a href="/dorozhnye-proisshestviya-kurska-i-oblasti/">
+                                            ДТП<span class="numb_news">
                                             ____________________{{numnews.16}}
                                                 </span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/16">ДТП<span class="numb_news">
+                                        <a href="/dorozhnye-proisshestviya-kurska-i-oblasti/">
+                                            ДТП<span class="numb_news">
                                             ____________________{{numnews.16}}</span></a>
                                      </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 17 %}
+                                {% if num_news == 17 %}
                                     <div class="gline">
-                                        <a href="/news0/17">ПОЖАРЫ
+                                        <a href="/pozhary-kurska-i-oblasti/">ПОЖАРЫ
                                         <span class="numb_news" >
                                             ______________{{numnews.17}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/17">ПОЖАРЫ
+                                        <a href="/pozhary-kurska-i-oblasti/">ПОЖАРЫ
                                         <span class="numb_news" >
                                             ______________{{numnews.17}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 18 %}
+                                {% if num_news == 18 %}
                                     <div class="gline">
-                                        <a href="/news0/18">МОШЕННИКИ
+                                        <a href="/moshenniki-v-kurske-i-oblasti/">МОШЕННИКИ
                                         <span class="numb_news" >________{{numnews.18}}</span>
                                         </a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/18">МОШЕННИКИ
+                                        <a href="/moshenniki-v-kurske-i-oblasti/">МОШЕННИКИ
                                         <span class="numb_news" >________{{numnews.18}}</span>
                                         </a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 19 %}
+                                {% if num_news == 19 %}
                                     <div class="gline">
-                                        <a href="/news0/19">КРАЖИ
+                                        <a href="/krazhi-v-kurske-i-oblasti/">КРАЖИ
                                         <span class="numb_news" >
                                             ________________{{numnews.19}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/19">КРАЖИ
+                                        <a href="/krazhi-v-kurske-i-oblasti/">КРАЖИ
                                         <span class="numb_news" >
                                             ________________{{numnews.19}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 20 %}
+                                {% if num_news == 20 %}
                                     <div class="gline">
-                                         <a href="/news0/20">СУДЫ
+                                         <a href="/sudebnye-novosti-kurska-i-oblasti/">СУДЫ
                                          <span class="numb_news" >
                                              _________________{{numnews.20}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                         <a href="/news0/20">СУДЫ
+                                         <a href="/sudebnye-novosti-kurska-i-oblasti/">СУДЫ
                                          <span class="numb_news" >
                                              _________________{{numnews.20}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 21 %}
+                                {% if num_news == 21 %}
                                     <div class="gline">
-                                         <a href="/news0/21">СПЕЦОПЕРАЦИЯ
+                                         <a href="/spetsialnaya-voennaya-operatsiya/">СПЕЦОПЕРАЦИЯ
                                          <span class="numb_news" >
                                              ____{{numnews.21}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                         <a href="/news0/21">СПЕЦОПЕРАЦИЯ
+                                         <a href="/spetsialnaya-voennaya-operatsiya/">СПЕЦОПЕРАЦИЯ
                                           <span class="numb_news" >
                                              ____{{numnews.21}}</span></a>
                                     </div>
@@ -432,7 +441,7 @@
                         </div>
 <!--                        =========================-->
                         <div class="mnbtn">
-                            {% if sing_news > 8 and sing_news < 16 %}
+                            {% if num_news > 8 and num_news < 16 %}
                                 <div class="sline" >
                                     <a onclick="myFunction1()"  class="dropbtn"
                                        style="color:#FFFFFF;" >
@@ -448,96 +457,102 @@
 <!--                        ===========================-->
                          <div id="myDropdown1" class="dropdown-content" class="hbtn">
                             <div>
-                                {% if sing_news == 9 %}
+                                {% if num_news == 9 %}
                                     <div class="gline">
-                                        <a href="/news0/9">все ОБЩЕСТВО<span class="numb_news">
+                                        <a href="/novosti-obschestva-v-kurske-i-oblasti/">все
+                                            ОБЩЕСТВО<span class="numb_news">
                                             __{{numnews.9}}
                                                 </span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/9">все ОБЩЕСТВО<span class="numb_news">
+                                        <a href="/novosti-obschestva-v-kurske-i-oblasti/">все
+                                            ОБЩЕСТВО<span class="numb_news">
                                             __{{numnews.9}}</span></a>
                                      </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 10 %}
+                                {% if num_news == 10 %}
                                     <div class="gline">
-                                        <a href="/news0/10">ЖКХ<span class="numb_news">
+                                        <a href="/novosti-zhkh-po-kursku-i-oblasti/">ЖКХ<span
+                                                class="numb_news">
                                             ________________{{numnews.10}}
                                                 </span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/10">ЖКХ<span class="numb_news">
+                                        <a href="/novosti-zhkh-po-kursku-i-oblasti/">ЖКХ<span
+                                                class="numb_news">
                                             ________________{{numnews.10}}</span></a>
                                      </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 11 %}
+                                {% if num_news == 11 %}
                                     <div class="gline">
-                                        <a href="/news0/11">СПОРТ
+                                        <a href="/sportivnye-sobytiya-v-kurske-i--oblasti/">СПОРТ
                                         <span class="numb_news" >
                                             _____________{{numnews.11}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/11">СПОРТ
+                                        <a href="/sportivnye-sobytiya-v-kurske-i--oblasti/">СПОРТ
                                         <span class="numb_news" >
                                             _____________{{numnews.11}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 12 %}
+                                {% if num_news == 12 %}
                                     <div class="gline">
-                                        <a href="/news0/12">МЕДИЦИНА
+                                        <a href="/novosti-meditsiny-v-kurske-i-oblasti/">МЕДИЦИНА
                                         <span class="numb_news" >_______{{numnews.12}}</span> </a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/12">МЕДИЦИНА
+                                        <a href="/novosti-meditsiny-v-kurske-i-oblasti/">МЕДИЦИНА
                                         <span class="numb_news" >_______{{numnews.12}}</span> </a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 13 %}
+                                {% if num_news == 13 %}
                                     <div class="gline">
-                                        <a href="/news0/13">ОБРАЗОВАНИЕ
+                                        <a
+                                                href="/novosti-obrazovaniya-kurska-i-oblasti/">ОБРАЗОВАНИЕ
                                         <span class="numb_news" >___{{numnews.13}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                        <a href="/news0/13">ОБРАЗОВАНИЕ
+                                        <a
+                                                href="/novosti-obrazovaniya-kurska-i-oblasti/">ОБРАЗОВАНИЕ
                                         <span class="numb_news" >___{{numnews.13}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 14 %}
+                                {% if num_news == 14 %}
                                     <div class="gline">
-                                         <a href="/news0/14">ЭКОНОМИКА
+                                         <a href="/novosti-ekonomiki-kurska-i-oblasti/">ЭКОНОМИКА
                                          <span class="numb_news" >_____{{numnews.14}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                         <a href="/news0/14">ЭКОНОМИКА
+                                         <a href="/novosti-ekonomiki-kurska-i-oblasti/">ЭКОНОМИКА
                                          <span class="numb_news" >_____{{numnews.14}}</span></a>
                                     </div>
                                 {% endif  %}
                             </div>
                             <div>
-                                {% if sing_news == 15 %}
+                                {% if num_news == 15 %}
                                     <div class="gline">
-                                         <a href="/news0/15">КУЛЬТУРА
+                                         <a href="/kulturnye-novosti-kurska-i-oblasti/">КУЛЬТУРА
                                          <span class="numb_news" >_________{{numnews.15}}</span></a>
                                     </div>
                                 {% else %}
                                      <div>
-                                         <a href="/news0/15">КУЛЬТУРА
+                                         <a href="/kulturnye-novosti-kurska-i-oblasti/">КУЛЬТУРА
                                           <span class="numb_news" >_________{{numnews.15}}</span></a>
                                     </div>
                                 {% endif  %}
@@ -550,7 +565,7 @@
 <!--                        ============================-->
                         <div class="mnbtn">
                             <div>
-                                {% if sing_news == 99 %}
+                                {% if num_news == 99 %}
                                     <div class="sline">
                                         <a class="dropbtn_active" class="head-button"
                                              href="/whyitsite/">ЧаВо</a>
