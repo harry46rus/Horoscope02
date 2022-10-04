@@ -8,10 +8,10 @@ import json
 from bs4 import BeautifulSoup
 import datetime
 import threading
-from dictionary.scrapers import kurskcity,gtrkkursk,s46tv,seyminfo,k_izvestia,dddkursk,mchs,mvd
-from dictionary.taggers import *
+from scrapers import kurskcity,gtrkkursk,s46tv,seyminfo,k_izvestia,dddkursk,mchs,mvd
+from taggers import *
 # from taggers import anons, accidents, societ, jkh, sport, medicin, education, economic,culture
-from dictionary.paths_01 import path_bd_json
+from paths_01 import path_bd_json
 
 
 header = {'Accept': '*/*',
@@ -23,10 +23,8 @@ list_item = []
 iterat_ = 1
 now = datetime.datetime.now()
 
-
 def scrap_news():
     global iterat_
-
 
     # =============================================
     dict_total = {}
@@ -78,10 +76,14 @@ def scrap_news():
         # print("3", dict_3day_ago)
         return dict_3day_ago
 
+    # month_liter = {
+    #     'Jan': 'января', 'Feb': 'февраля', 'Mar': 'марта', 'Apr': 'апреля', 'May': 'мая',
+    #     'Jun': 'июня', 'Jul': 'июля', 'Aug': 'августа', 'Sep': 'сентября', 'Oct': 'октября',
+    #     'Nov': 'ноября', 'Dec': 'декабря'}
     month_liter = {
-        'Jan': 'января', 'Feb': 'февраля', 'Mar': 'марта', 'Apr': 'апреля', 'May': 'мая',
-        'Jun': 'июня', 'Jul': 'июля', 'Aug': 'августа', 'Sep': 'сентября', 'Oct': 'октября',
-        'Nov': 'ноября', 'Dec': 'декабря'}
+        'Jan': 'янв', 'Feb': 'февр', 'Mar': 'март', 'Apr': 'апр', 'May': 'мая',
+        'Jun': 'июн', 'Jul': 'июл', 'Aug': 'авг', 'Sep': 'сент', 'Oct': 'окт',
+        'Nov': 'нояб', 'Dec': 'дек'}
 
     nal_dict = {}
     final_dict = {}
@@ -188,7 +190,6 @@ def write_base(diapason):  # int
         json.dump(dict_Nday_ago, file, ensure_ascii=False, indent=0)
     # print("3", dict_1day_ago)
 
-
 def div_base():
     """сколько дней помним"""
     for diapason in range(1, 7):
@@ -196,7 +197,7 @@ def div_base():
 
 
 def get_count_news():
-    """создает список: количество новостей в каждой папке GLdate0.json-GLdate10.json"""
+    """создает список: количество новостей в каждой папке GLdate0.json-GLdate26.json"""
     number_news =[]
 
     for day_ago in range(27):
@@ -214,7 +215,7 @@ def get_count_news():
 
     qual_index=(number_news[7]+number_news[8]+number_news[9])/number_news[0]
     print(f'Полнота отбора в рубрики: {qual_index}')
-    print(number_news[7])
+    # print(number_news[7])
     path1 = f"{path_bd_json}numnews.json"
     # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
     # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/numnews.json"
