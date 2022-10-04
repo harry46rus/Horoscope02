@@ -1,6 +1,8 @@
 {% extends 'base_news0.html' %}
 {% load static %}
 {% block content %}
+{% static 'images/' as base_url %}
+
 <div id="head1">
     <div class="qr-code" >
         <a href="/whyitsite/">
@@ -55,7 +57,7 @@
                 </h1>
             {% endif  %}
             {% if num_news == 1 %}
-                  <h1 align="center">СВЕЖАЯ ЛЕНТА<wbr> КУРСКИХ НОВОСТЕЙ
+                  <h1 align="center">ЛЕНТА<wbr> КУРСКИХ НОВОСТЕЙ ЗА ВЧЕРА
 <!--                      ЗА {{date_num.0}}- -->
 <!--                      <span class="wh_space">-->
 <!--                    <span class="blink7" style="color:#FFFFFF;">-->
@@ -63,168 +65,220 @@
                   </h1>
             {% endif  %}
             {% if num_news == 2 %}
-                    <h1 align="center">ЗА {{date_num.1}}-
-                        <span class="wh_space">
-                       <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.2}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ЛЕНТА<wbr> КУРСКИХ НОВОСТЕЙ ЗА ПОЗАВЧЕРА
+<!--                        ЗА {{date_num.1}}- -->
+<!--                        <span class="wh_space">-->
+<!--                       <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.2}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 3 %}
-                    <h1 align="center">ЗА {{date_num.2}}-
-                        <span class="wh_space">
-                       <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.3}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ЛЕНТА<wbr> КУРСКИХ НОВОСТЕЙ
+<!--                        ЗА {{date_num.2}}- -->
+<!--                        <span class="wh_space">-->
+<!--                       <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.3}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 4 %}
-                    <h1 align="center">ЗА {{date_num.3}}-
-                        <span class="wh_space">
-                       <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.4}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ЛЕНТА<wbr> КУРСКИХ НОВОСТЕЙ
+<!--                        ЗА {{date_num.3}}- -->
+<!--                        <span class="wh_space">-->
+<!--                       <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.4}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 5 %}
-                    <h1 align="center">ЗА {{date_num.4}}-
-                        <span class="wh_space">
-                       <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.5}}</span>&nbsp НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ЛЕНТА<wbr> КУРСКИХ НОВОСТЕЙ
+<!--                        ЗА {{date_num.4}}- -->
+<!--                        <span class="wh_space">-->
+<!--                       <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.5}}</span>&nbsp НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 6 %}
-                    <h1 align="center">ЗА {{date_num.5}}-
-                        <span class="wh_space">
-                       <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.6}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ЛЕНТА<wbr> КУРСКИХ НОВОСТЕЙ
+<!--                        ЗА {{date_num.5}}- -->
+<!--                        <span class="wh_space">-->
+<!--                       <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.6}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 7 %}
-                    <h1 align="center">АНОНСЫ-
-                        <span class="wh_space">
-                       <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.7}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">АНОНСЫ<wbr> КУРСКИХ НОВОСТЕЙ
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                       <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.7}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 8 %}
-                    <h1 align="center">ПРОИСШЕСТВИЯ-
-                        <span class="wh_space">
-                       <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.8}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">КУРСКИЕ ПРОИСШЕСТВИЯ
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                       <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.8}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 9 %}
-                    <h1 align="center">ОБЩЕСТВО-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.9}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ОБЩЕСТВО: КУРСКИЕ НОВОСТИ
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.9}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 10 %}
-                    <h1 align="center">ЖКХ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.10}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">НОВОСТИ КУРСКОГО ЖКХ
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.10}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 11 %}
-                    <h1 align="center">СПОРТ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.11}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">НОВОСТИ КУРСКОГО СПОРТА
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.11}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 12 %}
-                    <h1 align="center">МЕДИЦИНА-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.12}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">НОВОСТИ КУРСКОЙ МЕДИЦИНЫ
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.12}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 13 %}
-                    <h1 align="center">ОБРАЗОВАНИЕ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.13}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">НОВОСТИ КУРСКОГО ОБРАЗОВАНИЯ
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.13}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 14 %}
-                    <h1 align="center" >ЭКОНОМИКА-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.14}}</span> НОВОСТЕЙ</span></h1>
+                    <h1 align="center" >НОВОСТИ КУРСКОЙ ЭКОНОМИКИ
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.14}}</span> НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 15 %}
-                    <h1 align="center">КУЛЬТУРА-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.15}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">НОВОСТИ КУРСКОЙ КУЛЬТУРЫ
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.15}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 16 %}
-                    <h1 align="center">ДТП-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.16}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ПОСЛЕДНИЕ НОВОСТИ: КУРСКИЕ ДТП
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.16}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 17 %}
-                    <h1 align="center">ПОЖАРЫ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.17}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ПОСЛЕДНИЕ НОВОСТИ: КУРСКИЕ ПОЖАРЫ
+<!--                        ПОЖАРЫ- -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.17}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 18 %}
-                    <h1 align="center">МОШЕННИКИ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.18}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ПОСЛЕДНИЕ НОВОСТИ: МОШЕННИЧЕСТВО
+<!--                        МОШЕННИКИ- -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.18}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 19 %}
-                    <h1 align="center">КРАЖИ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.19}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ПОСЛЕДНИЕ НОВОСТИ: КУРСКИЕ КРАЖИ
+<!--                        КРАЖИ- -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.19}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 20 %}
-                    <h1 align="center">СУДЫ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.20}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">ПОСЛЕДНИЕ НОВОСТИ: КУРСКИЕ СУДЫ
+<!--                        СУДЫ- -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.20}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 21 %}
-                    <h1 align="center">СПЕЦОПЕРАЦИЯ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.21}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">КУРСКИЕ НОВОСТИ О СПЕЦОПЕРАЦИИ
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.21}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 22 %}
-                    <h1 align="center">СЕГОДНЯ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.22}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">АНОНСЫ НОВОСТЕЙ НА СЕГОДНЯ
+<!--                        СЕГОДНЯ- -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.22}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 23 %}
-                    <h1 align="center">ЗАВТРА-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.23}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">АНОНСЫ НОВОСТЕЙ НА ЗАВТРА
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.23}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 24 %}
-                    <h1 align="center">ПОСЛЕЗАВТРА-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.24}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">АНОНСЫ НОВОСТЕЙ НА ПОСЛЕЗАВТРА
+<!--                        - -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.24}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 25 %}
-                    <h1 align="center">СОБЫТИЯ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.25}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">АНОНСЫ КУРСКИХ СОБЫТИЙ
+<!--                        СОБЫТИЯ- -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.25}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
             {% if num_news == 26 %}
-                    <h1 align="center">ОБЪЯВЛЕНИЯ-
-                        <span class="wh_space">
-                        <span class="blink7" style="color:#FFFFFF;">
-                {{numnews.26}}</span>&nbsp  НОВОСТЕЙ</span></h1>
+                    <h1 align="center">АНОНСЫ: КУРСКИЕ ОБЪЯВЛЕНИЯ
+<!--                        ОБЪЯВЛЕНИЯ- -->
+<!--                        <span class="wh_space">-->
+<!--                        <span class="blink7" style="color:#FFFFFF;">-->
+<!--                {{numnews.26}}</span>&nbsp  НОВОСТЕЙ</span>-->
+                    </h1>
             {% endif  %}
         </div>
 
 <!--        <p align="center"> КУРСК СЕГОДНЯ &nbsp&nbsp&nbsp{{day_}} {% now "F" %} {% now "Y" %}-->
 <!--        &nbsp&nbsp&nbspЦБ РФ на {{ date_ }}:&nbsp USD {{ usd }} &#x20BD;&nbsp EUR {{ eur }}-->
 <!--            &#x20BD;</p>-->
-        <h4 align="center" >
-            {{hh3}}
+        <div class="date_">
+            <h2 align="center" >
+                {{hh3}}
 
-        </h4>
-        <p align="center" style="max-width: 837px;">
-           {{day_}} {% now "F" %} {% now "Y" %}
-        </p>
+            </h2>
 
+            <p align="center" >
+               {{day_}} {% now "F" %} {% now "Y"%}
+            </p>
+        </div>
 
 
     </div>
@@ -1232,24 +1286,122 @@
 <!--            <div class="adv">-->
 <!--            </div>-->
     <div id="news_text">
-
-        <p style="text-align:center;">Последнее обновление было в {% now "H" %}:{% now "i" %}:{%now "s"%}
+        <p >
+            Последнее обновление было в {% now "H" %}:{% now "i" %}:{%now "s"%}
         </p>
+        {% if page_obj.has_other_pages %}
+        <nav class="list-pages">
+            {% for p in page_obj.paginator.page_range %}
+                   {% if page_obj.number == p %}
+                <li class="page-num page-num-selected">{{ p }}</li>
+                   {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+                <li class="page-num">
+                    <a href="?page={{ p }}">{{ p }}</a>
+                </li>
+                   {% endif %}
+            {% endfor %}
+        </nav>
+        {% endif %}
+
+        {% for contact in page_obj %}
         {% for key, tm in news_dict.items %}
-        <div id="news_box">
-             <h3 class="text_block" >
-                <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">
-                {{key}}</a>
-            </h3>
-            <hr class="hr-line">
-              <div id="source_">
-                <p class="time_source"> &#x1F4C5;{{tm.2}}&nbsp   <span
-                        style="color:#F67F7B;">
-                    &#128337;{{tm.1}}</span></p>
-                <p class="time_source">{{tm.4}}&#x1F30E;</p>
+        {% if key == contact %}
+        <div id="news_box"
+             style="display: flex; flex-wrap: wrap;align-content: center;height: 100%;">
+            {% if 0 %}
+<!--            если0(True)то не показывает картинку,если1(False)то  показывает картинку-->
+            <div >
+                <img class="in_pict" style=""
+                       src ="{{ base_url }}{{pict}}"
+                     alt="" >
             </div>
+            <div class="pict_on" style=" flex-basis: 90%;">
+                <h3 class="text_block" >
+                    <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">
+                    {{key}}</a>
+                </h3>
+                <hr class="hr-line">
+                <div class="source_">
+                    <p class="time_source"> &#x1F4C5;{{tm.2}}&nbsp
+                           <span style="color:#F67F7B;">
+                        &#128337;{{tm.1}}</span></p>
+                    <p class="time_source">{{tm.4}}&#x1F30E;</p>
+                </div>
+            </div>
+            {% else %}
+            <div style=" flex-basis: 100%;">
+                <h3 class="text_block" >
+                    <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">
+                    {{key}}</a>
+                </h3>
+                <hr class="hr-line">
+                <div class="source_" >
+                    <p class="time_source"> &#x1F4C5;{{tm.2}}&nbsp
+                           <span style="color:#F67F7B;">
+                        &#128337;{{tm.1}}</span></p>
+                    <p class="time_source">{{tm.4}}&#x1F30E;</p>
+                </div>
+            </div>
+            {% endif  %}
         </div>
+        {% endif  %}
         {% endfor %}
+        {% endfor %}
+
+        {% if page_obj.has_other_pages %}
+        <nav class="list-pages">
+            {% for p in page_obj.paginator.page_range %}
+                   {% if page_obj.number == p %}
+                <li class="page-num page-num-selected">{{ p }}</li>
+                   {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2  %}
+                <li class="page-num">
+                    <a href="?page={{ p }}">{{ p }}</a>
+                </li>
+                   {% endif %}
+            {% endfor %}
+        </nav>
+        {% endif %}
+<!--        <p style="text-align:center;">-->
+
+<!--        {% for key, tm in news_dict.items %}-->
+<!--        <div id="news_box" style="display: flex; flex-wrap: wrap;align-content: center;height: 100%;">-->
+<!--            {% if 0 %}-->
+<!--&lt;!&ndash;            если0(True)то не показывает картинку,если1(False)то  показывает картинку&ndash;&gt;-->
+<!--            <div >-->
+<!--                <img class="in_pict" style=""-->
+<!--                       src ="{{ base_url }}{{pict}}"-->
+<!--                     alt="" >-->
+<!--            </div>-->
+<!--            <div class="pict_on" style=" flex-basis: 90%;">-->
+<!--                <h3 class="text_block" >-->
+<!--                    <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">-->
+<!--                    {{key}}</a>-->
+<!--                </h3>-->
+<!--                <hr class="hr-line">-->
+<!--                <div class="source_">-->
+<!--                    <p class="time_source"> &#x1F4C5;{{tm.2}}&nbsp-->
+<!--                           <span style="color:#F67F7B;">-->
+<!--                        &#128337;{{tm.1}}</span></p>-->
+<!--                    <p class="time_source">{{tm.4}}&#x1F30E;</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            {% else %}-->
+<!--            <div style=" flex-basis: 100%;">-->
+<!--                <h3 class="text_block" >-->
+<!--                    <a class="nn" href="{{tm.3}}" target="_blank" style="text-decoration: none">-->
+<!--                    {{key}}</a>-->
+<!--                </h3>-->
+<!--                <hr class="hr-line">-->
+<!--                <div class="source_" >-->
+<!--                    <p class="time_source"> &#x1F4C5;{{tm.2}}&nbsp-->
+<!--                           <span style="color:#F67F7B;">-->
+<!--                        &#128337;{{tm.1}}</span></p>-->
+<!--                    <p class="time_source">{{tm.4}}&#x1F30E;</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            {% endif  %}-->
+<!--        </div>-->
+<!--        {% endfor %}-->
     </div>
 </div>
 {% endblock %}

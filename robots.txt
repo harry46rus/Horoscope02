@@ -3,4 +3,4 @@ Disallow: /horoscope/templates/testcount.html
 Disallow: /horoscope/templates/horoscope.html
 Disallow: /*.json$
 
-Sitemap: https://sovabot.ru/public_html/sitemap.txt
+Sitemap: https://sovabot.ru/public_html/sitemap.xml

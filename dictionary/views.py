@@ -9,6 +9,7 @@ from dictionary.scrap01 import scrap,get_dates#,scrap1,scrap2
 from dictionary.read_USD import get_USD
 from datetime import datetime
 from dictionary.seo_logics import head_title,html_date
+from django.core.paginator import Paginator
 
 # def leo(request):
 #     return HttpResponse("Hello, Dictionary!!!")
@@ -60,23 +61,19 @@ zodiac_dict = {
 #         return f"This is {self.name}"
 
 
-def get_sign_name(request):#, sing_name: str):
-    # description = zodiac_dict.get(sing_name, None)
-    # data = {
-    #     "description_zodiac": description,
-    #     "sign_": sing_name.upper(),
-    #     # "my_int": 123,
-    #     # "my_float": 25.3,
-    #     # "my_list": [1, 2, 3],
-    #     # "my_dict": {"name": "Piter"},
-    #     # "my_class": Person("Jack", 50),
-
-    # }
-    return render(request, 'horoscop.html')#, context=data)
-
-
-
-
+# def get_sign_name(request):#, sing_name: str):
+#     # description = zodiac_dict.get(sing_name, None)
+#     # data = {
+#     #     "description_zodiac": description,
+#     #     "sign_": sing_name.upper(),
+#     #     # "my_int": 123,
+#     #     # "my_float": 25.3,
+#     #     # "my_list": [1, 2, 3],
+#     #     # "my_dict": {"name": "Piter"},
+#     #     # "my_class": Person("Jack", 50),
+#
+#     # }
+#     return render(request, 'horoscop.html')#, context=data)
 
 def get_contacts(request):
     return render(request, "contacts.html")
@@ -100,7 +97,12 @@ def get_why(request):
 
     date_num = get_dates()
     num_news = 99
+
+
+
+
     data = {
+
         'num_news': num_news,
         'numnews': numnews,
         # 'number_news': number_news,
@@ -113,11 +115,7 @@ def get_why(request):
 
     return render(request, "whyitsite.html", context=data)
 
-
-
-
 def get_news0(request, sing_news: int):
-
 
     if sing_news < 27:
         hour_= datetime.strftime(datetime.now(), "%H")
@@ -135,6 +133,7 @@ def get_news0(request, sing_news: int):
         # if 0 < sing_news < 7:
         #     sss = date_num[sing_news-1]
 
+
         data = {
             'sing_news': sing_news,
             'numnews': numnews,
@@ -142,7 +141,7 @@ def get_news0(request, sing_news: int):
             'date_': dddate,
             'usd': usd,
             'eur': eur,
-            "titl":titl,
+            "titl": titl,
             # 'count_n':count_n,
             'descrip':descrip,
             'news_dict': fff,
@@ -170,13 +169,25 @@ def get_sign_name(request, sing_news: str):
         for date_, value in usd_.items():
             dddate, usd, eur = date_, value[1], value[3]
         # =====================================================
-        titl,sss,descrip,hh3 = head_title(num_news)
+        titl,sss,descrip,hh3,key_word = head_title(num_news)
         # sss=0
         date_num = get_dates()
         # if 0 < sing_news < 7:
         #     sss = date_num[sing_news-1]
+        pict = f'cat.jpg'  # f'dog.jpg'f'church.jpg'#
+
+        # contact_list = fff
+
+        contact_list = list(fff)
+        # contact_list = (fff.items())[0]
+        paginator = Paginator(contact_list, 40)
+        print('fff',fff)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
 
         data = {
+            # 'menu': menu,:
+            'page_obj': page_obj,
             'num_news': num_news,
             'numnews': numnews,
             'sss': sss,
@@ -184,7 +195,9 @@ def get_sign_name(request, sing_news: str):
             'date_': dddate,
             'usd': usd,
             'eur': eur,
+            'pict': pict,
             "titl": titl,
+            'key_word':key_word,
             'list_link':list_link,
             'descrip': descrip,
             'news_dict': fff,
@@ -207,13 +220,25 @@ def get_home(request):
     for date_, value in usd_.items():
         dddate, usd, eur = date_, value[1], value[3]
 
+    titl, sss, descrip, hh3,key_word = head_title(0)
     date_num = get_dates()
 
+    contact_list = list(fff)
+    paginator = Paginator(contact_list, 40)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     data = {
+        'page_obj': page_obj,
         'num_news': num_news,
         'numnews': numnews,
-
+        'sss': sss,
+        'hh3': hh3,
         'date_': dddate,
+        "titl": titl,
+        'key_word': key_word,
+        'descrip': descrip,
         'usd': usd,
         'eur': eur,
         'news_dict': fff,
@@ -230,6 +255,7 @@ def handle_404(request, exception):
         dddate, usd, eur = date_, value[1], value[3]
     date_num = get_dates()
     sing_news = 100
+
     data = {
         'sing_news': sing_news,
         'numnews': numnews,
@@ -270,8 +296,6 @@ def get_test_count(request):
 
         rezz,namefile =  tcounter(dictq,contact1,contact2,contact3,sex)
 
-
-
     context2 = {
         # 'zz': qq,
         'zz': rezz,
@@ -311,3 +335,5 @@ def hello2(request):
     return HttpResponseRedirect("https://www.djangoproject.com")
 
 
+# get_sign_name(request,'kurskie-novosti-tri-dnya-nazad')
+# print(f'C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\static\\images{{pict}}')

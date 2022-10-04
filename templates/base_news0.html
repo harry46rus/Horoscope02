@@ -1,27 +1,26 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 
-	<link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>{{titl}}</title>
+    <meta content="text/html" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta  name="description"
+    content="{{descrip}}">
+    <meta  property="og:description" content="{{descrip}}">
+    <meta name="keywords" content="{{key_word}}">
+    <meta content="https://sovabot.ru/" property="og:site_name">
+    <meta content="{{titl}}" property="og:title">
+    <link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
     <link href="{% static 'favicon.ico' %}" rel="apple-touch-icon" type="image/png">
     <link rel="stylesheet" href="{% static 'css/news01.css' %} ">
-
-    <title>{{titl}}</title>
-    <meta charset="UTF-8">
-	<meta content="text/html" http-equiv="Content-Type">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="новости курска, новости курска сегодня, курские новости, новости курской области">
-    <meta  name="description"
-           content="{{descrip}}">
-	<meta  property="og:description" content="{{descrip}}">
-
-	<meta content="https://sovabot.ru/" property="og:site_name">
-	<meta content="{{titl}}" property="og:title">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.sovabot.ru/" />
 
 </head>
 <body>
@@ -61,13 +60,11 @@
                               <polygon fill="#61605D" points="97030,23000 97580,24030 92700,26390 92380,25800 "/>
                              </g>
                          </svg>
-<!--                        <img class="logoimg"-->
-<!--                       src="{% static 'images/sovamer.svg' %}" alt="">-->
                     </a>
                 </div>
 
                 <div id="sova" style="margin-top: 5px;">
-                <a href="/{{list_link.0}}" class="dropbtn1" style="color:#FFFFFF;text-decoration: none;
+                <a href="/" class="dropbtn1" style="color:#FFFFFF;text-decoration: none;
                     padding:0;font-size: 22px;" >
                     SOVAbot.ru </a>
                 </div>
@@ -569,14 +566,11 @@
                                     <div class="sline">
                                         <a class="dropbtn_active" class="head-button"
                                              href="/whyitsite/">ЧаВо</a>
-<!--                                             href="/whyitsite/">ЗАЧЕМ ЭТОТ САЙТ?</a>-->
-
                                     </div>
                                 {% else %}
                                     <div>
                                         <a class="head-button" class="dropbtn" href="/whyitsite/">
                                             ЧаВо</a>
-<!--                                            ЗАЧЕМ ЭТОТ САЙТ?</a>-->
                                     </div>
                                 {% endif  %}
                             </div>

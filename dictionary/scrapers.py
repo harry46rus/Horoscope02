@@ -154,7 +154,7 @@ def gtrkkursk():
 
                 News9 = News6.find_all('span' ,class_='item_time')[i].text#
                 time_iss = f'{News9[-24:-8]} {News9[-5:]}'
-
+                time_iss = time_iss.strip(',')
                 news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
                                     'www.gtrkkursk.ru']
 
@@ -167,7 +167,7 @@ def gtrkkursk():
             # print('time_iss'," ",time_iss)
             # print('reff'," ",reff)
         #     news_list = list(news_dict)
-    print(news_dict)
+    # print(news_dict)
     return news_dict
 
 def s46tv():
