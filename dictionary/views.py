@@ -157,7 +157,7 @@ def get_sign_name(request, sing_news: str):
     # перевод ссылки в число
     num_news,list_link = html_date(sing_news)
     # html_date(link_='novosti-za-sem-dnej')
-    print(num_news,list_link)
+    # print(num_news,list_link)
 
     if num_news < 27:
         hour_ = datetime.strftime(datetime.now(), "%H")
@@ -181,7 +181,7 @@ def get_sign_name(request, sing_news: str):
         contact_list = list(fff)
         # contact_list = (fff.items())[0]
         paginator = Paginator(contact_list, 40)
-        print('fff',fff)
+        # print('fff',fff)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
