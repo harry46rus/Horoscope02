@@ -61,19 +61,19 @@ zodiac_dict = {
 #         return f"This is {self.name}"
 
 
-# def get_sign_name(request):#, sing_name: str):
-#     # description = zodiac_dict.get(sing_name, None)
-#     # data = {
-#     #     "description_zodiac": description,
-#     #     "sign_": sing_name.upper(),
-#     #     # "my_int": 123,
-#     #     # "my_float": 25.3,
-#     #     # "my_list": [1, 2, 3],
-#     #     # "my_dict": {"name": "Piter"},
-#     #     # "my_class": Person("Jack", 50),
-#
-#     # }
-#     return render(request, 'horoscop.html')#, context=data)
+def get_test_q(request):#, sing_name: str):
+    # description = zodiac_dict.get(sing_name, None)
+    # data = {
+    #     "description_zodiac": description,
+    #     "sign_": sing_name.upper(),
+    #     # "my_int": 123,
+    #     # "my_float": 25.3,
+    #     # "my_list": [1, 2, 3],
+    #     # "my_dict": {"name": "Piter"},
+    #     # "my_class": Person("Jack", 50),
+
+    # }
+    return render(request, 'horoscop.html')#, context=data)
 
 def get_contacts(request):
     return render(request, "contacts.html")
@@ -169,12 +169,12 @@ def get_sign_name(request, sing_news: str):
         for date_, value in usd_.items():
             dddate, usd, eur = date_, value[1], value[3]
         # =====================================================
-        titl,sss,descrip,hh3,key_word = head_title(num_news)
+        titl,sss,descrip,hh3,key_word,hh1 = head_title(num_news)
         # sss=0
         date_num = get_dates()
         # if 0 < sing_news < 7:
         #     sss = date_num[sing_news-1]
-        pict = f'cat.jpg'  # f'dog.jpg'f'church.jpg'#
+        pict = f'church.jpg'#f'cat.jpg'  # f'dog.jpg'
 
         # contact_list = fff
 
@@ -192,6 +192,7 @@ def get_sign_name(request, sing_news: str):
             'numnews': numnews,
             'sss': sss,
             'hh3': hh3,
+            'hh1': hh1,
             'date_': dddate,
             'usd': usd,
             'eur': eur,
@@ -213,14 +214,14 @@ def get_home(request):
     hour_ = datetime.strftime(datetime.now(), "%H")
     days_ = datetime.strftime(datetime.now(), "%d")
     # hour= datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S")
-    num_news = 0
-    fff, numnews = scrap(0)
+    num_news = 27
+    fff, numnews = scrap(27)
     usd_ = get_USD()
 
     for date_, value in usd_.items():
         dddate, usd, eur = date_, value[1], value[3]
 
-    titl, sss, descrip, hh3,key_word = head_title(0)
+    titl, sss, descrip, hh3,key_word,hh1 = head_title(27)
     date_num = get_dates()
 
     contact_list = list(fff)
@@ -235,6 +236,7 @@ def get_home(request):
         'numnews': numnews,
         'sss': sss,
         'hh3': hh3,
+        'hh1': hh1,
         'date_': dddate,
         "titl": titl,
         'key_word': key_word,

@@ -16,11 +16,11 @@ def arh_news_count_json():
 
     with open(path2, 'r', encoding='utf-8') as f_five:
         json_data_news = json.load(f_five)
-    print(json_data_news)
+    # print(json_data_news)
     try:
         with open(path1, 'r', encoding='utf-8') as f_five:
             arh_news_dict = json.load(f_five)
-        print(arh_news_dict)
+        # print(arh_news_dict)
     except:
         pass
 
@@ -28,7 +28,7 @@ def arh_news_count_json():
 
     dtime_= str(now)[:10]
 
-    print(dtime_)
+    # print(dtime_)
     arh_news_dict[dtime_] = json_data_news
 
     with open(path1, 'w', encoding='utf-8') as file:

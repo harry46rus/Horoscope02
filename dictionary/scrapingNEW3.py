@@ -151,7 +151,9 @@ def totaldate(date_dict):
 # totaldate(scrap_news())
 
 def write_base(diapason):  # int
-    """диапазон  хранения данных за сколько дней"""
+    """Из GLdate0.json записывает GLdate1.json-GLdate6.json файлы (diapason=1,..,6),данные
+     за  1,..,6 день назад. diapason=7  создает GLdate27.json файл, который хранит хранит данные за
+     последние 24 часа """
 
     path2 = f"{path_bd_json}GLdate0.json"
     # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\GLdate0.json"
@@ -165,34 +167,50 @@ def write_base(diapason):  # int
     # времени
 
     # Определение  секунды сначала эпохи для начала текущего дня
+    if diapason != 7:
+        ddday = str(datetime.datetime.now())[:10]
+        # print(ddday)
+        today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
+        # print(today_start_)
+        # print(time.ctime(today_start_))
+        # print()
+        # Определение  секунды сначала эпохи для начала  дня 3дня назад (вчера, позавчера, поза-позавчера)
+        startNd_ago = today_start_ - 86400 * diapason
+        startNd = today_start_ - 86400 * (diapason - 1)
+        # print("start1d_ago", startNd_ago)
+        # print('yesterday_start_', today_start_ - 86400)
+        # исключение данных ранее даты start3d_ago
+        for j, i in json_data_news.items():
+            # print(j,"___",i)
+            if startNd_ago <= i[0] <= startNd:
+                # print(j, "___", i)
+                dict_Nday_ago[j] = i
 
-    ddday = str(datetime.datetime.now())[:10]
-    # print(ddday)
-    today_start_ = int(time.mktime(time.strptime(ddday, '%Y-%m-%d')))  # %H:%M')))
-    # Определение  секунды сначала эпохи для начала  дня 3дня назад (вчера, позавчера, поза-позавчера)
-    startNd_ago = today_start_ - 86400 * diapason
-    startNd = today_start_ - 86400 * (diapason - 1)
-    # print("start1d_ago", startNd_ago)
-    # print('yesterday_start_', today_start_ - 86400)
-    # исключение данных ранее даты start3d_ago
-    for j, i in json_data_news.items():
-        # print(j,"___",i)
-        if startNd_ago <= i[0] <= startNd:
-            # print(j, "___", i)
-            dict_Nday_ago[j] = i
+
+    else:
+        ddday_min = str(datetime.datetime.now())[:16]
+        # print(ddday_min)
+        today_jast_now = int(time.mktime(time.strptime(ddday_min, '%Y-%m-%d %H:%M')))  # %H:%M')))
+        # print(today_jast_now)
+        # print(time.ctime(today_jast_now))
+
+        start24_ago = today_jast_now - 86400
+        # startNd = today_start_ - 86400 * (diapason - 1)
+        for j, i in json_data_news.items():
+            # print(j,"___",i)
+            if start24_ago <= i[0] <= today_jast_now:
+                # print(j, "___", i)
+                dict_Nday_ago[j] = i
+        diapason=27
 
     path1 = f"{path_bd_json}GLdate{diapason}.json"
-    # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
-    #         f"\\GLdate{diapason}.json"
-    # path1 = f"/home/sovabot0/domains/sovabot.ru/horoscope/dictionary/bd_json/GLdate{diapason}.json"
-
     with open(path1, 'w', encoding='utf-8') as file:
         json.dump(dict_Nday_ago, file, ensure_ascii=False, indent=0)
     # print("3", dict_1day_ago)
 
 def div_base():
     """сколько дней помним"""
-    for diapason in range(1, 7):
+    for diapason in range(1, 8):
         write_base(diapason)
 
 
@@ -200,7 +218,7 @@ def get_count_news():
     """создает список: количество новостей в каждой папке GLdate0.json-GLdate26.json"""
     number_news =[]
 
-    for day_ago in range(27):
+    for day_ago in range(28):
         path2 = f"{path_bd_json}GLdate{day_ago}.json"
         # path2 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json" \
         #         f"\\GLdate{day_ago}.json"

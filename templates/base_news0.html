@@ -1,26 +1,24 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 
-    <meta charset="UTF-8">
+	<link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="{% static 'favicon.ico' %}" rel="apple-touch-icon" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/news01.css' %} ">
     <title>{{titl}}</title>
-    <meta content="text/html" http-equiv="Content-Type">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+	<meta content="text/html" http-equiv="Content-Type">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta  name="description"
     content="{{descrip}}">
     <meta  property="og:description" content="{{descrip}}">
     <meta name="keywords" content="{{key_word}}">
-    <meta content="https://sovabot.ru/" property="og:site_name">
-    <meta content="{{titl}}" property="og:title">
-    <link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
-    <link href="{% static 'favicon.ico' %}" rel="apple-touch-icon" type="image/png">
-    <link rel="stylesheet" href="{% static 'css/news01.css' %} ">
+	<meta content="https://sovabot.ru/" property="og:site_name">
+	<meta content="{{titl}}" property="og:title">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-
-    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.sovabot.ru/" />
 
 </head>
 <body>
@@ -579,7 +577,21 @@
                     </div>
             </nav>
             <button class="burger" type="button" id="navToggle">
-                <img class="burger-icon" src="{% static 'images/burger5.svg' %}" alt="">
+                 <svg xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" width="80px" height="50px"
+                      viewBox="0 0 30 24" version="1.1">
+                    <defs>
+                    <clipPath id="clip1">
+                      <path d="M 2.601562 4.519531 L 27.5 4.519531 L 27.5 18.757812 L 2.601562 18.757812 Z M 2.601562 4.519531 "/>
+                    </clipPath>
+                    </defs>
+                    <g id="surface1">
+                    <g clip-path="url(#clip1)" clip-rule="nonzero">
+                    <path style=" stroke:none;fill-rule:evenodd;fill:rgb(96.078431%,95.686275%,94.901961%);fill-opacity:1;" d="M 3.738281 4.519531 L 26.398438 4.519531 C 27.019531 4.519531 27.519531 5.019531 27.519531 5.640625 C 27.519531 6.261719 27.019531 6.761719 26.398438 6.761719 L 3.738281 6.761719 C 3.121094 6.761719 2.621094 6.261719 2.621094 5.640625 C 2.621094 5.019531 3.121094 4.519531 3.738281 4.519531 Z M 3.738281 10.519531 L 26.398438 10.519531 C 27.019531 10.519531 27.519531 11.019531 27.519531 11.640625 C 27.519531 12.261719 27.019531 12.761719 26.398438 12.761719 L 3.738281 12.761719 C 3.121094 12.761719 2.621094 12.261719 2.621094 11.640625 C 2.621094 11.019531 3.121094 10.519531 3.738281 10.519531 Z M 3.738281 16.519531 L 26.398438 16.519531 C 27.019531 16.519531 27.519531 17.019531 27.519531 17.640625 C 27.519531 18.261719 27.019531 18.761719 26.398438 18.761719 L 3.738281 18.761719 C 3.121094 18.761719 2.621094 18.261719 2.621094 17.640625 C 2.621094 17.019531 3.121094 16.519531 3.738281 16.519531 Z M 3.738281 16.519531 "/>
+                    </g>
+                    </g>
+                </svg>
+<!--                <img class="burger-icon" src="{% static 'images/burger5.svg' %}" alt="">-->
             </button>
         </div>
     </div>

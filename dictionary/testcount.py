@@ -1473,4 +1473,4 @@ def tcounter(dictq,name1,mail1,cod1,sex):
     # plt.show()
 
     rezultt=[aa, bb, cc, dd, ee, ff, gg, hh, ii, jj]
-    return rezultt,name_filePDF2
+    return rezultt, name_filePDF2
