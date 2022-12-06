@@ -16,3 +16,4 @@ urlpatterns = [
 ]
 
 # handler404="view.handle_404"
+handler404=views.handle_404

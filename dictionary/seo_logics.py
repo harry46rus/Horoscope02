@@ -314,10 +314,11 @@ def head_title(num_news=0):
 
     return titl, sss, descrip, hh3, key_word,hh1
 
-def html_date(link_='novosti-za-sem-dnej'):
+def html_date(link_):#='novosti-za-sem-dnej'):
     # sss=0
     # count_news={}
     # sing_news=0
+
     link_dict = {'novosti-za-sem-dnej': 0,
                 'kurskie-novosti-za-vchera': 1,
                 'kurskie-novosti-za-pozavchera':2,
@@ -347,7 +348,10 @@ def html_date(link_='novosti-za-sem-dnej'):
                 'obyavleniya-po-kursku-i-oblasti': 26}
 
     list_link = list(link_dict)
-    num_news=link_dict[link_]
+    try:
+        num_news=link_dict[link_]
+    except:
+        num_news='error'
     return num_news, list_link
 
 # head_title(num_news=0)
@@ -378,7 +382,7 @@ def count_word(numberGLdate=0):
             dict_words1[x[:-1]] = score,x
 
     key_except = r'курс[к]?|област|челове|рубле|мужчи[н]?|женщин|январ|феврал|мар|апрел|июн|июл|ььь\
-            |авгус|октябр|ноябр|сентябр|декабр|росси|район|жител|сутк|куря[н]?'
+            |авгус|октябр|ноябр|сентябр|декабр|росси|район|жител|сутк|куря[н]?|тысяч'
     n=2# не включать в результат слова которые повторяются "n" и меньше раз
     for title, y in dict_words1.items():
         result = re.findall(key_except, title.lower())
@@ -417,5 +421,5 @@ def search_news(word,numberGLdate=0):
     for i,y in search_dict.items():
         print(i,y)
 
-# count_word(0)
-# search_news('туман',0)
+# count_word(28)
+# search_news('мобилиз',28)

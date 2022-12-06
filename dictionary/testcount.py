@@ -10,7 +10,8 @@ import datetime
 def tcounter(dictq,name1,mail1,cod1,sex):
 
     """Count OCA test"""
-
+    xx22 = 0
+    xx197 = 0
     if sex=="men":
         men_=1
         women_=0
@@ -413,7 +414,10 @@ def tcounter(dictq,name1,mail1,cod1,sex):
     d = 0
 
     # 22
-    if dictq[22]=='+': d += 1
+    if dictq[22]=='+':
+        d += 1
+        xx22 = 1
+
     if dictq[22]=='?': d += 5
     if dictq[22]=='-': d += 6
 
@@ -508,7 +512,9 @@ def tcounter(dictq,name1,mail1,cod1,sex):
     if dictq[191]=='-': d += 5
 
     # 197
-    if dictq[197]=='+': d += 2
+    if dictq[197]=='+':
+        d += 2
+        xx197 = 1
     if dictq[197]=='?': d += 4
     if dictq[197]=='-': d += 5
 
@@ -1331,7 +1337,7 @@ def tcounter(dictq,name1,mail1,cod1,sex):
     # aa, bb, cc, dd, ee, ff, gg, hh, ii, jj = -50, -78, -65, -80, 16, 34, -56, -42, -60, -25
 
     # check randomity grapf
-    if -95 < aa < -35 and -100 < bb < -65 and -96 < cc < -63 and -83 < dd < 35 and 3 < ee < 45 and \
+    if -95 < aa < -38 and -100 < bb < -65 and -96 < cc < -63 and -83 < dd < 35 and 3 < ee < 45 and \
             22 < ff < 72 and -92 < gg < -55 and -98 < hh < -35 and -90 < ii < 18 and -72 < jj < 22:
         print("random graph")
         plt.text(1.5, 64, "= r a n d o m   g r a p h =", size=48, \
@@ -1457,13 +1463,19 @@ def tcounter(dictq,name1,mail1,cod1,sex):
     # name_filePDF = f'c:\\DataSc\\Folder_News\\OCA_test_' + sheet[
     #     "B2"].value + '__' + data_ + '__' + nameExelFile + '.pdf'
 
-    name_filePDF = f'c:\\DataSc\\Folder_News\\OCA_test_{description_}.pdf'
+    # name_filePDF = f'c:\\DataSc\\Folder_News\\OCA_test_{description_}.pdf'
+    #
+    # plt.savefig(name_filePDF, format="pdf", bbox_inches="tight")
 
-    plt.savefig(name_filePDF, format="pdf", bbox_inches="tight")
+    #server
+    # name_filePDF1 = f'/home/sovabot0/domains/sovabot.ru/public_html/static/graph_fold/{description_}.pdf'
 
-    # name_filePDF1 = f'c:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope\\static\\css{description_}.pdf'
+    # plt.savefig(name_filePDF1, format="pdf", bbox_inches="tight")
+    #
+    # name_filePDF2 = f'graph_fold/{description_}.pdf'
+
+
     name_filePDF1 = f'static\\graph_fold\\{description_}.pdf'
-
 
     plt.savefig(name_filePDF1, format="pdf", bbox_inches="tight")
 
@@ -1473,4 +1485,4 @@ def tcounter(dictq,name1,mail1,cod1,sex):
     # plt.show()
 
     rezultt=[aa, bb, cc, dd, ee, ff, gg, hh, ii, jj]
-    return rezultt, name_filePDF2
+    return rezultt, name_filePDF2, xx22, xx197

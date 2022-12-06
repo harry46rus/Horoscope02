@@ -1,0 +1,14 @@
+RewriteEngine on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+RewriteCond %{HTTP_HOST} !^www.sovabot.ru$
+RewriteRule ^(.*) http://www.sovabot.ru/$1 [R=301,L]
+DirectoryIndex site.wsgi
+Options +ExecCGI
+AddHandler wsgi-script .wsgi
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /site.wsgi/$1 [QSA,PT,L]
+ErrorDocument 404 /error404.html
+

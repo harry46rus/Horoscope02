@@ -8,6 +8,8 @@ from bs4 import BeautifulSoup
 import datetime
 import threading
 
+from loguru import logger
+
 header = {'Accept': '*/*',
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\
     (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36'}
@@ -83,9 +85,11 @@ def kurskcity():
         resp = requests.get(link, headers=header)
         soup = BeautifulSoup(resp.text, 'lxml')
         # print(resp.status_code, 'kurskcity.ru')
+        logger.info(f"kurskcity.ru_{resp.status_code} {__name__}")
     except:
+        logger.error(f"Access denied_____kurskcity.ru {__name__}")
         pass
-        print('ERROR-kurskcity.ru')
+        # print('ERROR-kurskcity.ru')
         # print(resp.status_code, 'kurskcity.ru')
         # resp.raise_for_status()
     #     for i in range(58):
@@ -108,6 +112,7 @@ def kurskcity():
             # print(News6," ",reff)
         #     news_list = list(news_dict)
         except:
+            logger.error(f"Scrapping error_____kurskcity.ru {__name__}")
             # print(f"=====ошибка скрапинга кода kurskcity.ru=====итераций_{y}=========")
             break
     return news_dict
@@ -132,9 +137,11 @@ def gtrkkursk():
         try:
             resp = requests.get(link, headers=header)
             soup = BeautifulSoup(resp.text, 'lxml')
-            print(resp.status_code, 'gtrkkursk.ru')
+            logger.info(f"gtrkkursk.ru_{resp.status_code} {__name__}")
+            # print(resp.status_code, 'gtrkkursk.ru')
         except:
-            print('ERROR-gtrkkursk.ru')
+            logger.error(f"Access denied_____gtrkkursk.ru {__name__}")
+            # print('ERROR-gtrkkursk.ru')
             pass
             # print(resp.status_code, 'gtrkkursk.ru')
             # resp.raise_for_status()
@@ -153,14 +160,15 @@ def gtrkkursk():
                 News8 = News6.find_all('h2' ,class_='title')[i].text#
 
                 News9 = News6.find_all('span' ,class_='item_time')[i].text#
-                time_iss = f'{News9[-24:-8]} {News9[-5:]}'
+                time_iss = f'{News9[-23:-8]} {News9[-5:]}'
                 time_iss = time_iss.strip(',')
                 news_dict[News8] = [convert(time_iss)[0], convert(time_iss)[1], time_iss, reff,
                                     'www.gtrkkursk.ru']
 
             except:
                 pass
-                print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
+                logger.error(f"Scrapping error_____gtrkkursk.ru {__name__}")
+                # print("===========ошибка скрапинга кода gtrkkursk.ru=========================")
             # print('News7'," ",News7)
             # print('News8'," ",News8)
             # print('News9'," ",News9)
@@ -180,7 +188,9 @@ def s46tv():
         resp = requests.get(link, headers=header)
         soup = BeautifulSoup(resp.text, 'lxml')
         # print(resp.status_code, '46tv.ru')
+        logger.info(f"46tv.ru_{resp.status_code} {__name__}")
     except:
+        logger.error(f"Access denied_____46tv.ru {__name__}")
         print('ERROR-46tv.ru')
         # print(resp.status_code, '46tv.ru')
         pass
@@ -203,6 +213,7 @@ def s46tv():
             news_dict[News41] = [convert(time_)[0], convert(time_)[1], time_, News42,
                                  'www.46tv.ru']
         except:
+            logger.error(f"Scrapping error_____46tv.ru {__name__}")
             # print(f"=====ошибка скрапинга кода 46tv.ru=====итераций_{y}=========")
             break
     return news_dict
@@ -225,9 +236,11 @@ def seyminfo():
             resp = requests.get(link, headers=header)
             soup = BeautifulSoup(resp.text, 'lxml')
             # print(resp.status_code, 'seyminfo.ru')
+            logger.info(f"seyminfo.ru_{resp.status_code} {__name__}")
         except:
+            logger.error(f"Access denied_____seyminfo.ru {__name__}")
             pass
-            print('ERROR-seyminfo.ru')
+            # print('ERROR-seyminfo.ru')
             # print(resp.status_code, 'seyminfo.ru')
         news_list = []
 
@@ -235,7 +248,7 @@ def seyminfo():
         # News_4 = soup.find_all('td', class_="right")
         # News_4 = soup.find_all('ul', class_="lenta")[0]
 
-        for y in range(20):
+        for y in range(9):
             try:
                 News40 = \
                     soup.find_all('div', class_="container content-container")[0].find_all('div',
@@ -250,6 +263,7 @@ def seyminfo():
                 news_dict[News41] = [convert(time_)[0], convert(time_)[1], time_, News42,
                                      'www.seyminfo.ru']
             except:
+                logger.error(f"Scrapping error_____seyminfo.ru {__name__}")
                 # print(f"=====ошибка скрапинга кода seyminfo.ru=====итераций_{y}=========")
                 break
     return news_dict
@@ -273,8 +287,10 @@ def k_izvestia():
             resp = requests.get(link, headers=header)
             soup = BeautifulSoup(resp.text, 'lxml')
             # print(resp.status_code, 'kursk-izvestia.ru')
+            logger.info(f"kursk-izvestia.ru_{resp.status_code} {__name__}")
         except:
-            print('ERROR-kursk-izvestia.ru')
+            logger.error(f"Access denied_____kursk-izvestia.ru {__name__}")
+            # print('ERROR-kursk-izvestia.ru')
             # print(resp.status_code, 'kursk-izvestia.ru')
             pass
         news_list = []
@@ -297,6 +313,7 @@ def k_izvestia():
                                     'www.kursk-izvestia.ru']
 
             except:
+                logger.error(f"Scrapping error_____kursk-izvestia.ru {__name__}")
                 # print(f"=====ошибка скрапинга кода kursk-izvestia.ru=====итераций_{i}=========")
                 break
     return news_dict
@@ -310,14 +327,13 @@ def dddkursk():
     try:
         resp = requests.get(link, headers=header)
         soup = BeautifulSoup(resp.text, 'lxml')
-        # print(resp.status_code, 'dddkursk.ru')
+        logger.info(f"dddkursk.ru_{resp.status_code} {__name__}")
     except:
-        print('ERROR-dddkursk.ru')
+        logger.error(f"Access denied_____dddkursk.ru {__name__}")
+        # print('ERROR-dddkursk.ru')
         # print(resp.status_code, 'dddkursk.ru')
         pass
     news_list = []
-
-
 
     for y in range(40):
         try:
@@ -335,7 +351,8 @@ def dddkursk():
                                  'www.dddkursk.ru']
 
         except:
-            print(f"=====ошибка скрапинга кода dddkursk.ru=====итераций_{y}=========")
+            logger.error(f"Scrapping error_____dddkursk.ru {__name__}")
+            # print(f"=====ошибка скрапинга кода dddkursk.ru=====итераций_{y}=========")
             break
     return news_dict
 
@@ -350,8 +367,10 @@ def mchs():
     try:
         resp = requests.get(link, headers=header)
         soup = BeautifulSoup(resp.text, 'lxml')
+        logger.info(f"46.mchs.gov_{resp.status_code} {__name__}")
     except:
-        print('ERROR-mchs.gov.ru')
+        logger.error(f"Access denied_____46.mchs.gov.ru {__name__}")
+        # print('ERROR-mchs.gov.ru')
         # print(resp.status_code, 'mchs.gov.ru')
         pass
     news_list = []
@@ -381,11 +400,11 @@ def mchs():
                                  'www.46.mchs.gov.ru']
 
         except:
-            print(f"=====ошибка скрапинга кода mchs.gov.ru=====итераций_{y}=========")
+            logger.error(f"Scrapping error_____46.mchs.gov.ru {__name__}")
+            # print(f"=====ошибка скрапинга кода mchs.gov.ru=====итераций_{y}=========")
             break
     return news_dict
 # ==========================================
-
 def mvd():
     resp = None
 
@@ -396,10 +415,12 @@ def mvd():
     try:
         resp = requests.get(link, headers=header)
         soup = BeautifulSoup(resp.text, 'lxml')
-        print(resp.status_code, '46.мвд.рф')
+        logger.info(f"46.мвд.рф_{resp.status_code} {__name__}")
+        # print(resp.status_code, '46.мвд.рф')
     except:
         # print(resp.status_code, '46.мвд.рф')
-        print( 'ERROR-46.мвд.рф')
+        # print( 'ERROR-46.мвд.рф')
+        logger.error(f"Access denied_____46.мвд.рф {__name__}")
         pass
     news_list = []
 
@@ -430,6 +451,11 @@ def mvd():
             news_dict[title_.strip('\n')] = [convert(time_)[0], convert(time_)[1], time_, reff,
                                  'www.46.мвд.рф']
         except:
-            print(f"=====ошибка чтения кода 46.мвд.рф=====итераций_{y}=========")
+            logger.error(f"Scrapping error_____46.мвд.рф {__name__}")
+            # print(f"=====ошибка чтения кода 46.мвд.рф=====итераций_{y}=========")
             break
     return news_dict
+
+
+
+# gtrkkursk()

@@ -26,6 +26,7 @@ SECRET_KEY = SECRET_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -126,12 +127,16 @@ USE_TZ = True
 STATIC_URL = 'static/'
 # MEDIA_URL = 'media/'
 
-STATICFILES_DIRS = [      #me
+STATICFILES_DIRS = [      #local
     BASE_DIR / 'static','static/media',
     BASE_DIR / 'templates',
 
     # BASE_DIR / 'media',
 ]
+# STATICFILES_DIRS = [    #server
+#         "/home/sovabot0/domains/sovabot.ru/public_html/static/",
+#         "/home/sovabot0/domains/sovabot.ru/public_html/static/media"
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -12,11 +12,15 @@ from scrapers import kurskcity,gtrkkursk,s46tv,seyminfo,k_izvestia,dddkursk,mchs
 from taggers import *
 # from taggers import anons, accidents, societ, jkh, sport, medicin, education, economic,culture
 from paths_01 import path_bd_json
+from loguru import logger
 
+logger.add(f"{path_bd_json}debug.json",format='[{time:DD-MM-YYYY_HH:mm:ss}] {level} {message}',
+           level="DEBUG",rotation="100KB")
+           #,compression="zip") rotation="1 week","10:00"#"debag.json"
 
 header = {'Accept': '*/*',
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\
-    (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36'}
+           (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36'}
 
 list_item = []
 # def parss(key_):
@@ -232,7 +236,8 @@ def get_count_news():
         number_news.append(count)
 
     qual_index=(number_news[7]+number_news[8]+number_news[9])/number_news[0]
-    print(f'Полнота отбора в рубрики: {qual_index}')
+    # print(f'Полнота отбора в рубрики: {qual_index}')
+    logger.info(f"Полнота отбора в рубрики: {qual_index} {__name__}")
     # print(number_news[7])
     path1 = f"{path_bd_json}numnews.json"
     # path1 = f"C:\\Users\\79081\\PycharmProjects\\pyWEB_0\\horoscope02\\dictionary\\bd_json\\numnews.json"
@@ -279,8 +284,8 @@ def script_scrap():
     events()
     adverts()
     get_count_news()
-    print("===============scrap============")
-
+    # print("===============scrap============")
+    logger.info(f"___________END SCRAP FILE__{__name__}")
 # script_scrap()
 
 # подключение функции скрапинга вторым потоком, иначе не запускается сервер

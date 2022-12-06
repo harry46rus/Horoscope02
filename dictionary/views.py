@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.http import HttpResponseNotFound
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound, Http404
 from dataclasses import dataclass
 from dictionary.loggics import search_words
 from dictionary.testcount import tcounter
 from dictionary.scrap01 import scrap,get_dates#,scrap1,scrap2
 from dictionary.read_USD import get_USD
 from datetime import datetime
-from dictionary.seo_logics import head_title,html_date
+from dictionary.seo_logics import head_title, html_date
 from django.core.paginator import Paginator
+# from dictionary.testdecipher import test_decipher
 
 # def leo(request):
 #     return HttpResponse("Hello, Dictionary!!!")
@@ -22,7 +22,6 @@ from django.core.paginator import Paginator
 # def get_sign_name(request, sing_name):
 #     if sing_name == 'leo':
 #         return HttpResponse(f"             -------HEllo, BOOK   {sing_name.upper()}!!!")
-
 
 zodiac_dict = {
     'aries': 'Овен - первый знак зодиака, планета Марс (с 21 марта по 20 апреля).',
@@ -158,6 +157,9 @@ def get_sign_name(request, sing_news: str):
     num_news,list_link = html_date(sing_news)
     # html_date(link_='novosti-za-sem-dnej')
     # print(num_news,list_link)
+    if num_news == 'error':
+        raise Http404()
+
 
     if num_news < 27:
         hour_ = datetime.strftime(datetime.now(), "%H")
@@ -208,7 +210,10 @@ def get_sign_name(request, sing_news: str):
 
         return render(request, "news0.html", context=data)
     else:
-        return render(request, "error404.html")
+        # return render(request, "error404.html")
+        raise Http404()
+
+
 
 def get_home(request):
     hour_ = datetime.strftime(datetime.now(), "%H")
@@ -250,24 +255,13 @@ def get_home(request):
     return render(request, "news0.html", context=data)
 
 
+
+
 def handle_404(request, exception):
-    fff, numnews = scrap('0')
-    usd_ = get_USD()
-    for date_, value in usd_.items():
-        dddate, usd, eur = date_, value[1], value[3]
-    date_num = get_dates()
-    sing_news = 100
+    return render(request, 'error404.html', status=404)
+    # return HttpResponseNotFound('<h style="font-size: 45px;">ТАКОЙ СТРАНИЦЫ НЕ СУШЕСТВУЕТ</h>')
 
-    data = {
-        'sing_news': sing_news,
-        'numnews': numnews,
-        'date_': dddate,
-        'usd': usd,
-        'eur': eur,
-        'news_dict': fff,
 
-        "date_num": date_num}
-    return render(request, 'error404.html',context=data)
 
 
 def get_test_count(request):
@@ -277,7 +271,7 @@ def get_test_count(request):
     contact2 = None
     contact3 = None
     namefile = None
-
+    switcher = 0
     if request.method == 'POST':
         # qq.append(request.POST.get('question1'))
         # qq.append(request.POST.get('question2'))
@@ -290,21 +284,28 @@ def get_test_count(request):
         contact2=request.POST.get('contact_field_1')
         contact3=request.POST.get('contact_field_2')
         sex=request.POST.get('sex')
+        if contact3 == 'FLAG':
+            switcher=1
 
         dictq = {}
         for x in range(1, 201):
             #     print(x)
             dictq[x] = qq[x - 1]
 
-        rezz,namefile =  tcounter(dictq,contact1,contact2,contact3,sex)
+        rezz,namefile,xx22,xx197 = tcounter(dictq,contact1,contact2,contact3,sex)
+        print(rezz,namefile)
+        # test_decipher(rezz, namefile,xx22,xx197)
 
     context2 = {
         # 'zz': qq,
+        # 'xx22': xx22,
+        # 'xx197': xx197,
         'zz': rezz,
         'cc1':contact1,
         'cc2':contact2,
         'cc3':contact3,
         'nmf':namefile,
+        'switcher': switcher,
 
     }
     # return render(request, "znak.html", context=context1)cd
